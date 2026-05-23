@@ -1,706 +1,292 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Sitio oficial de la Embajada del Líbano en Colombia. Servicios consulares, información sobre el Líbano y recursos para ciudadanos libaneses y colombianos.">
-<meta name="keywords" content="embajada libano colombia, embajada libanesa bogota, servicios consulares libano, visa libano, pasaporte libano">
-<meta property="og:title" content="Embajada del Líbano en Colombia">
-<meta property="og:description" content="Sitio oficial de la Embajada del Líbano en la República de Colombia — Bogotá">
-<title>Embajada del Líbano en Colombia | Sitio Oficial</title>
+<meta name="description" content="Sitio oficial de la Embajada del Líbano en Colombia — Bogotá">
+<title>Embajada del Líbano en Colombia | السفارة اللبنانية في كولومبيا</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cedar:#006400;--cedar-mid:#008000;--cedar-light:#e8f5e8;--cedar-dark:#004d00;
+  --red-lb:#EE161F;--white:#ffffff;--cream:#f9f6f0;--warm-gray:#e8e4dc;
+  --text-dark:#1a1a1a;--text-mid:#3d3d3d;--text-muted:#6b6b6b;
+  --gold:#c9a84c;--gold-light:#f5edda;--border:rgba(0,0,0,0.1);
+  --font-serif:'Cormorant Garamond',Georgia,serif;
+  --font-sans:'Jost','Segoe UI',sans-serif;
+  --font-arabic:'Noto Naskh Arabic',serif;
+}
+html[lang="ar"]{direction:rtl}
+html[lang="ar"] body{font-family:var(--font-arabic)}
+html[lang="ar"] .logo-title,html[lang="ar"] .section-title,html[lang="ar"] .hero h1{font-family:var(--font-arabic)}
+body{font-family:var(--font-sans);color:var(--text-dark);background:var(--white);line-height:1.6;scroll-behavior:smooth}
 
-  :root {
-    --cedar: #006400;
-    --cedar-mid: #008000;
-    --cedar-light: #e8f5e8;
-    --red-lb: #EE161F;
-    --white: #ffffff;
-    --cream: #f9f6f0;
-    --warm-gray: #e8e4dc;
-    --text-dark: #1a1a1a;
-    --text-mid: #3d3d3d;
-    --text-muted: #6b6b6b;
-    --gold: #c9a84c;
-    --gold-light: #f5edda;
-    --border: rgba(0,0,0,0.1);
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-sans: 'Jost', 'Segoe UI', sans-serif;
-  }
+/* TOPBAR */
+.topbar{background:var(--cedar);color:rgba(255,255,255,0.9);font-size:12px;font-weight:300;letter-spacing:.04em;padding:7px 0}
+.topbar-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.topbar a{color:rgba(255,255,255,0.85);text-decoration:none}
+.topbar a:hover{color:#fff}
+.topbar-right{display:flex;gap:20px;align-items:center}
 
-  body {
-    font-family: var(--font-sans);
-    color: var(--text-dark);
-    background: var(--white);
-    line-height: 1.6;
-  }
+/* LANG SWITCHER */
+.lang-switcher{display:flex;gap:4px;align-items:center}
+.lang-btn{background:transparent;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:3px 10px;border-radius:20px;font-size:11px;cursor:pointer;font-family:inherit;letter-spacing:.04em;transition:all .15s}
+.lang-btn:hover,.lang-btn.active{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.7);color:#fff}
+.lang-btn.active{background:rgba(255,255,255,0.2);font-weight:500}
 
-  /* ─── TOP BAR ─── */
-  .topbar {
-    background: var(--cedar);
-    color: rgba(255,255,255,0.9);
-    font-size: 12px;
-    font-weight: 300;
-    letter-spacing: 0.04em;
-    padding: 7px 0;
-  }
-  .topbar-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .topbar a { color: rgba(255,255,255,0.85); text-decoration: none; }
-  .topbar a:hover { color: #fff; }
-  .topbar-right { display: flex; gap: 20px; align-items: center; }
+/* HEADER */
+header{background:var(--white);border-bottom:1px solid var(--warm-gray);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo-wrap{display:flex;align-items:center;gap:16px;text-decoration:none;cursor:pointer}
+.flag-icon{width:52px;height:34px;border-radius:3px;overflow:hidden;display:flex;flex-direction:column;border:1px solid rgba(0,0,0,0.12)}
+.flag-red{background:var(--red-lb);flex:1}
+.flag-white{background:var(--white);flex:2;display:flex;align-items:center;justify-content:center}
+.logo-text{line-height:1.2}
+.logo-title{font-family:var(--font-serif);font-size:19px;font-weight:600;color:var(--text-dark);letter-spacing:.01em}
+.logo-subtitle{font-size:11px;color:var(--text-muted);font-weight:300;letter-spacing:.08em;text-transform:uppercase}
+html[lang="ar"] .logo-subtitle{text-transform:none;letter-spacing:0}
 
-  /* ─── HEADER ─── */
-  header {
-    background: var(--white);
-    border-bottom: 1px solid var(--warm-gray);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-  }
-  .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 76px;
-  }
-  .logo-wrap {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    text-decoration: none;
-  }
-  .flag-icon {
-    width: 52px;
-    height: 34px;
-    border-radius: 3px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(0,0,0,0.12);
-  }
-  .flag-red { background: var(--red-lb); flex: 1; }
-  .flag-white {
-    background: var(--white);
-    flex: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .flag-cedar {
-    width: 18px;
-    height: 12px;
-  }
-  .logo-text { line-height: 1.2; }
-  .logo-title {
-    font-family: var(--font-serif);
-    font-size: 19px;
-    font-weight: 600;
-    color: var(--text-dark);
-    letter-spacing: 0.01em;
-  }
-  .logo-subtitle {
-    font-size: 11px;
-    color: var(--text-muted);
-    font-weight: 300;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+/* NAV */
+nav{display:flex;align-items:center;gap:2px}
+.nav-link{display:block;padding:8px 13px;font-size:13px;font-weight:400;color:var(--text-mid);text-decoration:none;letter-spacing:.03em;border-radius:4px;transition:background .15s,color .15s;white-space:nowrap;cursor:pointer;background:none;border:none;font-family:inherit}
+.nav-link:hover{background:var(--cedar-light);color:var(--cedar)}
+.nav-link.active{color:var(--cedar);font-weight:500}
+.dropdown{position:relative}
+.dropdown-menu{display:none;position:absolute;top:100%;left:0;background:var(--white);border:1px solid var(--warm-gray);border-radius:6px;min-width:260px;box-shadow:0 8px 24px rgba(0,0,0,0.1);z-index:200;padding:6px 0}
+html[lang="ar"] .dropdown-menu{left:auto;right:0}
+.dropdown:hover .dropdown-menu{display:block}
+.dropdown-menu a{display:block;padding:9px 20px;font-size:13px;color:var(--text-mid);text-decoration:none;transition:background .1s;border-left:3px solid transparent}
+html[lang="ar"] .dropdown-menu a{border-left:none;border-right:3px solid transparent}
+.dropdown-menu a:hover{background:var(--cedar-light);color:var(--cedar);border-left-color:var(--cedar)}
+html[lang="ar"] .dropdown-menu a:hover{border-left-color:transparent;border-right-color:var(--cedar)}
 
-  /* ─── NAV ─── */
-  nav { display: flex; align-items: center; gap: 2px; }
-  .nav-item {
-    position: relative;
-  }
-  .nav-link {
-    display: block;
-    padding: 8px 14px;
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--text-mid);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    border-radius: 4px;
-    transition: background 0.15s, color 0.15s;
-    white-space: nowrap;
-  }
-  .nav-link:hover { background: var(--cedar-light); color: var(--cedar); }
-  .nav-link.active { color: var(--cedar); font-weight: 500; }
+/* MOBILE MENU */
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--text-dark)}
+.menu-toggle svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2}
+.mobile-nav{display:none;position:fixed;inset:0;background:var(--white);z-index:999;overflow-y:auto;padding:24px}
+.mobile-nav.open{display:block}
+.mobile-nav-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+.mobile-close{background:none;border:none;cursor:pointer;font-size:28px;color:var(--text-dark)}
+.mobile-nav a,.mobile-nav-section-title{display:block;padding:14px 0;font-size:16px;color:var(--text-dark);text-decoration:none;border-bottom:1px solid var(--warm-gray);font-weight:400}
+.mobile-nav-section-title{font-weight:500;color:var(--cedar);font-size:13px;text-transform:uppercase;letter-spacing:.1em;padding-top:24px;border-bottom:none}
 
-  .dropdown { position: relative; }
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--white);
-    border: 1px solid var(--warm-gray);
-    border-radius: 6px;
-    min-width: 240px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-    z-index: 200;
-    padding: 6px 0;
-  }
-  .dropdown:hover .dropdown-menu { display: block; }
-  .dropdown-menu a {
-    display: block;
-    padding: 9px 20px;
-    font-size: 13px;
-    color: var(--text-mid);
-    text-decoration: none;
-    transition: background 0.1s;
-    border-left: 3px solid transparent;
-  }
-  .dropdown-menu a:hover {
-    background: var(--cedar-light);
-    color: var(--cedar);
-    border-left-color: var(--cedar);
-  }
+/* NOTICE */
+.notice-bar{background:var(--gold-light);border-bottom:1px solid rgba(201,168,76,0.3);padding:12px 24px}
+.notice-inner{max-width:1200px;margin:0 auto;font-size:13px;color:#7a5c00;display:flex;gap:10px;align-items:flex-start}
 
-  /* ─── HERO ─── */
-  .hero {
-    background: linear-gradient(160deg, #0a3d0a 0%, #006400 50%, #004d00 100%);
-    color: var(--white);
-    padding: 80px 24px 70px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 40px,
-      rgba(255,255,255,0.015) 40px,
-      rgba(255,255,255,0.015) 80px
-    );
-  }
-  .hero-cedar-bg {
-    position: absolute;
-    right: -40px;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.04;
-    width: 500px;
-    height: 500px;
-  }
-  .hero-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 16px;
-    font-weight: 400;
-  }
-  .hero h1 {
-    font-family: var(--font-serif);
-    font-size: clamp(36px, 4vw, 52px);
-    font-weight: 500;
-    line-height: 1.15;
-    margin-bottom: 20px;
-    letter-spacing: -0.01em;
-  }
-  .hero-sub {
-    font-size: 15px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.8);
-    line-height: 1.7;
-    max-width: 440px;
-    margin-bottom: 36px;
-  }
-  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--red-lb);
-    color: var(--white);
-    padding: 12px 28px;
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: opacity 0.15s;
-    display: inline-block;
-  }
-  .btn-primary:hover { opacity: 0.88; }
-  .btn-outline {
-    background: transparent;
-    color: var(--white);
-    padding: 12px 28px;
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: 400;
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    border: 1px solid rgba(255,255,255,0.4);
-    transition: border-color 0.15s, background 0.15s;
-    display: inline-block;
-  }
-  .btn-outline:hover { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.08); }
+/* HERO */
+.hero{background:linear-gradient(160deg,#0a3d0a 0%,var(--cedar) 50%,var(--cedar-dark) 100%);color:var(--white);padding:80px 24px 70px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,0.015) 40px,rgba(255,255,255,0.015) 80px)}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:16px;font-weight:400}
+html[lang="ar"] .hero-eyebrow{letter-spacing:0;text-transform:none}
+.hero h1{font-family:var(--font-serif);font-size:clamp(34px,4vw,50px);font-weight:500;line-height:1.15;margin-bottom:20px}
+html[lang="ar"] .hero h1{font-family:var(--font-arabic);font-size:clamp(28px,3.5vw,44px)}
+.hero-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.7;max-width:440px;margin-bottom:36px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--red-lb);color:var(--white);padding:12px 28px;border-radius:4px;font-size:13px;font-weight:500;text-decoration:none;letter-spacing:.04em;transition:opacity .15s;display:inline-block;cursor:pointer;border:none;font-family:inherit}
+.btn-primary:hover{opacity:.88}
+.btn-outline{background:transparent;color:var(--white);padding:12px 28px;border-radius:4px;font-size:13px;font-weight:400;text-decoration:none;letter-spacing:.04em;border:1px solid rgba(255,255,255,0.4);transition:border-color .15s,background .15s;display:inline-block;cursor:pointer;font-family:inherit}
+.btn-outline:hover{border-color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.08)}
+.hero-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:32px}
+.hero-card h3{font-family:var(--font-serif);font-size:22px;font-weight:500;margin-bottom:20px;color:rgba(255,255,255,0.95)}
+html[lang="ar"] .hero-card h3{font-family:var(--font-arabic)}
+.contact-item{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.contact-icon{width:32px;height:32px;background:rgba(255,255,255,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.contact-icon svg{width:16px;height:16px;fill:rgba(255,255,255,0.8)}
+.contact-label{font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:.1em}
+html[lang="ar"] .contact-label{letter-spacing:0;text-transform:none}
+.contact-value{font-size:14px;color:rgba(255,255,255,0.9);font-weight:400;margin-top:2px}
+.contact-value a{color:inherit;text-decoration:none}
+.contact-value a:hover{text-decoration:underline}
 
-  .hero-card {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 10px;
-    padding: 32px;
-  }
-  .hero-card h3 {
-    font-family: var(--font-serif);
-    font-size: 22px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: rgba(255,255,255,0.95);
-    letter-spacing: 0.01em;
-  }
-  .contact-item {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 14px;
-    align-items: flex-start;
-  }
-  .contact-icon {
-    width: 32px;
-    height: 32px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-  .contact-icon svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.8); }
-  .contact-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; }
-  .contact-value { font-size: 14px; color: rgba(255,255,255,0.9); font-weight: 400; margin-top: 2px; }
-  .contact-value a { color: inherit; text-decoration: none; }
-  .contact-value a:hover { text-decoration: underline; }
+/* SECTIONS */
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cedar);font-weight:500;margin-bottom:10px}
+html[lang="ar"] .section-label{letter-spacing:0;text-transform:none}
+.section-title{font-family:var(--font-serif);font-size:clamp(26px,3vw,36px);font-weight:500;color:var(--text-dark);line-height:1.2;margin-bottom:14px}
+html[lang="ar"] .section-title{font-family:var(--font-arabic)}
+.section-desc{font-size:15px;color:var(--text-muted);font-weight:300;max-width:560px;line-height:1.7;margin-bottom:48px}
 
-  /* ─── ALERT / NOTICE ─── */
-  .notice-bar {
-    background: var(--gold-light);
-    border-bottom: 1px solid rgba(201,168,76,0.3);
-    padding: 12px 24px;
-  }
-  .notice-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    font-size: 13px;
-    color: #7a5c00;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
-  .notice-icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--warm-gray);border:1px solid var(--warm-gray);border-radius:8px;overflow:hidden}
+.service-card{background:var(--white);padding:28px 24px;text-decoration:none;color:var(--text-dark);transition:background .15s;display:block;cursor:pointer}
+.service-card:hover{background:var(--cedar-light)}
+.service-card:hover .service-arrow{transform:translateX(4px)}
+html[lang="ar"] .service-card:hover .service-arrow{transform:translateX(-4px)}
+.service-icon{width:40px;height:40px;background:var(--cedar-light);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.service-icon svg{width:20px;height:20px;stroke:var(--cedar);fill:none;stroke-width:1.5}
+.service-name{font-size:14px;font-weight:500;margin-bottom:6px}
+.service-desc{font-size:12px;color:var(--text-muted);font-weight:300;line-height:1.5}
+.service-arrow{display:inline-block;margin-top:10px;font-size:16px;color:var(--cedar);transition:transform .15s}
 
-  /* ─── SECTIONS ─── */
-  section { padding: 72px 24px; }
-  .section-inner { max-width: 1200px; margin: 0 auto; }
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--cedar);
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  .section-title {
-    font-family: var(--font-serif);
-    font-size: clamp(28px, 3vw, 38px);
-    font-weight: 500;
-    color: var(--text-dark);
-    line-height: 1.2;
-    margin-bottom: 14px;
-  }
-  .section-desc {
-    font-size: 15px;
-    color: var(--text-muted);
-    font-weight: 300;
-    max-width: 560px;
-    line-height: 1.7;
-    margin-bottom: 48px;
-  }
+/* SERVICE MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center;padding:24px}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--white);border-radius:12px;max-width:600px;width:100%;max-height:85vh;overflow-y:auto;position:relative}
+.modal-header{padding:28px 32px 20px;border-bottom:1px solid var(--warm-gray);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;position:sticky;top:0;background:var(--white);z-index:1}
+.modal-header h3{font-family:var(--font-serif);font-size:24px;font-weight:500;color:var(--text-dark);line-height:1.2}
+html[lang="ar"] .modal-header h3{font-family:var(--font-arabic)}
+.modal-close{background:none;border:none;cursor:pointer;font-size:24px;color:var(--text-muted);padding:4px;line-height:1;flex-shrink:0}
+.modal-close:hover{color:var(--text-dark)}
+.modal-body{padding:28px 32px 32px}
+.modal-body h4{font-size:14px;font-weight:500;color:var(--cedar);margin:20px 0 10px;text-transform:uppercase;letter-spacing:.06em}
+html[lang="ar"] .modal-body h4{letter-spacing:0;text-transform:none}
+.modal-body p{font-size:14px;color:var(--text-muted);font-weight:300;line-height:1.7;margin-bottom:10px}
+.modal-body ul{list-style:none;margin-bottom:16px}
+.modal-body ul li{font-size:14px;color:var(--text-muted);font-weight:300;padding:6px 0;border-bottom:1px solid var(--warm-gray);display:flex;gap:8px;align-items:flex-start}
+.modal-body ul li::before{content:'•';color:var(--cedar);font-size:16px;flex-shrink:0;margin-top:1px}
+html[lang="ar"] .modal-body ul li{flex-direction:row-reverse}
+.modal-placeholder{background:var(--cream);border-radius:8px;padding:20px;border-left:3px solid var(--gold);margin-top:16px}
+html[lang="ar"] .modal-placeholder{border-left:none;border-right:3px solid var(--gold)}
+.modal-placeholder p{font-size:13px;color:var(--text-muted);font-style:italic}
+.modal-contact{margin-top:24px;background:var(--cedar-light);border-radius:8px;padding:20px;text-align:center}
+.modal-contact p{font-size:13px;color:var(--text-muted);margin-bottom:12px}
+.modal-contact a{display:inline-block;background:var(--cedar);color:var(--white);padding:10px 24px;border-radius:4px;font-size:13px;text-decoration:none;font-weight:500}
 
-  /* ─── SERVICES GRID ─── */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1px;
-    background: var(--warm-gray);
-    border: 1px solid var(--warm-gray);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .service-card {
-    background: var(--white);
-    padding: 28px 24px;
-    text-decoration: none;
-    color: var(--text-dark);
-    transition: background 0.15s;
-    display: block;
-  }
-  .service-card:hover { background: var(--cedar-light); }
-  .service-card:hover .service-arrow { transform: translateX(4px); }
-  .service-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--cedar-light);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 14px;
-  }
-  .service-icon svg { width: 20px; height: 20px; stroke: var(--cedar); fill: none; stroke-width: 1.5; }
-  .service-name {
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 6px;
-    color: var(--text-dark);
-  }
-  .service-desc {
-    font-size: 12px;
-    color: var(--text-muted);
-    font-weight: 300;
-    line-height: 1.5;
-  }
-  .service-arrow {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 16px;
-    color: var(--cedar);
-    transition: transform 0.15s;
-  }
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.about-visual{background:var(--cedar);border-radius:10px;height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:rgba(255,255,255,0.9);position:relative;overflow:hidden}
+.about-visual-text{font-family:var(--font-serif);font-size:22px;font-style:italic;color:rgba(255,255,255,0.7);z-index:1;text-align:center;padding:0 40px;line-height:1.5}
+html[lang="ar"] .about-visual-text{font-family:var(--font-arabic);font-style:normal;font-size:20px}
+.about-content p{font-size:15px;font-weight:300;color:var(--text-muted);line-height:1.8;margin-bottom:20px}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;border-top:1px solid var(--warm-gray);padding-top:32px}
+.stat-number{font-family:var(--font-serif);font-size:32px;font-weight:500;color:var(--cedar);line-height:1;margin-bottom:4px}
+.stat-label{font-size:12px;color:var(--text-muted);font-weight:300;letter-spacing:.04em}
+html[lang="ar"] .stat-label{letter-spacing:0}
 
-  /* ─── ABOUT / LEBANON ─── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
-  }
-  .about-visual {
-    background: var(--cedar);
-    border-radius: 10px;
-    height: 420px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    color: rgba(255,255,255,0.9);
-    position: relative;
-    overflow: hidden;
-  }
-  .about-visual::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.05) 0%, transparent 60%);
-  }
-  .about-cedar-icon { opacity: 0.15; }
-  .about-visual-text {
-    font-family: var(--font-serif);
-    font-size: 28px;
-    font-style: italic;
-    color: rgba(255,255,255,0.7);
-    z-index: 1;
-    text-align: center;
-    padding: 0 40px;
-    line-height: 1.4;
-  }
-  .lebanon-flag-display {
-    display: flex;
-    gap: 3px;
-    z-index: 1;
-    margin-top: 8px;
-  }
-  .flag-stripe {
-    width: 56px;
-    height: 36px;
-    border-radius: 2px;
-  }
+/* AMBASSADOR */
+.ambassador-section{background:var(--cream)}
+.ambassador-grid{display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:start}
+.ambassador-photo{background:var(--warm-gray);border-radius:10px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--text-muted);border:2px dashed rgba(0,0,0,0.1)}
+.ambassador-photo svg{width:48px;height:48px;stroke:var(--text-muted);fill:none;stroke-width:1}
+.ambassador-photo span{font-size:13px;font-weight:300;text-align:center;padding:0 20px}
+.ambassador-name{font-family:var(--font-serif);font-size:32px;font-weight:500;margin-bottom:6px}
+html[lang="ar"] .ambassador-name{font-family:var(--font-arabic)}
+.ambassador-title{font-size:14px;color:var(--cedar);font-weight:500;text-transform:uppercase;letter-spacing:.1em;margin-bottom:24px}
+html[lang="ar"] .ambassador-title{letter-spacing:0;text-transform:none}
+.ambassador-bio p{font-size:15px;font-weight:300;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.placeholder-block{background:var(--warm-gray);border-radius:6px;height:14px;margin-bottom:10px;opacity:.6}
+.placeholder-block.short{width:70%}
 
-  .about-content { padding-top: 8px; }
-  .about-content p {
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--text-muted);
-    line-height: 1.8;
-    margin-bottom: 20px;
-  }
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 36px;
-    border-top: 1px solid var(--warm-gray);
-    padding-top: 32px;
-  }
-  .stat-item { }
-  .stat-number {
-    font-family: var(--font-serif);
-    font-size: 32px;
-    font-weight: 500;
-    color: var(--cedar);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .stat-label {
-    font-size: 12px;
-    color: var(--text-muted);
-    font-weight: 300;
-    letter-spacing: 0.04em;
-  }
+/* NEWS */
+.news-bg{background:var(--cream)}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.news-card{background:var(--white);border-radius:8px;border:1px solid var(--warm-gray);overflow:hidden;transition:box-shadow .2s;display:flex;flex-direction:column}
+.news-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+.news-tag{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.12em;padding:4px 10px;border-radius:20px;font-weight:500;margin-bottom:10px}
+html[lang="ar"] .news-tag{letter-spacing:0;text-transform:none}
+.tag-green{background:var(--cedar-light);color:var(--cedar)}
+.tag-red{background:#fee8e8;color:#b01010}
+.tag-gold{background:var(--gold-light);color:#7a5c00}
+.news-body{padding:22px;flex:1;display:flex;flex-direction:column}
+.news-date{font-size:12px;color:var(--text-muted);margin-bottom:10px;font-weight:300}
+.news-title{font-family:var(--font-serif);font-size:18px;font-weight:500;line-height:1.3;margin-bottom:10px;color:var(--text-dark)}
+html[lang="ar"] .news-title{font-family:var(--font-arabic)}
+.news-excerpt{font-size:13px;color:var(--text-muted);font-weight:300;line-height:1.6;flex:1}
+.news-link{display:inline-block;margin-top:14px;font-size:13px;color:var(--cedar);text-decoration:none;font-weight:500}
+.news-link:hover{text-decoration:underline}
 
-  /* ─── NEWS ─── */
-  .news-bg { background: var(--cream); }
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-  }
-  .news-card {
-    background: var(--white);
-    border-radius: 8px;
-    border: 1px solid var(--warm-gray);
-    overflow: hidden;
-    transition: box-shadow 0.2s;
-  }
-  .news-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-  .news-tag {
-    display: inline-block;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  .tag-green { background: var(--cedar-light); color: var(--cedar); }
-  .tag-red { background: #fee8e8; color: #b01010; }
-  .tag-gold { background: var(--gold-light); color: #7a5c00; }
-  .news-body { padding: 22px; }
-  .news-date { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; font-weight: 300; }
-  .news-title { font-family: var(--font-serif); font-size: 18px; font-weight: 500; line-height: 1.3; margin-bottom: 10px; color: var(--text-dark); }
-  .news-excerpt { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
-  .news-link { display: inline-block; margin-top: 14px; font-size: 13px; color: var(--cedar); text-decoration: none; font-weight: 500; }
-  .news-link:hover { text-decoration: underline; }
+/* LEBANON INFO */
+.lebanon-tabs{display:flex;gap:4px;margin-bottom:40px;flex-wrap:wrap}
+.tab-btn{padding:9px 20px;border-radius:4px;font-size:13px;font-weight:400;cursor:pointer;background:transparent;border:1px solid var(--warm-gray);color:var(--text-muted);font-family:inherit;transition:all .15s}
+.tab-btn:hover{border-color:var(--cedar);color:var(--cedar)}
+.tab-btn.active{background:var(--cedar);color:var(--white);border-color:var(--cedar)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.info-text p{font-size:15px;font-weight:300;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.info-visual{background:var(--warm-gray);border-radius:10px;height:320px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;border:2px dashed rgba(0,0,0,0.1)}
+.facts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:32px}
+.fact-card{background:var(--white);border:1px solid var(--warm-gray);border-radius:8px;padding:20px}
+.fact-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+html[lang="ar"] .fact-label{letter-spacing:0;text-transform:none}
+.fact-value{font-size:15px;font-weight:500;color:var(--text-dark)}
+.holidays-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.holiday-item{background:var(--white);border:1px solid var(--warm-gray);border-radius:8px;padding:16px 20px;display:flex;gap:16px;align-items:center}
+.holiday-date{font-family:var(--font-serif);font-size:20px;font-weight:500;color:var(--cedar);min-width:48px;text-align:center;line-height:1}
+.holiday-month{font-size:11px;color:var(--text-muted);text-align:center;margin-top:2px}
+.holiday-name{font-size:14px;font-weight:400;color:var(--text-dark)}
+.holiday-type{font-size:11px;color:var(--text-muted);margin-top:2px}
 
-  /* ─── CONTACT SECTION ─── */
-  .contact-section { background: var(--white); }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-  }
-  .contact-details h3 {
-    font-family: var(--font-serif);
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 24px;
-  }
-  .contact-row {
-    display: flex;
-    gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--warm-gray);
-    align-items: flex-start;
-  }
-  .contact-row:last-child { border-bottom: none; }
-  .cr-icon {
-    width: 36px;
-    height: 36px;
-    background: var(--cedar-light);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .cr-icon svg { width: 18px; height: 18px; stroke: var(--cedar); fill: none; stroke-width: 1.5; }
-  .cr-label { font-size: 12px; color: var(--text-muted); margin-bottom: 3px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.06em; }
-  .cr-value { font-size: 14px; font-weight: 400; color: var(--text-dark); }
-  .cr-value a { color: var(--cedar); text-decoration: none; }
-  .cr-value a:hover { text-decoration: underline; }
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.contact-row{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--warm-gray);align-items:flex-start}
+.contact-row:last-child{border-bottom:none}
+.cr-icon{width:36px;height:36px;background:var(--cedar-light);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cr-icon svg{width:18px;height:18px;stroke:var(--cedar);fill:none;stroke-width:1.5}
+.cr-label{font-size:12px;color:var(--text-muted);margin-bottom:3px;font-weight:300;text-transform:uppercase;letter-spacing:.06em}
+html[lang="ar"] .cr-label{letter-spacing:0;text-transform:none}
+.cr-value{font-size:14px;font-weight:400;color:var(--text-dark)}
+.cr-value a{color:var(--cedar);text-decoration:none}
+.cr-value a:hover{text-decoration:underline}
+.hours-table{width:100%;margin-top:8px}
+.hours-table td{padding:7px 0;font-size:13px;font-weight:300;color:var(--text-muted);border-bottom:1px solid var(--warm-gray)}
+.hours-table td:first-child{font-weight:400;color:var(--text-dark);width:50%}
+.hours-table tr:last-child td{border-bottom:none}
+.map-placeholder{background:var(--warm-gray);border-radius:10px;height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--text-muted);border:1px solid var(--border)}
+.map-placeholder svg{width:32px;height:32px;stroke:var(--cedar);fill:none;stroke-width:1.5}
+.map-address-overlay{background:var(--white);border-radius:6px;padding:12px 16px;margin-top:8px;width:80%;text-align:center}
+.map-address-overlay strong{font-size:13px;color:var(--text-dark);display:block;margin-bottom:2px}
+.map-address-overlay p{font-size:13px;color:var(--text-muted)}
 
-  .hours-table { width: 100%; margin-top: 20px; }
-  .hours-table td { padding: 8px 0; font-size: 13px; font-weight: 300; color: var(--text-muted); border-bottom: 1px solid var(--warm-gray); }
-  .hours-table td:first-child { font-weight: 400; color: var(--text-dark); width: 50%; }
-  .hours-table tr:last-child td { border-bottom: none; }
+/* FOOTER */
+footer{background:#111;color:rgba(255,255,255,0.6);padding:60px 24px 32px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.footer-logo{font-family:var(--font-serif);font-size:20px;font-weight:500;color:rgba(255,255,255,0.9);margin-bottom:10px}
+html[lang="ar"] .footer-logo{font-family:var(--font-arabic)}
+.footer-tagline{font-size:13px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.6;max-width:280px;margin-bottom:24px}
+.footer-official{display:inline-flex;align-items:center;gap:6px;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--cedar-mid);border:1px solid rgba(0,128,0,0.3);padding:5px 12px;border-radius:20px}
+html[lang="ar"] .footer-official{letter-spacing:0;text-transform:none}
+.footer-col h4{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,0.4);margin-bottom:16px;font-weight:400}
+html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,0.6);text-decoration:none;font-weight:300;transition:color .15s;cursor:pointer}
+.footer-col ul li a:hover{color:rgba(255,255,255,0.9)}
+.footer-bottom{padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px;font-weight:300}
+.footer-gov{font-size:12px;font-weight:300;color:rgba(255,255,255,0.4)}
 
-  .map-placeholder {
-    background: var(--warm-gray);
-    border-radius: 10px;
-    height: 360px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-  }
-  .map-placeholder svg { width: 32px; height: 32px; stroke: var(--cedar); fill: none; stroke-width: 1.5; }
-  .map-address-overlay {
-    background: var(--white);
-    border-radius: 6px;
-    padding: 12px 16px;
-    margin-top: 16px;
-    width: 80%;
-    text-align: center;
-  }
-  .map-address-overlay p { font-size: 13px; color: var(--text-muted); }
-  .map-address-overlay strong { font-size: 13px; color: var(--text-dark); display: block; margin-bottom: 2px; }
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: #111;
-    color: rgba(255,255,255,0.6);
-    padding: 60px 24px 32px;
-  }
-  .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 48px;
-    padding-bottom: 48px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .footer-brand { }
-  .footer-logo {
-    font-family: var(--font-serif);
-    font-size: 20px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.9);
-    margin-bottom: 10px;
-  }
-  .footer-tagline {
-    font-size: 13px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.6;
-    max-width: 280px;
-    margin-bottom: 24px;
-  }
-  .footer-official {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--cedar-mid);
-    border: 1px solid rgba(0,128,0,0.3);
-    padding: 5px 12px;
-    border-radius: 20px;
-  }
-  .footer-col h4 {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.4);
-    margin-bottom: 16px;
-    font-weight: 400;
-  }
-  .footer-col ul { list-style: none; }
-  .footer-col ul li { margin-bottom: 10px; }
-  .footer-col ul li a {
-    font-size: 13px;
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-    font-weight: 300;
-    transition: color 0.15s;
-  }
-  .footer-col ul li a:hover { color: rgba(255,255,255,0.9); }
-  .footer-bottom {
-    padding-top: 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .footer-copy { font-size: 12px; font-weight: 300; }
-  .footer-gov {
-    font-size: 12px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.4);
-  }
-
-  /* ─── CEDRUS ICON ─── */
-  .cedar-motif {
-    width: 180px;
-    height: 180px;
-    opacity: 0.08;
-    position: absolute;
-  }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    .hero-inner, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    .hero-card { display: none; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-  }
-  @media (max-width: 600px) {
-    .header-inner { height: 64px; }
-    nav { display: none; }
-    .footer-top { grid-template-columns: 1fr; }
-    .stats-row { grid-template-columns: 1fr; }
-    section { padding: 48px 16px; }
-    .topbar-right { display: none; }
-  }
-
-  /* ─── SCROLL ANIMATIONS ─── */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero-inner,.about-grid,.contact-grid,.ambassador-grid,.info-grid{grid-template-columns:1fr;gap:40px}
+  .hero-card{display:none}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:700px){
+  nav{display:none}
+  .menu-toggle{display:block}
+  .footer-top{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr 1fr}
+  section{padding:48px 16px}
+  .topbar-right{display:none}
+  .header-inner{height:64px}
+}
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
+<!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-inner">
-    <span>🇱🇧 &nbsp;Sitio oficial de la Embajada de la República del Líbano en Colombia</span>
+    <span data-i18n="topbar_official">🇱🇧 &nbsp;Sitio oficial de la Embajada de la República del Líbano en Colombia</span>
     <div class="topbar-right">
       <a href="mailto:info@embajadalibanocolombia.com">info@embajadalibanocolombia.com</a>
       <a href="tel:+5713481781">(57)(1) 3481781</a>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ar')">ع</button>
+      </div>
     </div>
   </div>
 </div>
@@ -708,252 +294,330 @@
 <!-- HEADER -->
 <header>
   <div class="header-inner">
-    <a href="#" class="logo-wrap">
-      <!-- Lebanese Flag SVG -->
+    <a class="logo-wrap" onclick="scrollToTop()">
       <div class="flag-icon">
         <div class="flag-red"></div>
         <div class="flag-white">
-          <svg class="flag-cedar" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 2 C20 2, 10 10, 8 16 C6 22, 12 24, 16 22 C16 22, 17 28, 20 28 C23 28, 24 22, 24 22 C28 24, 34 22, 32 16 C30 10, 20 2, 20 2Z" fill="#006400"/>
-            <rect x="18" y="24" width="4" height="6" rx="1" fill="#006400"/>
+          <svg width="22" height="14" viewBox="0 0 40 28" fill="none">
+            <path d="M20 2C20 2,10 9,8 15C6 21,12 23,16 21C16 21,17 27,20 27C23 27,24 21,24 21C28 23,34 21,32 15C30 9,20 2,20 2Z" fill="#006400"/>
+            <rect x="18" y="23" width="4" height="5" rx="1" fill="#006400"/>
           </svg>
         </div>
         <div class="flag-red"></div>
       </div>
       <div class="logo-text">
-        <div class="logo-title">Embajada del Líbano</div>
-        <div class="logo-subtitle">en Colombia — Bogotá</div>
+        <div class="logo-title" data-i18n="logo_title">Embajada del Líbano</div>
+        <div class="logo-subtitle" data-i18n="logo_subtitle">en Colombia — Bogotá</div>
       </div>
     </a>
-
     <nav>
-      <a href="#" class="nav-link active">Inicio</a>
-      <div class="dropdown nav-item">
-        <a href="#" class="nav-link">Embajada ▾</a>
+      <button class="nav-link active" onclick="goTo('inicio')" data-i18n="nav_home">Inicio</button>
+      <div class="dropdown">
+        <button class="nav-link" data-i18n="nav_embassy">Embajada ▾</button>
         <div class="dropdown-menu">
-          <a href="#">Sobre la Embajada</a>
-          <a href="#">Embajador</a>
-          <a href="#">Misión Diplomática</a>
-          <a href="#">Días Festivos</a>
+          <a onclick="goTo('embajada')" data-i18n="nav_about">Sobre la Embajada</a>
+          <a onclick="goTo('embajador')" data-i18n="nav_ambassador">Embajador</a>
+          <a onclick="goTo('festivos')" data-i18n="nav_holidays">Días Festivos</a>
         </div>
       </div>
-      <div class="dropdown nav-item">
-        <a href="#" class="nav-link">Servicios Consulares ▾</a>
+      <div class="dropdown">
+        <button class="nav-link" data-i18n="nav_consular">Servicios Consulares ▾</button>
         <div class="dropdown-menu">
-          <a href="#">Visas</a>
-          <a href="#">Pasaportes</a>
-          <a href="#">Ciudadanía Libanesa</a>
-          <a href="#">Poder Notarial</a>
-          <a href="#">Registro de Actos Civiles</a>
-          <a href="#">Legalización de Documentos</a>
-          <a href="#">Traducción</a>
-          <a href="#">Traslado de Restos</a>
-          <a href="#">Tarifas Consulares</a>
+          <a onclick="openService('visa')" data-i18n="svc_visa">Visas</a>
+          <a onclick="openService('passport')" data-i18n="svc_passport">Pasaportes</a>
+          <a onclick="openService('citizenship')" data-i18n="svc_citizenship">Ciudadanía</a>
+          <a onclick="openService('poa')" data-i18n="svc_poa">Poder Notarial</a>
+          <a onclick="openService('civil')" data-i18n="svc_civil">Registro de Actos Civiles</a>
+          <a onclick="openService('legal')" data-i18n="svc_legal">Legalización de Documentos</a>
+          <a onclick="openService('translation')" data-i18n="svc_translation">Traducción</a>
+          <a onclick="openService('remains')" data-i18n="svc_remains">Traslado de Restos</a>
+          <a onclick="openService('fees')" data-i18n="svc_fees">Tarifas Consulares</a>
         </div>
       </div>
-      <div class="dropdown nav-item">
-        <a href="#" class="nav-link">El Líbano ▾</a>
+      <div class="dropdown">
+        <button class="nav-link" data-i18n="nav_lebanon">El Líbano ▾</button>
         <div class="dropdown-menu">
-          <a href="#">Historia y Cultura</a>
-          <a href="#">Turismo</a>
-          <a href="#">Economía</a>
-          <a href="#">Himno Nacional</a>
+          <a onclick="goTo('libano'); setTab('historia')" data-i18n="tab_history">Historia y Cultura</a>
+          <a onclick="goTo('libano'); setTab('turismo')" data-i18n="tab_tourism">Turismo</a>
+          <a onclick="goTo('libano'); setTab('economia')" data-i18n="tab_economy">Economía</a>
+          <a onclick="goTo('festivos')" data-i18n="nav_holidays">Días Festivos</a>
         </div>
       </div>
-      <a href="#" class="nav-link">Noticias</a>
-      <a href="#contacto" class="nav-link">Contacto</a>
+      <button class="nav-link" onclick="goTo('noticias')" data-i18n="nav_news">Noticias</button>
+      <button class="nav-link" onclick="goTo('contacto')" data-i18n="nav_contact">Contacto</button>
     </nav>
+    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
   </div>
 </header>
 
-<!-- NOTICE BAR -->
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <span style="font-family:var(--font-serif);font-size:18px;" data-i18n="logo_title">Embajada del Líbano</span>
+    <button class="mobile-close" onclick="toggleMobileMenu()">✕</button>
+  </div>
+  <div class="lang-switcher" style="margin-bottom:24px;gap:8px">
+    <button class="lang-btn active" onclick="setLang('es');toggleMobileMenu()">Español</button>
+    <button class="lang-btn" onclick="setLang('en');toggleMobileMenu()">English</button>
+    <button class="lang-btn" onclick="setLang('ar');toggleMobileMenu()">العربية</button>
+  </div>
+  <span class="mobile-nav-section-title" data-i18n="nav_embassy">Embajada</span>
+  <a onclick="goTo('embajada');toggleMobileMenu()" data-i18n="nav_about">Sobre la Embajada</a>
+  <a onclick="goTo('embajador');toggleMobileMenu()" data-i18n="nav_ambassador">Embajador</a>
+  <span class="mobile-nav-section-title" data-i18n="nav_consular">Servicios Consulares</span>
+  <a onclick="openService('visa');toggleMobileMenu()" data-i18n="svc_visa">Visas</a>
+  <a onclick="openService('passport');toggleMobileMenu()" data-i18n="svc_passport">Pasaportes</a>
+  <a onclick="openService('citizenship');toggleMobileMenu()" data-i18n="svc_citizenship">Ciudadanía</a>
+  <a onclick="openService('poa');toggleMobileMenu()" data-i18n="svc_poa">Poder Notarial</a>
+  <a onclick="openService('civil');toggleMobileMenu()" data-i18n="svc_civil">Registro Civil</a>
+  <a onclick="openService('legal');toggleMobileMenu()" data-i18n="svc_legal">Legalización</a>
+  <span class="mobile-nav-section-title" data-i18n="nav_lebanon">El Líbano</span>
+  <a onclick="goTo('libano');toggleMobileMenu()" data-i18n="tab_history">Historia y Cultura</a>
+  <a onclick="goTo('libano');setTab('turismo');toggleMobileMenu()" data-i18n="tab_tourism">Turismo</a>
+  <a onclick="goTo('noticias');toggleMobileMenu()" data-i18n="nav_news">Noticias</a>
+  <a onclick="goTo('contacto');toggleMobileMenu()" data-i18n="nav_contact">Contacto</a>
+</div>
+
+<!-- NOTICE -->
 <div class="notice-bar">
   <div class="notice-inner">
-    <span class="notice-icon">⚠</span>
-    <span><strong>Aviso Importante:</strong> Para servicios consulares, se requiere cita previa. Por favor comuníquese al <a href="tel:+5713481781" style="color: #7a5c00; font-weight:500;">(57)(1) 3481781</a> o escriba a <a href="mailto:info@embajadalibanocolombia.com" style="color: #7a5c00; font-weight:500;">info@embajadalibanocolombia.com</a> para coordinar su visita.</span>
+    <span style="font-size:16px;flex-shrink:0">⚠</span>
+    <span data-i18n="notice_text"><strong>Aviso:</strong> Para servicios consulares se requiere cita previa. Comuníquese al <a href="tel:+5713481781" style="color:#7a5c00;font-weight:500">(57)(1) 3481781</a> o a <a href="mailto:info@embajadalibanocolombia.com" style="color:#7a5c00;font-weight:500">info@embajadalibanocolombia.com</a></span>
   </div>
 </div>
 
 <!-- HERO -->
-<section class="hero">
-  <!-- Cedar Tree background SVG -->
-  <svg class="hero-cedar-bg cedar-motif" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <path d="M100 10 C100 10, 40 60, 30 100 C20 140, 60 150, 80 140 C80 140, 85 170, 100 170 C115 170, 120 140, 120 140 C140 150, 180 140, 170 100 C160 60, 100 10, 100 10Z M95 168 L95 190 L105 190 L105 168Z" fill="white"/>
-  </svg>
+<section class="hero" id="inicio">
   <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-eyebrow">República del Líbano • Colombia</div>
-      <h1>Bienvenidos a la Embajada del Líbano</h1>
-      <p class="hero-sub">Servimos a los ciudadanos libaneses y colombianos desde Bogotá, fortaleciendo los lazos diplomáticos, culturales y comerciales entre ambas naciones.</p>
+    <div>
+      <div class="hero-eyebrow" data-i18n="hero_eyebrow">República del Líbano • Colombia</div>
+      <h1 data-i18n="hero_title">Bienvenidos a la Embajada del Líbano</h1>
+      <p class="hero-sub" data-i18n="hero_sub">Servimos a los ciudadanos libaneses y colombianos desde Bogotá, fortaleciendo los lazos diplomáticos, culturales y comerciales entre ambas naciones.</p>
       <div class="hero-actions">
-        <a href="#servicios" class="btn-primary">Servicios Consulares</a>
-        <a href="#contacto" class="btn-outline">Contactar la Embajada</a>
+        <button class="btn-primary" onclick="goTo('servicios')" data-i18n="hero_cta1">Servicios Consulares</button>
+        <button class="btn-outline" onclick="goTo('contacto')" data-i18n="hero_cta2">Contactar la Embajada</button>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="hero-card">
-        <h3>Información de Contacto</h3>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          </div>
-          <div>
-            <div class="contact-label">Dirección</div>
-            <div class="contact-value">Calle 74 #11-88<br>Bogotá, Colombia</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          </div>
-          <div>
-            <div class="contact-label">Teléfono</div>
-            <div class="contact-value"><a href="tel:+5713481781">(57)(1) 3481781</a></div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          </div>
-          <div>
-            <div class="contact-label">Correo electrónico</div>
-            <div class="contact-value"><a href="mailto:info@embajadalibanocolombia.com">info@embajadalibanocolombia.com</a></div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
-          </div>
-          <div>
-            <div class="contact-label">Horario de Atención</div>
-            <div class="contact-value">Lunes – Viernes<br>9:00 am – 3:00 pm</div>
-          </div>
-        </div>
+    <div class="hero-card">
+      <h3 data-i18n="card_contact_title">Información de Contacto</h3>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+        <div><div class="contact-label" data-i18n="label_address">Dirección</div><div class="contact-value">Calle 74 #11-88<br>Bogotá, Colombia</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+        <div><div class="contact-label" data-i18n="label_phone">Teléfono</div><div class="contact-value"><a href="tel:+5713481781">(57)(1) 3481781</a></div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+        <div><div class="contact-label" data-i18n="label_email">Correo</div><div class="contact-value"><a href="mailto:info@embajadalibanocolombia.com">info@embajadalibanocolombia.com</a></div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
+        <div><div class="contact-label" data-i18n="label_hours">Horario</div><div class="contact-value" data-i18n="hours_value">Lunes – Viernes<br>9:00 am – 3:00 pm</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONSULAR SERVICES -->
-<section id="servicios">
-  <div class="section-inner">
-    <div class="fade-in">
-      <div class="section-label">Servicios Disponibles</div>
-      <h2 class="section-title">Servicios Consulares</h2>
-      <p class="section-desc">La Embajada del Líbano en Colombia ofrece una amplia gama de servicios consulares para ciudadanos libaneses y colombianos que desean viajar, trabajar o establecerse en el Líbano.</p>
-    </div>
-    <div class="services-grid fade-in">
-
-      <a href="#" class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <div class="service-name">Visas</div>
-        <div class="service-desc">Visa de turismo, negocios, tránsito y residencia para el Líbano.</div>
-        <div class="service-arrow">→</div>
-      </a>
-
-      <a href="#" class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
-        </div>
-        <div class="service-name">Pasaportes</div>
-        <div class="service-desc">Renovación, expedición y trámites de pasaporte para ciudadanos libaneses.</div>
-        <div class="service-arrow">→</div>
-      </a>
-
-      <a href="#" class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <div class="service-name">Ciudadanía Libanesa</div>
-        <div class="service-desc">Adquisición, renuncia y certificación de ciudadanía de la República del Líbano.</div>
-        <div class="service-arrow">→</div>
-      </a>
-
-      <a href="#" class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg>
-        </div>
-        <div class="service-name">Poder Notarial</div>
-        <div class="service-desc">Autenticación de poderes notariales para trámites legales en el Líbano.</div>
-        <div class="service-arrow">→</div>
-      </a>
-
-      <a href="#" class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-        </div>
-        <div class="service-name">Registro de Actos Civiles</div>
-        <div class="service-desc">Nacimientos, matrimonios, defunciones y otros eventos civiles para libaneses en Colombia.</div>
-        <div class="service-arrow">→</div>
-      </a>
-
-      <a href="#" class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="service-name">Legalización de Documentos</div>
-        <div class="service-desc">Apostilla y legalización de títulos, contratos y documentos oficiales.</div>
-        <div class="service-arrow">→</div>
-      </a>
-
-      <a href="#" class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-        </div>
-        <div class="service-name">Traducción</div>
-        <div class="service-desc">Servicios de traducción oficial de documentos al árabe, español e inglés.</div>
-        <div class="service-arrow">→</div>
-      </a>
-
-      <a href="#" class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
-        </div>
-        <div class="service-name">Traslado de Restos</div>
-        <div class="service-desc">Trámites y documentación para el traslado de fallecidos a la República del Líbano.</div>
-        <div class="service-arrow">→</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT LEBANON -->
-<section style="background: var(--cream); padding: 72px 24px;">
+<!-- ABOUT EMBASSY -->
+<section id="embajada">
   <div class="section-inner">
     <div class="about-grid fade-in">
       <div class="about-visual">
-        <svg style="width:160px;height:160px;opacity:0.12;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path d="M100 10 C100 10, 40 60, 30 100 C20 140, 60 150, 80 140 C80 140, 85 170, 100 170 C115 170, 120 140, 120 140 C140 150, 180 140, 170 100 C160 60, 100 10, 100 10Z" fill="white"/>
-          <rect x="95" y="168" width="10" height="22" rx="2" fill="white"/>
-        </svg>
-        <div class="about-visual-text">"El Líbano — tierra de cedros, historia milenaria y hospitalidad sin igual."</div>
+        <svg style="width:140px;height:140px;opacity:.1" viewBox="0 0 200 200"><path d="M100 10C100 10,40 60,30 100C20 140,60 150,80 140C80 140,85 170,100 170C115 170,120 140,120 140C140 150,180 140,170 100C160 60,100 10,100 10Z" fill="white"/><rect x="95" y="168" width="10" height="22" rx="2" fill="white"/></svg>
+        <div class="about-visual-text" data-i18n="about_quote">"Fortaleciendo los lazos entre el Líbano y Colombia a través de la diplomacia, la cultura y el servicio."</div>
       </div>
       <div class="about-content">
-        <div class="section-label">Conoce el Líbano</div>
-        <h2 class="section-title">Una nación de historia<br>y cultura</h2>
-        <p>El Líbano es un país con más de seis mil años de historia continua, ubicado en la costa oriental del Mar Mediterráneo. Considerado cuna de la civilización fenicia, fue uno de los primeros centros del comercio y la escritura en el mundo antiguo.</p>
-        <p>Con una superficie de aproximadamente 10.452 km², el Líbano alberga una diversidad cultural, religiosa y lingüística única en Oriente Medio. Su capital, Beirut, es conocida como «el París del Mediterráneo» por su vibrante vida cultural, su gastronomía y su arquitectura.</p>
-        <p>La comunidad libanesa en Colombia es una de las más numerosas e influyentes de América Latina, con profundas raíces que datan de finales del siglo XIX, contribuyendo al comercio, la política y la cultura del país.</p>
-
+        <div class="section-label" data-i18n="about_label">Nuestra Misión</div>
+        <h2 class="section-title" data-i18n="about_title">Embajada del Líbano en Bogotá</h2>
+        <p data-i18n="about_p1">La Embajada de la República del Líbano en Colombia representa los intereses del Estado libanés ante el gobierno colombiano y la comunidad internacional con sede en Bogotá.</p>
+        <p data-i18n="about_p2">Nuestra misión es fortalecer las relaciones bilaterales entre ambos países en los ámbitos diplomático, económico, cultural y consular, brindando asistencia y servicios a los ciudadanos libaneses residentes en Colombia.</p>
+        <p data-i18n="about_p3">Colombia alberga una de las comunidades libanesas más numerosas e influyentes de América Latina, con una historia de más de 130 años de inmigración y contribución al desarrollo del país.</p>
         <div class="stats-row">
-          <div class="stat-item">
-            <div class="stat-number">6.000+</div>
-            <div class="stat-label">Años de historia</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">4,5M</div>
-            <div class="stat-label">Habitantes en el Líbano</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">14M</div>
-            <div class="stat-label">Libaneses en la diáspora</div>
+          <div><div class="stat-number">130+</div><div class="stat-label" data-i18n="stat1">Años de presencia libanesa en Colombia</div></div>
+          <div><div class="stat-number">~1M</div><div class="stat-label" data-i18n="stat2">Colombianos de origen libanés</div></div>
+          <div><div class="stat-number">6.000+</div><div class="stat-label" data-i18n="stat3">Años de historia del Líbano</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMBASSADOR -->
+<section class="ambassador-section" id="embajador">
+  <div class="section-inner fade-in">
+    <div class="section-label" data-i18n="amb_label">Representación Diplomática</div>
+    <h2 class="section-title" data-i18n="amb_title">Embajador</h2>
+    <div class="ambassador-grid">
+      <div class="ambassador-photo">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
+        <span data-i18n="amb_photo_placeholder">Fotografía oficial<br>Por confirmar</span>
+      </div>
+      <div>
+        <div class="ambassador-name" data-i18n="amb_name">[Nombre del Embajador]</div>
+        <div class="ambassador-title" data-i18n="amb_title_role">Embajador Extraordinario y Plenipotenciario<br>República del Líbano ante Colombia</div>
+        <div class="ambassador-bio">
+          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5"></div>
+          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5;width:90%"></div>
+          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5;width:75%"></div>
+          <div style="margin-top:20px;background:var(--gold-light);border-radius:8px;padding:16px 20px;border-left:3px solid var(--gold)">
+            <p style="font-size:13px;color:#7a5c00;font-style:italic" data-i18n="amb_placeholder_note">Información biográfica del Embajador será publicada próximamente. Para consultas diplomáticas, por favor comuníquese directamente con la Embajada.</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicios">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-label" data-i18n="svc_label">Servicios Disponibles</div>
+      <h2 class="section-title" data-i18n="svc_title">Servicios Consulares</h2>
+      <p class="section-desc" data-i18n="svc_desc">Haga clic en cualquier servicio para ver los requisitos detallados y el proceso de solicitud.</p>
+    </div>
+    <div class="services-grid fade-in">
+      <div class="service-card" onclick="openService('visa')">
+        <div class="service-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <div class="service-name" data-i18n="svc_visa">Visas</div>
+        <div class="service-desc" data-i18n="svc_visa_desc">Visa de turismo, negocios, tránsito y residencia para el Líbano.</div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card" onclick="openService('passport')">
+        <div class="service-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
+        <div class="service-name" data-i18n="svc_passport">Pasaportes</div>
+        <div class="service-desc" data-i18n="svc_passport_desc">Renovación, expedición y trámites de pasaporte para ciudadanos libaneses.</div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card" onclick="openService('citizenship')">
+        <div class="service-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="service-name" data-i18n="svc_citizenship">Ciudadanía Libanesa</div>
+        <div class="service-desc" data-i18n="svc_citizenship_desc">Adquisición, renuncia y certificación de ciudadanía libanesa.</div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card" onclick="openService('poa')">
+        <div class="service-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg></div>
+        <div class="service-name" data-i18n="svc_poa">Poder Notarial</div>
+        <div class="service-desc" data-i18n="svc_poa_desc">Autenticación de poderes notariales para trámites legales en el Líbano.</div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card" onclick="openService('civil')">
+        <div class="service-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <div class="service-name" data-i18n="svc_civil">Registro de Actos Civiles</div>
+        <div class="service-desc" data-i18n="svc_civil_desc">Nacimientos, matrimonios, defunciones y otros eventos civiles.</div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card" onclick="openService('legal')">
+        <div class="service-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="service-name" data-i18n="svc_legal">Legalización de Documentos</div>
+        <div class="service-desc" data-i18n="svc_legal_desc">Apostilla y legalización de títulos, contratos y documentos oficiales.</div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card" onclick="openService('translation')">
+        <div class="service-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+        <div class="service-name" data-i18n="svc_translation">Traducción</div>
+        <div class="service-desc" data-i18n="svc_translation_desc">Traducción oficial de documentos al árabe, español e inglés.</div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card" onclick="openService('remains')">
+        <div class="service-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+        <div class="service-name" data-i18n="svc_remains">Traslado de Restos</div>
+        <div class="service-desc" data-i18n="svc_remains_desc">Trámites para el traslado de fallecidos a la República del Líbano.</div>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card" onclick="openService('fees')">
+        <div class="service-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
+        <div class="service-name" data-i18n="svc_fees">Tarifas Consulares</div>
+        <div class="service-desc" data-i18n="svc_fees_desc">Información sobre costos y métodos de pago para servicios consulares.</div>
+        <div class="service-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEBANON INFO TABS -->
+<section style="background:var(--cream)" id="libano">
+  <div class="section-inner fade-in">
+    <div class="section-label" data-i18n="lb_label">Conoce el Líbano</div>
+    <h2 class="section-title" data-i18n="lb_title">El Líbano</h2>
+    <div class="lebanon-tabs">
+      <button class="tab-btn active" onclick="setTab('historia')" data-i18n="tab_history">Historia y Cultura</button>
+      <button class="tab-btn" onclick="setTab('turismo')" data-i18n="tab_tourism">Turismo</button>
+      <button class="tab-btn" onclick="setTab('economia')" data-i18n="tab_economy">Economía</button>
+      <button class="tab-btn" onclick="setTab('datos')" data-i18n="tab_facts">Datos del País</button>
+    </div>
+
+    <div class="tab-content active" id="tab-historia">
+      <div class="info-grid">
+        <div class="info-text">
+          <p data-i18n="hist_p1">El Líbano es uno de los países más antiguos del mundo, con más de seis mil años de historia continua. Sede de la civilización fenicia, fue uno de los primeros centros del comercio marítimo y la escritura alfabética en la antigüedad.</p>
+          <p data-i18n="hist_p2">A lo largo de los siglos, el Líbano fue hogar de múltiples civilizaciones: fenicios, griegos, romanos, árabes, cruzados y otomanos dejaron su huella en su arquitectura, idioma y cultura.</p>
+          <p data-i18n="hist_p3">El Líbano contemporáneo es reconocido por su extraordinaria diversidad cultural y religiosa, su vibrante escena artística y literaria, y su gastronomía, considerada una de las más refinadas del mundo mediterráneo.</p>
+        </div>
+        <div class="info-visual" data-i18n="img_placeholder_history">[ Imagen: Historia del Líbano — Por confirmar ]</div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-turismo">
+      <div class="info-grid">
+        <div class="info-text">
+          <p data-i18n="tour_p1">El Líbano ofrece una experiencia de viaje única: desde las playas del Mediterráneo hasta las cimas nevadas del Monte Líbano, pasando por las ruinas romanas de Baalbek y los antiguos cedros del norte.</p>
+          <p data-i18n="tour_p2">Beirut, su capital, es conocida como "el París del Mediterráneo" por su arquitectura ecléctica, su vida nocturna, sus galerías de arte y su incomparable gastronomía.</p>
+          <p data-i18n="tour_p3">Para información oficial sobre turismo, visite el <a href="https://mot.gov.lb/en" target="_blank" style="color:var(--cedar);font-weight:500">Ministerio de Turismo del Líbano</a>.</p>
+        </div>
+        <div class="info-visual" data-i18n="img_placeholder_tourism">[ Imagen: Turismo en el Líbano — Por confirmar ]</div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-economia">
+      <div class="info-grid">
+        <div class="info-text">
+          <p data-i18n="eco_p1">Históricamente, el Líbano fue conocido como el centro financiero y bancario del Medio Oriente, con Beirut como epicentro del comercio regional durante décadas.</p>
+          <p data-i18n="eco_p2">La economía libanesa se basa en servicios, comercio, turismo y remesas. La diáspora libanesa, una de las más numerosas del mundo con más de 14 millones de personas, juega un papel fundamental en la economía del país.</p>
+          <p data-i18n="eco_p3">Para información sobre inversión en el Líbano, visite la <a href="https://www.idal.com.lb" target="_blank" style="color:var(--cedar);font-weight:500">Agencia de Inversión y Desarrollo del Líbano (IDAL)</a>.</p>
+        </div>
+        <div class="info-visual" data-i18n="img_placeholder_economy">[ Imagen: Economía del Líbano — Por confirmar ]</div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-datos">
+      <div class="facts-grid">
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_capital">Capital</div><div class="fact-value">Beirut</div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_area">Superficie</div><div class="fact-value">10.452 km²</div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_pop">Población</div><div class="fact-value">~4,5 millones</div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_lang">Idioma oficial</div><div class="fact-value" data-i18n="fact_lang_val">Árabe (también francés e inglés)</div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_currency">Moneda</div><div class="fact-value" data-i18n="fact_currency_val">Libra libanesa (LBP)</div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_independence">Independencia</div><div class="fact-value">22 de noviembre de 1943</div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_religion">Religiones</div><div class="fact-value" data-i18n="fact_religion_val">Islam, Cristianismo, Druzismo</div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_diaspora">Diáspora</div><div class="fact-value" data-i18n="fact_diaspora_val">+14 millones en el mundo</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOLIDAYS -->
+<section id="festivos">
+  <div class="section-inner fade-in">
+    <div class="section-label" data-i18n="hol_label">Calendario Oficial</div>
+    <h2 class="section-title" data-i18n="hol_title">Días Festivos 2026</h2>
+    <p class="section-desc" data-i18n="hol_desc">La Embajada permanecerá cerrada en los siguientes días festivos libaneses y colombianos.</p>
+    <div class="holidays-list">
+      <div class="holiday-item"><div><div class="holiday-date">1</div><div class="holiday-month" data-i18n="month_jan">Enero</div></div><div><div class="holiday-name" data-i18n="hol_newyear">Año Nuevo</div><div class="holiday-type" data-i18n="hol_both">Colombia y Líbano</div></div></div>
+      <div class="holiday-item"><div><div class="holiday-date">6</div><div class="holiday-month" data-i18n="month_jan">Enero</div></div><div><div class="holiday-name" data-i18n="hol_epiphany">Epifanía / Navidad Ortodoxa Armenia</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
+      <div class="holiday-item"><div><div class="holiday-date">9</div><div class="holiday-month" data-i18n="month_feb">Febrero</div></div><div><div class="holiday-name" data-i18n="hol_stmaroun">San Marón</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
+      <div class="holiday-item"><div><div class="holiday-date">25</div><div class="holiday-month" data-i18n="month_mar">Marzo</div></div><div><div class="holiday-name" data-i18n="hol_annunciation">Anunciación</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
+      <div class="holiday-item"><div><div class="holiday-date">1</div><div class="holiday-month" data-i18n="month_may">Mayo</div></div><div><div class="holiday-name" data-i18n="hol_labor">Día del Trabajo</div><div class="holiday-type" data-i18n="hol_both">Colombia y Líbano</div></div></div>
+      <div class="holiday-item"><div><div class="holiday-date">25</div><div class="holiday-month" data-i18n="month_may">Mayo</div></div><div><div class="holiday-name" data-i18n="hol_resistance">Día de la Resistencia y Liberación</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
+      <div class="holiday-item"><div><div class="holiday-date">15</div><div class="holiday-month" data-i18n="month_aug">Agosto</div></div><div><div class="holiday-name" data-i18n="hol_assumption">Asunción de la Virgen</div><div class="holiday-type" data-i18n="hol_both">Colombia y Líbano</div></div></div>
+      <div class="holiday-item"><div><div class="holiday-date">1</div><div class="holiday-month" data-i18n="month_nov">Noviembre</div></div><div><div class="holiday-name" data-i18n="hol_allsaints">Día de Todos los Santos</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
+      <div class="holiday-item"><div><div class="holiday-date">11</div><div class="holiday-month" data-i18n="month_nov">Noviembre</div></div><div><div class="holiday-name" data-i18n="hol_independence">Día de la Independencia del Líbano</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
+      <div class="holiday-item"><div><div class="holiday-date">25</div><div class="holiday-month" data-i18n="month_dec">Diciembre</div></div><div><div class="holiday-name" data-i18n="hol_christmas">Navidad</div><div class="holiday-type" data-i18n="hol_both">Colombia y Líbano</div></div></div>
+    </div>
+    <p style="margin-top:24px;font-size:13px;color:var(--text-muted);font-weight:300" data-i18n="hol_note">* También se observan festivos islámicos cuyas fechas varían anualmente. Para el calendario completo del año en curso, consulte directamente con la Embajada.</p>
   </div>
 </section>
 
@@ -961,128 +625,100 @@
 <section class="news-bg" id="noticias">
   <div class="section-inner">
     <div class="fade-in">
-      <div class="section-label">Actualidad</div>
-      <h2 class="section-title">Noticias y Comunicados</h2>
-      <p class="section-desc">Manténgase informado sobre los últimos comunicados de la Embajada, eventos culturales y noticias relevantes para la comunidad libanesa en Colombia.</p>
+      <div class="section-label" data-i18n="news_label">Actualidad</div>
+      <h2 class="section-title" data-i18n="news_title">Noticias y Comunicados</h2>
+      <p class="section-desc" data-i18n="news_desc">Información oficial de la Embajada y noticias relevantes del Líbano.</p>
     </div>
     <div class="news-grid fade-in">
-
       <div class="news-card">
         <div class="news-body">
-          <span class="news-tag tag-green">Aviso Consular</span>
+          <span class="news-tag tag-green" data-i18n="news_tag_consular">Aviso Consular</span>
           <div class="news-date">Mayo 2026</div>
-          <h3 class="news-title">Actualización de Tarifas Consulares 2026</h3>
-          <p class="news-excerpt">Se informa a la comunidad libanesa en Colombia sobre la actualización de las tarifas para servicios consulares vigentes a partir del primer semestre de 2026.</p>
-          <a href="#" class="news-link">Leer más →</a>
+          <h3 class="news-title" data-i18n="news1_title">Actualización de Tarifas Consulares 2026</h3>
+          <p class="news-excerpt" data-i18n="news1_text">Se informa sobre la actualización de tarifas para servicios consulares vigentes a partir del primer semestre de 2026. Para consultas comuníquese directamente con la Embajada.</p>
+          <a href="mailto:info@embajadalibanocolombia.com" class="news-link" data-i18n="news_contact_link">Consultar a la Embajada →</a>
         </div>
       </div>
-
       <div class="news-card">
         <div class="news-body">
-          <span class="news-tag tag-gold">Cultura</span>
-          <div class="news-date">Abril 2026</div>
-          <h3 class="news-title">Celebración del Día de la Independencia del Líbano en Bogotá</h3>
-          <p class="news-excerpt">La Embajada celebró el 83.° aniversario de la Independencia del Líbano con una recepción oficial en Bogotá, reuniendo a miembros del cuerpo diplomático y la comunidad libanesa.</p>
-          <a href="#" class="news-link">Leer más →</a>
+          <span class="news-tag tag-gold" data-i18n="news_tag_culture">Cultura</span>
+          <div class="news-date">Noviembre 2025</div>
+          <h3 class="news-title" data-i18n="news2_title">Día de la Independencia del Líbano</h3>
+          <p class="news-excerpt" data-i18n="news2_text">Cada 22 de noviembre el Líbano celebra su independencia de Francia proclamada en 1943. La Embajada conmemora esta fecha con actividades culturales en Bogotá.</p>
+          <a href="https://nna-leb.gov.lb" target="_blank" class="news-link" data-i18n="news_nna_link">Agencia Nacional de Noticias del Líbano →</a>
         </div>
       </div>
-
       <div class="news-card">
         <div class="news-body">
-          <span class="news-tag tag-red">Importante</span>
-          <div class="news-date">Marzo 2026</div>
-          <h3 class="news-title">Requisitos de Visa para Colombianos que Visitan el Líbano</h3>
-          <p class="news-excerpt">La Embajada informa sobre los documentos y requisitos actualizados para que ciudadanos colombianos soliciten visa de turismo y negocios para el Líbano.</p>
-          <a href="#" class="news-link">Leer más →</a>
+          <span class="news-tag tag-red" data-i18n="news_tag_important">Importante</span>
+          <div class="news-date">2026</div>
+          <h3 class="news-title" data-i18n="news3_title">Noticias Internacionales del Líbano</h3>
+          <p class="news-excerpt" data-i18n="news3_text">Manténgase informado sobre la actualidad libanesa a través de fuentes oficiales y medios de comunicación reconocidos.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px">
+            <a href="https://lorienttoday.com" target="_blank" class="news-link" style="margin-top:0">L'Orient Today (EN) →</a>
+            <a href="https://nna-leb.gov.lb" target="_blank" class="news-link" style="margin-top:0">NNA Lebanon (AR/EN) →</a>
+            <a href="https://www.annahar.com" target="_blank" class="news-link" style="margin-top:0">An-Nahar (AR) →</a>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contacto" class="contact-section">
+<section id="contacto">
   <div class="section-inner">
     <div class="fade-in">
-      <div class="section-label">Estamos para Ayudarle</div>
-      <h2 class="section-title">Contacte la Embajada</h2>
-      <p class="section-desc">Para consultas, citas y servicios consulares, comuníquese con nosotros por cualquiera de los siguientes medios.</p>
+      <div class="section-label" data-i18n="contact_label">Estamos para Ayudarle</div>
+      <h2 class="section-title" data-i18n="contact_title">Contacte la Embajada</h2>
+      <p class="section-desc" data-i18n="contact_desc">Para consultas, citas y servicios consulares, comuníquese con nosotros por cualquiera de los siguientes medios.</p>
     </div>
     <div class="contact-grid fade-in">
       <div>
-        <div class="contact-details">
-          <h3>Información de la Embajada</h3>
-          <div class="contact-row">
-            <div class="cr-icon">
-              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <div class="cr-label">Dirección</div>
-              <div class="cr-value">Calle 74 #11-88<br>Bogotá, D.C., Colombia</div>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="cr-icon">
-              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.11 7.11a16 16 0 006.78 6.78l1.29-1.29a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
-            </div>
-            <div>
-              <div class="cr-label">Teléfono</div>
-              <div class="cr-value"><a href="tel:+5713481781">(57)(1) 3481781</a></div>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="cr-icon">
-              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-            </div>
-            <div>
-              <div class="cr-label">Correo Electrónico</div>
-              <div class="cr-value"><a href="mailto:info@embajadalibanocolombia.com">info@embajadalibanocolombia.com</a></div>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="cr-icon">
-              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <div>
-              <div class="cr-label">Horario de Atención al Público</div>
-              <div class="cr-value">
-                <table class="hours-table">
-                  <tr><td>Lunes – Viernes</td><td>9:00 am – 3:00 pm</td></tr>
-                  <tr><td>Servicios Consulares</td><td>Con cita previa</td></tr>
-                  <tr><td>Sábados y Domingos</td><td>Cerrado</td></tr>
-                  <tr><td>Festivos Colombianos y Libaneses</td><td>Cerrado</td></tr>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="cr-icon">
-              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
-            </div>
-            <div>
-              <div class="cr-label">Sitio Web Oficial</div>
-              <div class="cr-value"><a href="https://www.embajadadellibano.org.co">www.embajadadellibano.org.co</a></div>
+        <div class="contact-row">
+          <div class="cr-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="cr-label" data-i18n="label_address">Dirección</div><div class="cr-value">Calle 74 #11-88, Bogotá D.C., Colombia</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="cr-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.11 7.11a16 16 0 006.78 6.78l1.29-1.29a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg></div>
+          <div><div class="cr-label" data-i18n="label_phone">Teléfono</div><div class="cr-value"><a href="tel:+5713481781">(57)(1) 3481781</a></div></div>
+        </div>
+        <div class="contact-row">
+          <div class="cr-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+          <div><div class="cr-label" data-i18n="label_email">Correo</div><div class="cr-value"><a href="mailto:info@embajadalibanocolombia.com">info@embajadalibanocolombia.com</a></div></div>
+        </div>
+        <div class="contact-row">
+          <div class="cr-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div>
+            <div class="cr-label" data-i18n="label_hours">Horario</div>
+            <div class="cr-value">
+              <table class="hours-table">
+                <tr><td data-i18n="days_monfri">Lunes – Viernes</td><td>9:00 am – 3:00 pm</td></tr>
+                <tr><td data-i18n="days_consular">Servicios Consulares</td><td data-i18n="by_appointment">Con cita previa</td></tr>
+                <tr><td data-i18n="days_weekend">Sábados y Domingos</td><td data-i18n="closed">Cerrado</td></tr>
+              </table>
             </div>
           </div>
         </div>
+        <div class="contact-row">
+          <div class="cr-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+          <div><div class="cr-label" data-i18n="label_web">Sitio Web</div><div class="cr-value"><a href="https://www.embajadadellibano.org.co">www.embajadadellibano.org.co</a></div></div>
+        </div>
       </div>
-
       <div>
         <div class="map-placeholder">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <p style="font-size:14px; color: var(--text-muted);">Embajada del Líbano en Colombia</p>
+          <p style="font-size:14px" data-i18n="map_title">Embajada del Líbano en Colombia</p>
           <div class="map-address-overlay">
             <strong>Calle 74 #11-88, Bogotá</strong>
-            <p>Barrio Chapinero, Bogotá D.C.</p>
+            <p data-i18n="map_neighborhood">Chapinero, Bogotá D.C.</p>
           </div>
-          <a href="https://maps.google.com/?q=Calle+74+11-88+Bogota+Colombia" target="_blank" style="margin-top:8px; font-size:13px; color: var(--cedar); text-decoration:none; font-weight:500;">Abrir en Google Maps →</a>
+          <a href="https://maps.google.com/?q=Calle+74+11-88+Bogota+Colombia" target="_blank" style="margin-top:8px;font-size:13px;color:var(--cedar);text-decoration:none;font-weight:500" data-i18n="map_open">Abrir en Google Maps →</a>
         </div>
-
-        <div style="margin-top: 28px; background: var(--cedar-light); border-radius: 8px; padding: 24px; border-left: 3px solid var(--cedar);">
-          <h4 style="font-family: var(--font-serif); font-size: 18px; font-weight: 500; margin-bottom: 10px; color: var(--text-dark);">¿Necesita información adicional?</h4>
-          <p style="font-size: 13px; font-weight: 300; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">Para solicitar cita, consultar sobre un servicio consular específico o recibir orientación sobre trámites, no dude en comunicarse directamente.</p>
-          <a href="mailto:info@embajadalibanocolombia.com" class="btn-primary" style="font-size: 13px;">Enviar un Correo →</a>
+        <div style="margin-top:24px;background:var(--cedar-light);border-radius:8px;padding:24px;border-left:3px solid var(--cedar)">
+          <h4 style="font-family:var(--font-serif);font-size:18px;font-weight:500;margin-bottom:10px" data-i18n="contact_cta_title">¿Necesita información adicional?</h4>
+          <p style="font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.7;margin-bottom:16px" data-i18n="contact_cta_text">Para solicitar cita o consultar sobre un trámite consular específico, escríbanos directamente.</p>
+          <a href="mailto:info@embajadalibanocolombia.com" class="btn-primary" data-i18n="contact_cta_btn">Enviar un Correo →</a>
         </div>
       </div>
     </div>
@@ -1093,79 +729,424 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo">Embajada del Líbano en Colombia</div>
-        <p class="footer-tagline">Misión Diplomática Oficial de la República del Líbano ante la República de Colombia. Calle 74 #11-88, Bogotá D.C.</p>
-        <span class="footer-official">🇱🇧 Sitio Oficial</span>
+      <div>
+        <div class="footer-logo" data-i18n="footer_title">Embajada del Líbano en Colombia</div>
+        <p class="footer-tagline" data-i18n="footer_tagline">Misión Diplomática Oficial de la República del Líbano ante la República de Colombia. Calle 74 #11-88, Bogotá D.C.</p>
+        <span class="footer-official">🇱🇧 <span data-i18n="footer_official">Sitio Oficial</span></span>
       </div>
-
       <div class="footer-col">
-        <h4>Servicios</h4>
+        <h4 data-i18n="nav_consular">Servicios</h4>
         <ul>
-          <li><a href="#">Visas</a></li>
-          <li><a href="#">Pasaportes</a></li>
-          <li><a href="#">Ciudadanía</a></li>
-          <li><a href="#">Poder Notarial</a></li>
-          <li><a href="#">Legalización</a></li>
-          <li><a href="#">Traducción</a></li>
-          <li><a href="#">Registro Civil</a></li>
-          <li><a href="#">Tarifas Consulares</a></li>
+          <li><a onclick="openService('visa')" data-i18n="svc_visa">Visas</a></li>
+          <li><a onclick="openService('passport')" data-i18n="svc_passport">Pasaportes</a></li>
+          <li><a onclick="openService('citizenship')" data-i18n="svc_citizenship">Ciudadanía</a></li>
+          <li><a onclick="openService('poa')" data-i18n="svc_poa">Poder Notarial</a></li>
+          <li><a onclick="openService('legal')" data-i18n="svc_legal">Legalización</a></li>
+          <li><a onclick="openService('fees')" data-i18n="svc_fees">Tarifas Consulares</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
-        <h4>El Líbano</h4>
+        <h4 data-i18n="nav_lebanon">El Líbano</h4>
         <ul>
-          <li><a href="#">Historia y Cultura</a></li>
-          <li><a href="#">Turismo</a></li>
-          <li><a href="#">Economía</a></li>
-          <li><a href="#">Himno Nacional</a></li>
-          <li><a href="https://mot.gov.lb" target="_blank">Ministerio de Turismo</a></li>
-          <li><a href="#">Estadísticas</a></li>
+          <li><a onclick="goTo('libano');setTab('historia')" data-i18n="tab_history">Historia y Cultura</a></li>
+          <li><a onclick="goTo('libano');setTab('turismo')" data-i18n="tab_tourism">Turismo</a></li>
+          <li><a onclick="goTo('libano');setTab('economia')" data-i18n="tab_economy">Economía</a></li>
+          <li><a onclick="goTo('libano');setTab('datos')" data-i18n="tab_facts">Datos del País</a></li>
+          <li><a href="https://mot.gov.lb/en" target="_blank">Min. de Turismo</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
-        <h4>Información</h4>
+        <h4 data-i18n="footer_info">Información</h4>
         <ul>
-          <li><a href="#">Sobre la Embajada</a></li>
-          <li><a href="#">Embajador</a></li>
-          <li><a href="#">Días Festivos</a></li>
-          <li><a href="#">Misiones Diplomáticas</a></li>
-          <li><a href="#">Noticias</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a onclick="goTo('embajada')" data-i18n="nav_about">Sobre la Embajada</a></li>
+          <li><a onclick="goTo('embajador')" data-i18n="nav_ambassador">Embajador</a></li>
+          <li><a onclick="goTo('festivos')" data-i18n="nav_holidays">Días Festivos</a></li>
+          <li><a onclick="goTo('noticias')" data-i18n="nav_news">Noticias</a></li>
+          <li><a onclick="goTo('contacto')" data-i18n="nav_contact">Contacto</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Embajada de la República del Líbano en Colombia. Todos los derechos reservados.</span>
+      <span class="footer-copy" data-i18n="footer_copy">© 2026 Embajada de la República del Líbano en Colombia. Todos los derechos reservados.</span>
       <span class="footer-gov">www.embajadadellibano.org.co</span>
     </div>
   </div>
 </footer>
 
+<!-- SERVICE MODAL -->
+<div class="modal-overlay" id="serviceModal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modalTitle">Servicio</h3>
+      <button class="modal-close" onclick="closeServiceModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
+// ─── TRANSLATIONS ───
+const t = {
+  es:{
+    topbar_official:"🇱🇧 \u00a0Sitio oficial de la Embajada de la República del Líbano en Colombia",
+    logo_title:"Embajada del Líbano",logo_subtitle:"en Colombia — Bogotá",
+    nav_home:"Inicio",nav_embassy:"Embajada ▾",nav_consular:"Servicios Consulares ▾",
+    nav_lebanon:"El Líbano ▾",nav_news:"Noticias",nav_contact:"Contacto",
+    nav_about:"Sobre la Embajada",nav_ambassador:"Embajador",nav_holidays:"Días Festivos",
+    hero_eyebrow:"República del Líbano • Colombia",
+    hero_title:"Bienvenidos a la Embajada del Líbano",
+    hero_sub:"Servimos a los ciudadanos libaneses y colombianos desde Bogotá, fortaleciendo los lazos diplomáticos, culturales y comerciales entre ambas naciones.",
+    hero_cta1:"Servicios Consulares",hero_cta2:"Contactar la Embajada",
+    card_contact_title:"Información de Contacto",
+    label_address:"Dirección",label_phone:"Teléfono",label_email:"Correo",
+    label_hours:"Horario",label_web:"Sitio Web",
+    hours_value:"Lunes – Viernes<br>9:00 am – 3:00 pm",
+    notice_text:"<strong>Aviso:</strong> Para servicios consulares se requiere cita previa. Comuníquese al <a href='tel:+5713481781' style='color:#7a5c00;font-weight:500'>(57)(1) 3481781</a> o a <a href='mailto:info@embajadalibanocolombia.com' style='color:#7a5c00;font-weight:500'>info@embajadalibanocolombia.com</a>",
+    about_label:"Nuestra Misión",about_title:"Embajada del Líbano en Bogotá",
+    about_quote:'"Fortaleciendo los lazos entre el Líbano y Colombia a través de la diplomacia, la cultura y el servicio."',
+    about_p1:"La Embajada de la República del Líbano en Colombia representa los intereses del Estado libanés ante el gobierno colombiano y la comunidad internacional con sede en Bogotá.",
+    about_p2:"Nuestra misión es fortalecer las relaciones bilaterales entre ambos países en los ámbitos diplomático, económico, cultural y consular, brindando asistencia y servicios a los ciudadanos libaneses residentes en Colombia.",
+    about_p3:"Colombia alberga una de las comunidades libanesas más numerosas e influyentes de América Latina, con una historia de más de 130 años de inmigración y contribución al desarrollo del país.",
+    stat1:"Años de presencia libanesa en Colombia",stat2:"Colombianos de origen libanés",stat3:"Años de historia del Líbano",
+    amb_label:"Representación Diplomática",amb_title:"Embajador",
+    amb_title_role:"Embajador Extraordinario y Plenipotenciario<br>República del Líbano ante Colombia",
+    amb_name:"[Nombre del Embajador]",amb_photo_placeholder:"Fotografía oficial\nPor confirmar",
+    amb_placeholder_note:"Información biográfica del Embajador será publicada próximamente. Para consultas diplomáticas, comuníquese con la Embajada.",
+    svc_label:"Servicios Disponibles",svc_title:"Servicios Consulares",
+    svc_desc:"Haga clic en cualquier servicio para ver los requisitos detallados y el proceso de solicitud.",
+    svc_visa:"Visas",svc_passport:"Pasaportes",svc_citizenship:"Ciudadanía Libanesa",
+    svc_poa:"Poder Notarial",svc_civil:"Registro de Actos Civiles",svc_legal:"Legalización de Documentos",
+    svc_translation:"Traducción",svc_remains:"Traslado de Restos",svc_fees:"Tarifas Consulares",
+    svc_visa_desc:"Visa de turismo, negocios, tránsito y residencia para el Líbano.",
+    svc_passport_desc:"Renovación, expedición y trámites de pasaporte para ciudadanos libaneses.",
+    svc_citizenship_desc:"Adquisición, renuncia y certificación de ciudadanía libanesa.",
+    svc_poa_desc:"Autenticación de poderes notariales para trámites legales en el Líbano.",
+    svc_civil_desc:"Nacimientos, matrimonios, defunciones y otros eventos civiles.",
+    svc_legal_desc:"Apostilla y legalización de títulos, contratos y documentos oficiales.",
+    svc_translation_desc:"Traducción oficial de documentos al árabe, español e inglés.",
+    svc_remains_desc:"Trámites para el traslado de fallecidos a la República del Líbano.",
+    svc_fees_desc:"Información sobre costos y métodos de pago para servicios consulares.",
+    lb_label:"Conoce el Líbano",lb_title:"El Líbano",
+    tab_history:"Historia y Cultura",tab_tourism:"Turismo",tab_economy:"Economía",tab_facts:"Datos del País",
+    hist_p1:"El Líbano es uno de los países más antiguos del mundo, con más de seis mil años de historia continua. Sede de la civilización fenicia, fue uno de los primeros centros del comercio marítimo y la escritura alfabética.",
+    hist_p2:"A lo largo de los siglos, el Líbano fue hogar de múltiples civilizaciones: fenicios, griegos, romanos, árabes, cruzados y otomanos dejaron su huella en su arquitectura, idioma y cultura.",
+    hist_p3:"El Líbano contemporáneo es reconocido por su extraordinaria diversidad cultural y religiosa, su vibrante escena artística y su gastronomía, considerada una de las más refinadas del mundo mediterráneo.",
+    tour_p1:"El Líbano ofrece una experiencia de viaje única: desde las playas del Mediterráneo hasta las cimas nevadas del Monte Líbano, pasando por las ruinas romanas de Baalbek y los antiguos cedros del norte.",
+    tour_p2:"Beirut, su capital, es conocida como 'el París del Mediterráneo' por su arquitectura ecléctica, su vida nocturna, sus galerías de arte y su incomparable gastronomía.",
+    tour_p3:"Para información oficial sobre turismo, visite el <a href='https://mot.gov.lb/en' target='_blank' style='color:var(--cedar);font-weight:500'>Ministerio de Turismo del Líbano</a>.",
+    eco_p1:"Históricamente, el Líbano fue conocido como el centro financiero y bancario del Medio Oriente, con Beirut como epicentro del comercio regional durante décadas.",
+    eco_p2:"La economía libanesa se basa en servicios, comercio, turismo y remesas. La diáspora libanesa, con más de 14 millones de personas en el mundo, juega un papel fundamental.",
+    eco_p3:"Para información sobre inversión en el Líbano, visite la <a href='https://www.idal.com.lb' target='_blank' style='color:var(--cedar);font-weight:500'>Agencia de Inversión y Desarrollo (IDAL)</a>.",
+    img_placeholder_history:"[ Imagen: Historia del Líbano — Por confirmar ]",
+    img_placeholder_tourism:"[ Imagen: Turismo en el Líbano — Por confirmar ]",
+    img_placeholder_economy:"[ Imagen: Economía del Líbano — Por confirmar ]",
+    fact_capital:"Capital",fact_area:"Superficie",fact_pop:"Población",fact_lang:"Idioma oficial",
+    fact_lang_val:"Árabe (también francés e inglés)",fact_currency:"Moneda",fact_currency_val:"Libra libanesa (LBP)",
+    fact_independence:"Independencia",fact_religion:"Religiones",fact_religion_val:"Islam, Cristianismo, Druzismo",
+    fact_diaspora:"Diáspora",fact_diaspora_val:"+14 millones en el mundo",
+    hol_label:"Calendario Oficial",hol_title:"Días Festivos 2026",
+    hol_desc:"La Embajada permanecerá cerrada en los siguientes días festivos libaneses y colombianos.",
+    hol_note:"* También se observan festivos islámicos cuyas fechas varían anualmente. Para el calendario completo consulte directamente con la Embajada.",
+    hol_newyear:"Año Nuevo",hol_epiphany:"Epifanía / Navidad Ortodoxa Armenia",hol_stmaroun:"San Marón",
+    hol_annunciation:"Anunciación",hol_labor:"Día del Trabajo",hol_resistance:"Día de la Resistencia y Liberación",
+    hol_assumption:"Asunción de la Virgen",hol_allsaints:"Día de Todos los Santos",
+    hol_independence:"Día de la Independencia del Líbano",hol_christmas:"Navidad",
+    hol_both:"Colombia y Líbano",hol_lb:"Líbano",
+    month_jan:"Enero",month_feb:"Febrero",month_mar:"Marzo",month_may:"Mayo",
+    month_aug:"Agosto",month_nov:"Noviembre",month_dec:"Diciembre",
+    news_label:"Actualidad",news_title:"Noticias y Comunicados",
+    news_desc:"Información oficial de la Embajada y noticias relevantes del Líbano.",
+    news_tag_consular:"Aviso Consular",news_tag_culture:"Cultura",news_tag_important:"Importante",
+    news1_title:"Actualización de Tarifas Consulares 2026",
+    news1_text:"Se informa sobre la actualización de tarifas para servicios consulares vigentes a partir del primer semestre de 2026. Para consultas comuníquese directamente con la Embajada.",
+    news2_title:"Día de la Independencia del Líbano",
+    news2_text:"Cada 22 de noviembre el Líbano celebra su independencia de Francia proclamada en 1943. La Embajada conmemora esta fecha con actividades culturales en Bogotá.",
+    news3_title:"Noticias Internacionales del Líbano",
+    news3_text:"Manténgase informado sobre la actualidad libanesa a través de fuentes oficiales y medios reconocidos.",
+    news_contact_link:"Consultar a la Embajada →",news_nna_link:"Agencia Nacional de Noticias del Líbano →",
+    contact_label:"Estamos para Ayudarle",contact_title:"Contacte la Embajada",
+    contact_desc:"Para consultas, citas y servicios consulares, comuníquese con nosotros por cualquiera de los siguientes medios.",
+    days_monfri:"Lunes – Viernes",days_consular:"Servicios Consulares",days_weekend:"Sábados y Domingos",
+    by_appointment:"Con cita previa",closed:"Cerrado",
+    map_title:"Embajada del Líbano en Colombia",map_neighborhood:"Chapinero, Bogotá D.C.",
+    map_open:"Abrir en Google Maps →",
+    contact_cta_title:"¿Necesita información adicional?",
+    contact_cta_text:"Para solicitar cita o consultar sobre un trámite consular específico, escríbanos directamente.",
+    contact_cta_btn:"Enviar un Correo →",
+    footer_title:"Embajada del Líbano en Colombia",
+    footer_tagline:"Misión Diplomática Oficial de la República del Líbano ante la República de Colombia. Calle 74 #11-88, Bogotá D.C.",
+    footer_official:"Sitio Oficial",footer_info:"Información",
+    footer_copy:"© 2026 Embajada de la República del Líbano en Colombia. Todos los derechos reservados.",
+    modal_requirements:"Requisitos",modal_process:"Proceso",modal_placeholder:"Información detallada sobre requisitos y proceso será publicada próximamente. Para consultas, comuníquese directamente con la Embajada.",
+    modal_contact_text:"Para iniciar su trámite o solicitar más información:",
+    modal_contact_btn:"Solicitar Información",
+  },
+  en:{
+    topbar_official:"🇱🇧 \u00a0Official website of the Embassy of the Republic of Lebanon in Colombia",
+    logo_title:"Embassy of Lebanon",logo_subtitle:"in Colombia — Bogotá",
+    nav_home:"Home",nav_embassy:"Embassy ▾",nav_consular:"Consular Services ▾",
+    nav_lebanon:"Lebanon ▾",nav_news:"News",nav_contact:"Contact",
+    nav_about:"About the Embassy",nav_ambassador:"Ambassador",nav_holidays:"Public Holidays",
+    hero_eyebrow:"Republic of Lebanon • Colombia",
+    hero_title:"Welcome to the Embassy of Lebanon",
+    hero_sub:"We serve Lebanese and Colombian citizens from Bogotá, strengthening diplomatic, cultural, and commercial ties between both nations.",
+    hero_cta1:"Consular Services",hero_cta2:"Contact the Embassy",
+    card_contact_title:"Contact Information",
+    label_address:"Address",label_phone:"Phone",label_email:"Email",
+    label_hours:"Office Hours",label_web:"Website",
+    hours_value:"Monday – Friday<br>9:00 am – 3:00 pm",
+    notice_text:"<strong>Notice:</strong> Consular services require a prior appointment. Contact us at <a href='tel:+5713481781' style='color:#7a5c00;font-weight:500'>(57)(1) 3481781</a> or <a href='mailto:info@embajadalibanocolombia.com' style='color:#7a5c00;font-weight:500'>info@embajadalibanocolombia.com</a>",
+    about_label:"Our Mission",about_title:"Embassy of Lebanon in Bogotá",
+    about_quote:'"Strengthening the bonds between Lebanon and Colombia through diplomacy, culture, and service."',
+    about_p1:"The Embassy of the Republic of Lebanon in Colombia represents the interests of the Lebanese State before the Colombian government and the international community based in Bogotá.",
+    about_p2:"Our mission is to strengthen bilateral relations between both countries in the diplomatic, economic, cultural, and consular fields, providing assistance and services to Lebanese citizens residing in Colombia.",
+    about_p3:"Colombia is home to one of the largest and most influential Lebanese communities in Latin America, with a history of over 130 years of immigration and contribution to the country's development.",
+    stat1:"Years of Lebanese presence in Colombia",stat2:"Colombians of Lebanese origin",stat3:"Years of Lebanese history",
+    amb_label:"Diplomatic Representation",amb_title:"Ambassador",
+    amb_title_role:"Ambassador Extraordinary and Plenipotentiary<br>Republic of Lebanon to Colombia",
+    amb_name:"[Ambassador's Name]",amb_photo_placeholder:"Official photograph\nTo be confirmed",
+    amb_placeholder_note:"The Ambassador's biographical information will be published shortly. For diplomatic inquiries, please contact the Embassy directly.",
+    svc_label:"Available Services",svc_title:"Consular Services",
+    svc_desc:"Click on any service to view detailed requirements and the application process.",
+    svc_visa:"Visas",svc_passport:"Passports",svc_citizenship:"Lebanese Citizenship",
+    svc_poa:"Power of Attorney",svc_civil:"Registration of Civil Events",svc_legal:"Document Legalization",
+    svc_translation:"Translation",svc_remains:"Transfer of Remains",svc_fees:"Consular Fees",
+    svc_visa_desc:"Tourist, business, transit, and residency visas for Lebanon.",
+    svc_passport_desc:"Renewal, issuance, and passport procedures for Lebanese citizens.",
+    svc_citizenship_desc:"Acquisition, renunciation, and certification of Lebanese citizenship.",
+    svc_poa_desc:"Authentication of powers of attorney for legal procedures in Lebanon.",
+    svc_civil_desc:"Births, marriages, deaths, and other civil events.",
+    svc_legal_desc:"Apostille and legalization of degrees, contracts, and official documents.",
+    svc_translation_desc:"Official translation of documents into Arabic, Spanish, and English.",
+    svc_remains_desc:"Procedures for the transfer of deceased persons to the Republic of Lebanon.",
+    svc_fees_desc:"Information on costs and payment methods for consular services.",
+    lb_label:"Discover Lebanon",lb_title:"Lebanon",
+    tab_history:"History & Culture",tab_tourism:"Tourism",tab_economy:"Economy",tab_facts:"Country Facts",
+    hist_p1:"Lebanon is one of the oldest countries in the world, with over six thousand years of continuous history. Home to the Phoenician civilization, it was one of the first centers of maritime trade and alphabetic writing in antiquity.",
+    hist_p2:"Over the centuries, Lebanon was home to multiple civilizations: Phoenicians, Greeks, Romans, Arabs, Crusaders, and Ottomans all left their mark on its architecture, language, and culture.",
+    hist_p3:"Contemporary Lebanon is recognized for its extraordinary cultural and religious diversity, its vibrant artistic scene, and its cuisine, considered one of the finest in the Mediterranean world.",
+    tour_p1:"Lebanon offers a unique travel experience: from the Mediterranean beaches to the snowy peaks of Mount Lebanon, through the Roman ruins of Baalbek and the ancient cedars of the north.",
+    tour_p2:"Beirut, its capital, is known as 'the Paris of the Mediterranean' for its eclectic architecture, nightlife, art galleries, and incomparable gastronomy.",
+    tour_p3:"For official tourism information, visit the <a href='https://mot.gov.lb/en' target='_blank' style='color:var(--cedar);font-weight:500'>Lebanese Ministry of Tourism</a>.",
+    eco_p1:"Historically, Lebanon was known as the financial and banking center of the Middle East, with Beirut as the epicenter of regional trade for decades.",
+    eco_p2:"The Lebanese economy is based on services, trade, tourism, and remittances. The Lebanese diaspora, with over 14 million people worldwide, plays a fundamental role.",
+    eco_p3:"For information on investing in Lebanon, visit the <a href='https://www.idal.com.lb' target='_blank' style='color:var(--cedar);font-weight:500'>Investment Development Authority of Lebanon (IDAL)</a>.",
+    img_placeholder_history:"[ Image: Lebanon History — To be confirmed ]",
+    img_placeholder_tourism:"[ Image: Lebanon Tourism — To be confirmed ]",
+    img_placeholder_economy:"[ Image: Lebanon Economy — To be confirmed ]",
+    fact_capital:"Capital",fact_area:"Area",fact_pop:"Population",fact_lang:"Official language",
+    fact_lang_val:"Arabic (also French and English)",fact_currency:"Currency",fact_currency_val:"Lebanese Pound (LBP)",
+    fact_independence:"Independence",fact_religion:"Religions",fact_religion_val:"Islam, Christianity, Druzism",
+    fact_diaspora:"Diaspora",fact_diaspora_val:"+14 million worldwide",
+    hol_label:"Official Calendar",hol_title:"Public Holidays 2026",
+    hol_desc:"The Embassy will be closed on the following Lebanese and Colombian public holidays.",
+    hol_note:"* Islamic holidays are also observed; their dates vary annually. For the full current year calendar, contact the Embassy directly.",
+    hol_newyear:"New Year's Day",hol_epiphany:"Epiphany / Armenian Orthodox Christmas",hol_stmaroun:"Saint Maroun's Day",
+    hol_annunciation:"Annunciation",hol_labor:"Labor Day",hol_resistance:"Resistance and Liberation Day",
+    hol_assumption:"Assumption of the Virgin",hol_allsaints:"All Saints' Day",
+    hol_independence:"Lebanese Independence Day",hol_christmas:"Christmas Day",
+    hol_both:"Colombia & Lebanon",hol_lb:"Lebanon",
+    month_jan:"January",month_feb:"February",month_mar:"March",month_may:"May",
+    month_aug:"August",month_nov:"November",month_dec:"December",
+    news_label:"Latest News",news_title:"News & Announcements",
+    news_desc:"Official Embassy announcements and relevant news from Lebanon.",
+    news_tag_consular:"Consular Notice",news_tag_culture:"Culture",news_tag_important:"Important",
+    news1_title:"Consular Fee Update 2026",
+    news1_text:"Information on the updated consular service fees effective from the first half of 2026. For inquiries, contact the Embassy directly.",
+    news2_title:"Lebanese Independence Day",
+    news2_text:"Every November 22nd, Lebanon celebrates its independence from France proclaimed in 1943. The Embassy commemorates this date with cultural events in Bogotá.",
+    news3_title:"International News from Lebanon",
+    news3_text:"Stay informed about Lebanese current affairs through official sources and recognized media outlets.",
+    news_contact_link:"Contact the Embassy →",news_nna_link:"National News Agency of Lebanon →",
+    contact_label:"We Are Here to Help",contact_title:"Contact the Embassy",
+    contact_desc:"For inquiries, appointments, and consular services, contact us through any of the following channels.",
+    days_monfri:"Monday – Friday",days_consular:"Consular Services",days_weekend:"Saturdays & Sundays",
+    by_appointment:"By appointment only",closed:"Closed",
+    map_title:"Embassy of Lebanon in Colombia",map_neighborhood:"Chapinero, Bogotá D.C.",
+    map_open:"Open in Google Maps →",
+    contact_cta_title:"Need additional information?",
+    contact_cta_text:"To request an appointment or inquire about a specific consular procedure, write to us directly.",
+    contact_cta_btn:"Send an Email →",
+    footer_title:"Embassy of Lebanon in Colombia",
+    footer_tagline:"Official Diplomatic Mission of the Republic of Lebanon to the Republic of Colombia. Calle 74 #11-88, Bogotá D.C.",
+    footer_official:"Official Website",footer_info:"Information",
+    footer_copy:"© 2026 Embassy of the Republic of Lebanon in Colombia. All rights reserved.",
+    modal_requirements:"Requirements",modal_process:"Process",modal_placeholder:"Detailed information about requirements and process will be published shortly. For inquiries, contact the Embassy directly.",
+    modal_contact_text:"To begin your process or request more information:",
+    modal_contact_btn:"Request Information",
+  },
+  ar:{
+    topbar_official:"🇱🇧 \u00a0الموقع الرسمي لسفارة الجمهورية اللبنانية في كولومبيا",
+    logo_title:"سفارة لبنان",logo_subtitle:"في كولومبيا — بوغوتا",
+    nav_home:"الرئيسية",nav_embassy:"السفارة ▾",nav_consular:"الخدمات القنصلية ▾",
+    nav_lebanon:"لبنان ▾",nav_news:"أخبار",nav_contact:"اتصل بنا",
+    nav_about:"عن السفارة",nav_ambassador:"السفير",nav_holidays:"أيام العطل الرسمية",
+    hero_eyebrow:"الجمهورية اللبنانية • كولومبيا",
+    hero_title:"مرحباً بكم في سفارة لبنان",
+    hero_sub:"نخدم المواطنين اللبنانيين والكولومبيين من بوغوتا، ونعمل على تعزيز الروابط الدبلوماسية والثقافية والتجارية بين البلدين.",
+    hero_cta1:"الخدمات القنصلية",hero_cta2:"تواصل مع السفارة",
+    card_contact_title:"معلومات التواصل",
+    label_address:"العنوان",label_phone:"الهاتف",label_email:"البريد الإلكتروني",
+    label_hours:"ساعات العمل",label_web:"الموقع الإلكتروني",
+    hours_value:"الاثنين – الجمعة<br>٩:٠٠ صباحاً – ٣:٠٠ مساءً",
+    notice_text:"<strong>إشعار:</strong> تستلزم الخدمات القنصلية تحديد موعد مسبق. يرجى التواصل على <a href='tel:+5713481781' style='color:#7a5c00;font-weight:500'>(57)(1) 3481781</a> أو <a href='mailto:info@embajadalibanocolombia.com' style='color:#7a5c00;font-weight:500'>info@embajadalibanocolombia.com</a>",
+    about_label:"مهمتنا",about_title:"سفارة لبنان في بوغوتا",
+    about_quote:'"تعزيز الروابط بين لبنان وكولومبيا من خلال الدبلوماسية والثقافة والخدمة."',
+    about_p1:"تمثل سفارة الجمهورية اللبنانية في كولومبيا مصالح الدولة اللبنانية لدى الحكومة الكولومبية والمجتمع الدولي في بوغوتا.",
+    about_p2:"مهمتنا تعزيز العلاقات الثنائية بين البلدين على الصعيدين الدبلوماسي والاقتصادي والثقافي والقنصلي، وتقديم المساعدة للمواطنين اللبنانيين المقيمين في كولومبيا.",
+    about_p3:"تحتضن كولومبيا إحدى أكبر الجاليات اللبنانية وأكثرها تأثيراً في أمريكا اللاتينية، بتاريخ يمتد لأكثر من 130 عاماً من الهجرة والمساهمة في تطور البلاد.",
+    stat1:"عاماً من الحضور اللبناني في كولومبيا",stat2:"كولومبي من أصل لبناني",stat3:"عام من تاريخ لبنان",
+    amb_label:"التمثيل الدبلوماسي",amb_title:"السفير",
+    amb_title_role:"سفير فوق العادة والمفوض<br>جمهورية لبنان لدى كولومبيا",
+    amb_name:"[اسم السفير]",amb_photo_placeholder:"الصورة الرسمية\nيُحدَّد لاحقاً",
+    amb_placeholder_note:"سيتم نشر السيرة الذاتية للسفير قريباً. للاستفسارات الدبلوماسية، يرجى التواصل مباشرة مع السفارة.",
+    svc_label:"الخدمات المتاحة",svc_title:"الخدمات القنصلية",
+    svc_desc:"انقر على أي خدمة للاطلاع على المتطلبات التفصيلية وإجراءات الطلب.",
+    svc_visa:"التأشيرات",svc_passport:"جوازات السفر",svc_citizenship:"الجنسية اللبنانية",
+    svc_poa:"التوكيل الرسمي",svc_civil:"تسجيل الأحوال المدنية",svc_legal:"توثيق الوثائق",
+    svc_translation:"الترجمة",svc_remains:"نقل الرفات",svc_fees:"الرسوم القنصلية",
+    svc_visa_desc:"تأشيرات السياحة والأعمال والعبور والإقامة للبنان.",
+    svc_passport_desc:"تجديد وإصدار جوازات السفر للمواطنين اللبنانيين.",
+    svc_citizenship_desc:"اكتساب وتخلي وتوثيق الجنسية اللبنانية.",
+    svc_poa_desc:"توثيق وكالات التفويض للإجراءات القانونية في لبنان.",
+    svc_civil_desc:"تسجيل المواليد والزيجات والوفيات وسائر الأحداث المدنية.",
+    svc_legal_desc:"تصديق وتوثيق الشهادات والعقود والوثائق الرسمية.",
+    svc_translation_desc:"ترجمة رسمية للوثائق إلى العربية والإسبانية والإنجليزية.",
+    svc_remains_desc:"إجراءات نقل رفات المتوفين إلى الجمهورية اللبنانية.",
+    svc_fees_desc:"معلومات حول تكاليف الخدمات القنصلية وطرق الدفع.",
+    lb_label:"اكتشف لبنان",lb_title:"لبنان",
+    tab_history:"التاريخ والثقافة",tab_tourism:"السياحة",tab_economy:"الاقتصاد",tab_facts:"معلومات عن البلد",
+    hist_p1:"لبنان من أقدم بلدان العالم، بتاريخ متواصل يمتد لأكثر من ستة آلاف عام. كان مهداً للحضارة الفينيقية وأحد أولى مراكز التجارة البحرية والكتابة الأبجدية في العالم القديم.",
+    hist_p2:"عبر القرون، استضاف لبنان حضارات متعددة: الفينيقيون واليونانيون والرومان والعرب والصليبيون والعثمانيون تركوا بصماتهم في العمارة واللغة والثقافة.",
+    hist_p3:"يُعرف لبنان المعاصر بتنوعه الثقافي والديني الاستثنائي، وحيويته الفنية والأدبية، ومطبخه المعتبر من أرقى مطابخ العالم المتوسطي.",
+    tour_p1:"يقدم لبنان تجربة سفر فريدة: من شواطئ البحر الأبيض المتوسط إلى قمم جبل لبنان الثلجية، مروراً بآثار بعلبك الرومانية وأرز الشمال الأسطوري.",
+    tour_p2:"بيروت، عاصمته، تُعرف بـ'باريس الشرق' لعمارتها المتنوعة وحياتها الليلية ومعارضها الفنية ومطبخها اللا مثيل له.",
+    tour_p3:"للحصول على معلومات رسمية حول السياحة، قم بزيارة <a href='https://mot.gov.lb/en' target='_blank' style='color:var(--cedar);font-weight:500'>وزارة السياحة اللبنانية</a>.",
+    eco_p1:"اشتُهر لبنان تاريخياً بكونه المركز المالي والمصرفي للشرق الأوسط، إذ كانت بيروت محور التجارة الإقليمية لعقود طويلة.",
+    eco_p2:"يعتمد الاقتصاد اللبناني على الخدمات والتجارة والسياحة والتحويلات المالية. ويؤدي الاغتراب اللبناني البالغ أكثر من 14 مليون شخص حول العالم دوراً محورياً.",
+    eco_p3:"للاطلاع على معلومات الاستثمار في لبنان، زر <a href='https://www.idal.com.lb' target='_blank' style='color:var(--cedar);font-weight:500'>هيئة تنمية الاستثمار في لبنان (إيدال)</a>.",
+    img_placeholder_history:"[ صورة: تاريخ لبنان — يُحدَّد لاحقاً ]",
+    img_placeholder_tourism:"[ صورة: السياحة في لبنان — يُحدَّد لاحقاً ]",
+    img_placeholder_economy:"[ صورة: اقتصاد لبنان — يُحدَّد لاحقاً ]",
+    fact_capital:"العاصمة",fact_area:"المساحة",fact_pop:"عدد السكان",fact_lang:"اللغة الرسمية",
+    fact_lang_val:"العربية (والفرنسية والإنجليزية)",fact_currency:"العملة",fact_currency_val:"الليرة اللبنانية (LBP)",
+    fact_independence:"الاستقلال",fact_religion:"الأديان",fact_religion_val:"الإسلام، المسيحية، الدرزية",
+    fact_diaspora:"الاغتراب",fact_diaspora_val:"+14 مليون حول العالم",
+    hol_label:"التقويم الرسمي",hol_title:"العطل الرسمية 2026",
+    hol_desc:"ستكون السفارة مغلقة في أيام الأعياد الرسمية اللبنانية والكولومبية التالية.",
+    hol_note:"* كما تُلاحظ الأعياد الإسلامية التي تتغير مواعيدها سنوياً. للاطلاع على التقويم الكامل، تواصل مع السفارة مباشرة.",
+    hol_newyear:"رأس السنة الميلادية",hol_epiphany:"الغطاس / عيد الميلاد الأرمني الأرثوذكسي",
+    hol_stmaroun:"عيد مار مارون",hol_annunciation:"عيد البشارة",hol_labor:"عيد العمال",
+    hol_resistance:"يوم المقاومة والتحرير",hol_assumption:"عيد انتقال السيدة العذراء",
+    hol_allsaints:"عيد جميع القديسين",hol_independence:"عيد الاستقلال اللبناني",hol_christmas:"عيد الميلاد المجيد",
+    hol_both:"كولومبيا ولبنان",hol_lb:"لبنان",
+    month_jan:"يناير",month_feb:"فبراير",month_mar:"مارس",month_may:"مايو",
+    month_aug:"أغسطس",month_nov:"نوفمبر",month_dec:"ديسمبر",
+    news_label:"آخر الأخبار",news_title:"أخبار وبيانات",
+    news_desc:"إعلانات رسمية من السفارة وأخبار ذات صلة من لبنان.",
+    news_tag_consular:"إشعار قنصلي",news_tag_culture:"ثقافة",news_tag_important:"هام",
+    news1_title:"تحديث الرسوم القنصلية 2026",
+    news1_text:"إعلام بتحديث رسوم الخدمات القنصلية المعمول بها اعتباراً من النصف الأول من عام 2026. للاستفسار، تواصلوا مباشرة مع السفارة.",
+    news2_title:"يوم الاستقلال اللبناني",
+    news2_text:"في كل عام في الثاني والعشرين من نوفمبر يحتفل لبنان باستقلاله عن فرنسا المُعلن عام 1943. تحيي السفارة هذه المناسبة بفعاليات ثقافية في بوغوتا.",
+    news3_title:"أخبار لبنان الدولية",
+    news3_text:"ابق على اطلاع بآخر المستجدات اللبنانية عبر المصادر الرسمية ووسائل الإعلام المعتمدة.",
+    news_contact_link:"تواصل مع السفارة ←",news_nna_link:"وكالة الأنباء الوطنية اللبنانية ←",
+    contact_label:"نحن هنا لمساعدتك",contact_title:"تواصل مع السفارة",
+    contact_desc:"للاستفسارات والمواعيد والخدمات القنصلية، تواصل معنا عبر أي من القنوات التالية.",
+    days_monfri:"الاثنين – الجمعة",days_consular:"الخدمات القنصلية",days_weekend:"السبت والأحد",
+    by_appointment:"بموعد مسبق فقط",closed:"مغلق",
+    map_title:"سفارة لبنان في كولومبيا",map_neighborhood:"شابينيرو، بوغوتا",
+    map_open:"فتح في خرائط غوغل ←",
+    contact_cta_title:"هل تحتاج إلى معلومات إضافية؟",
+    contact_cta_text:"لطلب موعد أو الاستفسار عن إجراء قنصلي محدد، راسلنا مباشرة.",
+    contact_cta_btn:"إرسال بريد إلكتروني ←",
+    footer_title:"سفارة لبنان في كولومبيا",
+    footer_tagline:"البعثة الدبلوماسية الرسمية للجمهورية اللبنانية لدى جمهورية كولومبيا. كاليه 74 #11-88، بوغوتا.",
+    footer_official:"الموقع الرسمي",footer_info:"معلومات",
+    footer_copy:"© 2026 سفارة الجمهورية اللبنانية في كولومبيا. جميع الحقوق محفوظة.",
+    modal_requirements:"المتطلبات",modal_process:"الإجراءات",modal_placeholder:"ستُنشر المعلومات التفصيلية حول المتطلبات والإجراءات قريباً. للاستفسار، تواصل مباشرة مع السفارة.",
+    modal_contact_text:"لبدء معاملتك أو طلب مزيد من المعلومات:",
+    modal_contact_btn:"طلب معلومات",
+  }
+};
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+// Service content
+const services={
+  visa:{icon:"🪪"},passport:{icon:"📘"},citizenship:{icon:"🏛"},poa:{icon:"📄"},
+  civil:{icon:"📋"},legal:{icon:"🔏"},translation:{icon:"🌐"},remains:{icon:"🕊"},fees:{icon:"ℹ️"}
+};
+const svcKeys={
+  visa:"svc_visa",passport:"svc_passport",citizenship:"svc_citizenship",poa:"svc_poa",
+  civil:"svc_civil",legal:"svc_legal",translation:"svc_translation",remains:"svc_remains",fees:"svc_fees"
+};
 
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+let currentLang='es';
+
+function setLang(lang){
+  currentLang=lang;
+  const html=document.documentElement;
+  html.lang=lang;
+  html.dir=lang==='ar'?'rtl':'ltr';
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active',b.textContent.trim()===(lang==='es'?'ES':lang==='en'?'EN':'ع'));
   });
-</script>
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    if(t[lang]&&t[lang][key]!==undefined) el.innerHTML=t[lang][key];
+  });
+}
 
+function goTo(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'})}
+function toggleMobileMenu(){document.getElementById('mobileNav').classList.toggle('open')}
+
+function setTab(name){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    const tabs=['historia','turismo','economia','datos'];
+    b.classList.toggle('active',tabs[i]===name);
+  });
+  document.querySelectorAll('.tab-content').forEach(c=>{
+    c.classList.toggle('active',c.id==='tab-'+name);
+  });
+}
+
+function openService(svcId){
+  const lang=currentLang;
+  const tl=t[lang];
+  const title=tl[svcKeys[svcId]]||svcId;
+  document.getElementById('modalTitle').textContent=title;
+  document.getElementById('modalBody').innerHTML=`
+    <h4>${tl.modal_requirements||'Requisitos'}</h4>
+    <div style="background:var(--cream);border-radius:8px;padding:18px 20px;border-left:3px solid var(--gold)">
+      <p style="font-style:italic;font-size:13px;color:var(--text-muted)">${tl.modal_placeholder}</p>
+    </div>
+    <h4 style="margin-top:24px">${tl.modal_process||'Proceso'}</h4>
+    <ul>
+      <li>${tl.modal_placeholder}</li>
+    </ul>
+    <div class="modal-contact">
+      <p>${tl.modal_contact_text}</p>
+      <a href="mailto:info@embajadalibanocolombia.com">${tl.modal_contact_btn}</a>
+    </div>`;
+  document.getElementById('serviceModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeServiceModal(){
+  document.getElementById('serviceModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeModal(e){if(e.target.id==='serviceModal') closeServiceModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeServiceModal();});
+
+// Scroll animations
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
