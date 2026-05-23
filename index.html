@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sitio oficial de la Embajada del Líbano en Colombia. Servicios consulares, información sobre el Líbano y recursos para ciudadanos libaneses y colombianos.">
+<meta name="keywords" content="embajada libano colombia, embajada libanesa bogota, servicios consulares libano, visa libano, pasaporte libano">
+<meta property="og:title" content="Embajada del Líbano en Colombia">
+<meta property="og:description" content="Sitio oficial de la Embajada del Líbano en la República de Colombia — Bogotá">
+<title>Embajada del Líbano en Colombia | Sitio Oficial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cedar: #006400;
+    --cedar-mid: #008000;
+    --cedar-light: #e8f5e8;
+    --red-lb: #EE161F;
+    --white: #ffffff;
+    --cream: #f9f6f0;
+    --warm-gray: #e8e4dc;
+    --text-dark: #1a1a1a;
+    --text-mid: #3d3d3d;
+    --text-muted: #6b6b6b;
+    --gold: #c9a84c;
+    --gold-light: #f5edda;
+    --border: rgba(0,0,0,0.1);
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Jost', 'Segoe UI', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--text-dark);
+    background: var(--white);
+    line-height: 1.6;
+  }
+
+  /* ─── TOP BAR ─── */
+  .topbar {
+    background: var(--cedar);
+    color: rgba(255,255,255,0.9);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    padding: 7px 0;
+  }
+  .topbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .topbar a { color: rgba(255,255,255,0.85); text-decoration: none; }
+  .topbar a:hover { color: #fff; }
+  .topbar-right { display: flex; gap: 20px; align-items: center; }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--warm-gray);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+  }
+  .flag-icon {
+    width: 52px;
+    height: 34px;
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0,0,0,0.12);
+  }
+  .flag-red { background: var(--red-lb); flex: 1; }
+  .flag-white {
+    background: var(--white);
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .flag-cedar {
+    width: 18px;
+    height: 12px;
+  }
+  .logo-text { line-height: 1.2; }
+  .logo-title {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: 0.01em;
+  }
+  .logo-subtitle {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ─── NAV ─── */
+  nav { display: flex; align-items: center; gap: 2px; }
+  .nav-item {
+    position: relative;
+  }
+  .nav-link {
+    display: block;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-mid);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .nav-link:hover { background: var(--cedar-light); color: var(--cedar); }
+  .nav-link.active { color: var(--cedar); font-weight: 500; }
+
+  .dropdown { position: relative; }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    border: 1px solid var(--warm-gray);
+    border-radius: 6px;
+    min-width: 240px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    z-index: 200;
+    padding: 6px 0;
+  }
+  .dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu a {
+    display: block;
+    padding: 9px 20px;
+    font-size: 13px;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: background 0.1s;
+    border-left: 3px solid transparent;
+  }
+  .dropdown-menu a:hover {
+    background: var(--cedar-light);
+    color: var(--cedar);
+    border-left-color: var(--cedar);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(160deg, #0a3d0a 0%, #006400 50%, #004d00 100%);
+    color: var(--white);
+    padding: 80px 24px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 80px
+    );
+  }
+  .hero-cedar-bg {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.04;
+    width: 500px;
+    height: 500px;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+  .hero-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 36px;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--red-lb);
+    color: var(--white);
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: opacity 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border: 1px solid rgba(255,255,255,0.4);
+    transition: border-color 0.15s, background 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.08); }
+
+  .hero-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 32px;
+  }
+  .hero-card h3 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: 0.01em;
+  }
+  .contact-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .contact-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .contact-icon svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.8); }
+  .contact-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+  .contact-value { font-size: 14px; color: rgba(255,255,255,0.9); font-weight: 400; margin-top: 2px; }
+  .contact-value a { color: inherit; text-decoration: none; }
+  .contact-value a:hover { text-decoration: underline; }
+
+  /* ─── ALERT / NOTICE ─── */
+  .notice-bar {
+    background: var(--gold-light);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    padding: 12px 24px;
+  }
+  .notice-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 13px;
+    color: #7a5c00;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .notice-icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 72px 24px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cedar);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 500;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .section-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  /* ─── SERVICES GRID ─── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--warm-gray);
+    border: 1px solid var(--warm-gray);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: background 0.15s;
+    display: block;
+  }
+  .service-card:hover { background: var(--cedar-light); }
+  .service-card:hover .service-arrow { transform: translateX(4px); }
+  .service-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--cedar-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .service-icon svg { width: 20px; height: 20px; stroke: var(--cedar); fill: none; stroke-width: 1.5; }
+  .service-name {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--text-dark);
+  }
+  .service-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .service-arrow {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--cedar);
+    transition: transform 0.15s;
+  }
+
+  /* ─── ABOUT / LEBANON ─── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .about-visual {
+    background: var(--cedar);
+    border-radius: 10px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: rgba(255,255,255,0.9);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.05) 0%, transparent 60%);
+  }
+  .about-cedar-icon { opacity: 0.15; }
+  .about-visual-text {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+    z-index: 1;
+    text-align: center;
+    padding: 0 40px;
+    line-height: 1.4;
+  }
+  .lebanon-flag-display {
+    display: flex;
+    gap: 3px;
+    z-index: 1;
+    margin-top: 8px;
+  }
+  .flag-stripe {
+    width: 56px;
+    height: 36px;
+    border-radius: 2px;
+  }
+
+  .about-content { padding-top: 8px; }
+  .about-content p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 36px;
+    border-top: 1px solid var(--warm-gray);
+    padding-top: 32px;
+  }
+  .stat-item { }
+  .stat-number {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--cedar);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── NEWS ─── */
+  .news-bg { background: var(--cream); }
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .news-card {
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--warm-gray);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .news-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .news-tag {
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .tag-green { background: var(--cedar-light); color: var(--cedar); }
+  .tag-red { background: #fee8e8; color: #b01010; }
+  .tag-gold { background: var(--gold-light); color: #7a5c00; }
+  .news-body { padding: 22px; }
+  .news-date { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; font-weight: 300; }
+  .news-title { font-family: var(--font-serif); font-size: 18px; font-weight: 500; line-height: 1.3; margin-bottom: 10px; color: var(--text-dark); }
+  .news-excerpt { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
+  .news-link { display: inline-block; margin-top: 14px; font-size: 13px; color: var(--cedar); text-decoration: none; font-weight: 500; }
+  .news-link:hover { text-decoration: underline; }
+
+  /* ─── CONTACT SECTION ─── */
+  .contact-section { background: var(--white); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .contact-details h3 {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .contact-row {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--warm-gray);
+    align-items: flex-start;
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .cr-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--cedar-light);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .cr-icon svg { width: 18px; height: 18px; stroke: var(--cedar); fill: none; stroke-width: 1.5; }
+  .cr-label { font-size: 12px; color: var(--text-muted); margin-bottom: 3px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.06em; }
+  .cr-value { font-size: 14px; font-weight: 400; color: var(--text-dark); }
+  .cr-value a { color: var(--cedar); text-decoration: none; }
+  .cr-value a:hover { text-decoration: underline; }
+
+  .hours-table { width: 100%; margin-top: 20px; }
+  .hours-table td { padding: 8px 0; font-size: 13px; font-weight: 300; color: var(--text-muted); border-bottom: 1px solid var(--warm-gray); }
+  .hours-table td:first-child { font-weight: 400; color: var(--text-dark); width: 50%; }
+  .hours-table tr:last-child td { border-bottom: none; }
+
+  .map-placeholder {
+    background: var(--warm-gray);
+    border-radius: 10px;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+  .map-placeholder svg { width: 32px; height: 32px; stroke: var(--cedar); fill: none; stroke-width: 1.5; }
+  .map-address-overlay {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-top: 16px;
+    width: 80%;
+    text-align: center;
+  }
+  .map-address-overlay p { font-size: 13px; color: var(--text-muted); }
+  .map-address-overlay strong { font-size: 13px; color: var(--text-dark); display: block; margin-bottom: 2px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #111;
+    color: rgba(255,255,255,0.6);
+    padding: 60px 24px 32px;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-brand { }
+  .footer-logo {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 10px;
+  }
+  .footer-tagline {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    max-width: 280px;
+    margin-bottom: 24px;
+  }
+  .footer-official {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--cedar-mid);
+    border: 1px solid rgba(0,128,0,0.3);
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+  .footer-col h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.15s;
+  }
+  .footer-col ul li a:hover { color: rgba(255,255,255,0.9); }
+  .footer-bottom {
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-copy { font-size: 12px; font-weight: 300; }
+  .footer-gov {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ─── CEDRUS ICON ─── */
+  .cedar-motif {
+    width: 180px;
+    height: 180px;
+    opacity: 0.08;
+    position: absolute;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-inner, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-card { display: none; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 600px) {
+    .header-inner { height: 64px; }
+    nav { display: none; }
+    .footer-top { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
+    section { padding: 48px 16px; }
+    .topbar-right { display: none; }
+  }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>🇱🇧 &nbsp;Sitio oficial de la Embajada de la República del Líbano en Colombia</span>
+    <div class="topbar-right">
+      <a href="mailto:info@embajadalibanocolombia.com">info@embajadalibanocolombia.com</a>
+      <a href="tel:+5713481781">(57)(1) 3481781</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo-wrap">
+      <!-- Lebanese Flag SVG -->
+      <div class="flag-icon">
+        <div class="flag-red"></div>
+        <div class="flag-white">
+          <svg class="flag-cedar" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2 C20 2, 10 10, 8 16 C6 22, 12 24, 16 22 C16 22, 17 28, 20 28 C23 28, 24 22, 24 22 C28 24, 34 22, 32 16 C30 10, 20 2, 20 2Z" fill="#006400"/>
+            <rect x="18" y="24" width="4" height="6" rx="1" fill="#006400"/>
+          </svg>
+        </div>
+        <div class="flag-red"></div>
+      </div>
+      <div class="logo-text">
+        <div class="logo-title">Embajada del Líbano</div>
+        <div class="logo-subtitle">en Colombia — Bogotá</div>
+      </div>
+    </a>
+
+    <nav>
+      <a href="#" class="nav-link active">Inicio</a>
+      <div class="dropdown nav-item">
+        <a href="#" class="nav-link">Embajada ▾</a>
+        <div class="dropdown-menu">
+          <a href="#">Sobre la Embajada</a>
+          <a href="#">Embajador</a>
+          <a href="#">Misión Diplomática</a>
+          <a href="#">Días Festivos</a>
+        </div>
+      </div>
+      <div class="dropdown nav-item">
+        <a href="#" class="nav-link">Servicios Consulares ▾</a>
+        <div class="dropdown-menu">
+          <a href="#">Visas</a>
+          <a href="#">Pasaportes</a>
+          <a href="#">Ciudadanía Libanesa</a>
+          <a href="#">Poder Notarial</a>
+          <a href="#">Registro de Actos Civiles</a>
+          <a href="#">Legalización de Documentos</a>
+          <a href="#">Traducción</a>
+          <a href="#">Traslado de Restos</a>
+          <a href="#">Tarifas Consulares</a>
+        </div>
+      </div>
+      <div class="dropdown nav-item">
+        <a href="#" class="nav-link">El Líbano ▾</a>
+        <div class="dropdown-menu">
+          <a href="#">Historia y Cultura</a>
+          <a href="#">Turismo</a>
+          <a href="#">Economía</a>
+          <a href="#">Himno Nacional</a>
+        </div>
+      </div>
+      <a href="#" class="nav-link">Noticias</a>
+      <a href="#contacto" class="nav-link">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<!-- NOTICE BAR -->
+<div class="notice-bar">
+  <div class="notice-inner">
+    <span class="notice-icon">⚠</span>
+    <span><strong>Aviso Importante:</strong> Para servicios consulares, se requiere cita previa. Por favor comuníquese al <a href="tel:+5713481781" style="color: #7a5c00; font-weight:500;">(57)(1) 3481781</a> o escriba a <a href="mailto:info@embajadalibanocolombia.com" style="color: #7a5c00; font-weight:500;">info@embajadalibanocolombia.com</a> para coordinar su visita.</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Cedar Tree background SVG -->
+  <svg class="hero-cedar-bg cedar-motif" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 10 C100 10, 40 60, 30 100 C20 140, 60 150, 80 140 C80 140, 85 170, 100 170 C115 170, 120 140, 120 140 C140 150, 180 140, 170 100 C160 60, 100 10, 100 10Z M95 168 L95 190 L105 190 L105 168Z" fill="white"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">República del Líbano • Colombia</div>
+      <h1>Bienvenidos a la Embajada del Líbano</h1>
+      <p class="hero-sub">Servimos a los ciudadanos libaneses y colombianos desde Bogotá, fortaleciendo los lazos diplomáticos, culturales y comerciales entre ambas naciones.</p>
+      <div class="hero-actions">
+        <a href="#servicios" class="btn-primary">Servicios Consulares</a>
+        <a href="#contacto" class="btn-outline">Contactar la Embajada</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <h3>Información de Contacto</h3>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Dirección</div>
+            <div class="contact-value">Calle 74 #11-88<br>Bogotá, Colombia</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Teléfono</div>
+            <div class="contact-value"><a href="tel:+5713481781">(57)(1) 3481781</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Correo electrónico</div>
+            <div class="contact-value"><a href="mailto:info@embajadalibanocolombia.com">info@embajadalibanocolombia.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Horario de Atención</div>
+            <div class="contact-value">Lunes – Viernes<br>9:00 am – 3:00 pm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULAR SERVICES -->
+<section id="servicios">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-label">Servicios Disponibles</div>
+      <h2 class="section-title">Servicios Consulares</h2>
+      <p class="section-desc">La Embajada del Líbano en Colombia ofrece una amplia gama de servicios consulares para ciudadanos libaneses y colombianos que desean viajar, trabajar o establecerse en el Líbano.</p>
+    </div>
+    <div class="services-grid fade-in">
+
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="service-name">Visas</div>
+        <div class="service-desc">Visa de turismo, negocios, tránsito y residencia para el Líbano.</div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+        </div>
+        <div class="service-name">Pasaportes</div>
+        <div class="service-desc">Renovación, expedición y trámites de pasaporte para ciudadanos libaneses.</div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="service-name">Ciudadanía Libanesa</div>
+        <div class="service-desc">Adquisición, renuncia y certificación de ciudadanía de la República del Líbano.</div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15h6"/></svg>
+        </div>
+        <div class="service-name">Poder Notarial</div>
+        <div class="service-desc">Autenticación de poderes notariales para trámites legales en el Líbano.</div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div class="service-name">Registro de Actos Civiles</div>
+        <div class="service-desc">Nacimientos, matrimonios, defunciones y otros eventos civiles para libaneses en Colombia.</div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="service-name">Legalización de Documentos</div>
+        <div class="service-desc">Apostilla y legalización de títulos, contratos y documentos oficiales.</div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <div class="service-name">Traducción</div>
+        <div class="service-desc">Servicios de traducción oficial de documentos al árabe, español e inglés.</div>
+        <div class="service-arrow">→</div>
+      </a>
+
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+        </div>
+        <div class="service-name">Traslado de Restos</div>
+        <div class="service-desc">Trámites y documentación para el traslado de fallecidos a la República del Líbano.</div>
+        <div class="service-arrow">→</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT LEBANON -->
+<section style="background: var(--cream); padding: 72px 24px;">
+  <div class="section-inner">
+    <div class="about-grid fade-in">
+      <div class="about-visual">
+        <svg style="width:160px;height:160px;opacity:0.12;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 10 C100 10, 40 60, 30 100 C20 140, 60 150, 80 140 C80 140, 85 170, 100 170 C115 170, 120 140, 120 140 C140 150, 180 140, 170 100 C160 60, 100 10, 100 10Z" fill="white"/>
+          <rect x="95" y="168" width="10" height="22" rx="2" fill="white"/>
+        </svg>
+        <div class="about-visual-text">"El Líbano — tierra de cedros, historia milenaria y hospitalidad sin igual."</div>
+      </div>
+      <div class="about-content">
+        <div class="section-label">Conoce el Líbano</div>
+        <h2 class="section-title">Una nación de historia<br>y cultura</h2>
+        <p>El Líbano es un país con más de seis mil años de historia continua, ubicado en la costa oriental del Mar Mediterráneo. Considerado cuna de la civilización fenicia, fue uno de los primeros centros del comercio y la escritura en el mundo antiguo.</p>
+        <p>Con una superficie de aproximadamente 10.452 km², el Líbano alberga una diversidad cultural, religiosa y lingüística única en Oriente Medio. Su capital, Beirut, es conocida como «el París del Mediterráneo» por su vibrante vida cultural, su gastronomía y su arquitectura.</p>
+        <p>La comunidad libanesa en Colombia es una de las más numerosas e influyentes de América Latina, con profundas raíces que datan de finales del siglo XIX, contribuyendo al comercio, la política y la cultura del país.</p>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-number">6.000+</div>
+            <div class="stat-label">Años de historia</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4,5M</div>
+            <div class="stat-label">Habitantes en el Líbano</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">14M</div>
+            <div class="stat-label">Libaneses en la diáspora</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="news-bg" id="noticias">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-label">Actualidad</div>
+      <h2 class="section-title">Noticias y Comunicados</h2>
+      <p class="section-desc">Manténgase informado sobre los últimos comunicados de la Embajada, eventos culturales y noticias relevantes para la comunidad libanesa en Colombia.</p>
+    </div>
+    <div class="news-grid fade-in">
+
+      <div class="news-card">
+        <div class="news-body">
+          <span class="news-tag tag-green">Aviso Consular</span>
+          <div class="news-date">Mayo 2026</div>
+          <h3 class="news-title">Actualización de Tarifas Consulares 2026</h3>
+          <p class="news-excerpt">Se informa a la comunidad libanesa en Colombia sobre la actualización de las tarifas para servicios consulares vigentes a partir del primer semestre de 2026.</p>
+          <a href="#" class="news-link">Leer más →</a>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-body">
+          <span class="news-tag tag-gold">Cultura</span>
+          <div class="news-date">Abril 2026</div>
+          <h3 class="news-title">Celebración del Día de la Independencia del Líbano en Bogotá</h3>
+          <p class="news-excerpt">La Embajada celebró el 83.° aniversario de la Independencia del Líbano con una recepción oficial en Bogotá, reuniendo a miembros del cuerpo diplomático y la comunidad libanesa.</p>
+          <a href="#" class="news-link">Leer más →</a>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-body">
+          <span class="news-tag tag-red">Importante</span>
+          <div class="news-date">Marzo 2026</div>
+          <h3 class="news-title">Requisitos de Visa para Colombianos que Visitan el Líbano</h3>
+          <p class="news-excerpt">La Embajada informa sobre los documentos y requisitos actualizados para que ciudadanos colombianos soliciten visa de turismo y negocios para el Líbano.</p>
+          <a href="#" class="news-link">Leer más →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto" class="contact-section">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-label">Estamos para Ayudarle</div>
+      <h2 class="section-title">Contacte la Embajada</h2>
+      <p class="section-desc">Para consultas, citas y servicios consulares, comuníquese con nosotros por cualquiera de los siguientes medios.</p>
+    </div>
+    <div class="contact-grid fade-in">
+      <div>
+        <div class="contact-details">
+          <h3>Información de la Embajada</h3>
+          <div class="contact-row">
+            <div class="cr-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="cr-label">Dirección</div>
+              <div class="cr-value">Calle 74 #11-88<br>Bogotá, D.C., Colombia</div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="cr-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.11 7.11a16 16 0 006.78 6.78l1.29-1.29a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+            </div>
+            <div>
+              <div class="cr-label">Teléfono</div>
+              <div class="cr-value"><a href="tel:+5713481781">(57)(1) 3481781</a></div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="cr-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            </div>
+            <div>
+              <div class="cr-label">Correo Electrónico</div>
+              <div class="cr-value"><a href="mailto:info@embajadalibanocolombia.com">info@embajadalibanocolombia.com</a></div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="cr-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <div class="cr-label">Horario de Atención al Público</div>
+              <div class="cr-value">
+                <table class="hours-table">
+                  <tr><td>Lunes – Viernes</td><td>9:00 am – 3:00 pm</td></tr>
+                  <tr><td>Servicios Consulares</td><td>Con cita previa</td></tr>
+                  <tr><td>Sábados y Domingos</td><td>Cerrado</td></tr>
+                  <tr><td>Festivos Colombianos y Libaneses</td><td>Cerrado</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="cr-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+            </div>
+            <div>
+              <div class="cr-label">Sitio Web Oficial</div>
+              <div class="cr-value"><a href="https://www.embajadadellibano.org.co">www.embajadadellibano.org.co</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="map-placeholder">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <p style="font-size:14px; color: var(--text-muted);">Embajada del Líbano en Colombia</p>
+          <div class="map-address-overlay">
+            <strong>Calle 74 #11-88, Bogotá</strong>
+            <p>Barrio Chapinero, Bogotá D.C.</p>
+          </div>
+          <a href="https://maps.google.com/?q=Calle+74+11-88+Bogota+Colombia" target="_blank" style="margin-top:8px; font-size:13px; color: var(--cedar); text-decoration:none; font-weight:500;">Abrir en Google Maps →</a>
+        </div>
+
+        <div style="margin-top: 28px; background: var(--cedar-light); border-radius: 8px; padding: 24px; border-left: 3px solid var(--cedar);">
+          <h4 style="font-family: var(--font-serif); font-size: 18px; font-weight: 500; margin-bottom: 10px; color: var(--text-dark);">¿Necesita información adicional?</h4>
+          <p style="font-size: 13px; font-weight: 300; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">Para solicitar cita, consultar sobre un servicio consular específico o recibir orientación sobre trámites, no dude en comunicarse directamente.</p>
+          <a href="mailto:info@embajadalibanocolombia.com" class="btn-primary" style="font-size: 13px;">Enviar un Correo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Embajada del Líbano en Colombia</div>
+        <p class="footer-tagline">Misión Diplomática Oficial de la República del Líbano ante la República de Colombia. Calle 74 #11-88, Bogotá D.C.</p>
+        <span class="footer-official">🇱🇧 Sitio Oficial</span>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#">Visas</a></li>
+          <li><a href="#">Pasaportes</a></li>
+          <li><a href="#">Ciudadanía</a></li>
+          <li><a href="#">Poder Notarial</a></li>
+          <li><a href="#">Legalización</a></li>
+          <li><a href="#">Traducción</a></li>
+          <li><a href="#">Registro Civil</a></li>
+          <li><a href="#">Tarifas Consulares</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>El Líbano</h4>
+        <ul>
+          <li><a href="#">Historia y Cultura</a></li>
+          <li><a href="#">Turismo</a></li>
+          <li><a href="#">Economía</a></li>
+          <li><a href="#">Himno Nacional</a></li>
+          <li><a href="https://mot.gov.lb" target="_blank">Ministerio de Turismo</a></li>
+          <li><a href="#">Estadísticas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Información</h4>
+        <ul>
+          <li><a href="#">Sobre la Embajada</a></li>
+          <li><a href="#">Embajador</a></li>
+          <li><a href="#">Días Festivos</a></li>
+          <li><a href="#">Misiones Diplomáticas</a></li>
+          <li><a href="#">Noticias</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Embajada de la República del Líbano en Colombia. Todos los derechos reservados.</span>
+      <span class="footer-gov">www.embajadadellibano.org.co</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
