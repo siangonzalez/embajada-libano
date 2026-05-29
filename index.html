@@ -35,6 +35,8 @@ body{font-family:var(--font-sans);color:var(--text-dark);background:var(--white)
 .lang-btn{background:transparent;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:3px 10px;border-radius:20px;font-size:11px;cursor:pointer;font-family:inherit;letter-spacing:.04em;transition:all .15s}
 .lang-btn:hover,.lang-btn.active{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.7);color:#fff}
 .lang-btn.active{background:rgba(255,255,255,0.2);font-weight:500}
+.mobile-nav .lang-btn{border-color:var(--cedar);color:var(--cedar);background:transparent}
+.mobile-nav .lang-btn:hover,.mobile-nav .lang-btn.active{background:var(--cedar);color:#fff;border-color:var(--cedar)}
 
 /* HEADER */
 header{background:var(--white);border-bottom:1px solid var(--warm-gray);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06)}
@@ -422,56 +424,6 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
   </div>
 </section>
 
-<!-- ABOUT EMBASSY -->
-<section id="embajada">
-  <div class="section-inner">
-    <div class="about-grid fade-in">
-      <div class="about-visual">
-        <svg style="width:140px;height:140px;opacity:.1" viewBox="0 0 200 200"><path d="M100 10C100 10,40 60,30 100C20 140,60 150,80 140C80 140,85 170,100 170C115 170,120 140,120 140C140 150,180 140,170 100C160 60,100 10,100 10Z" fill="white"/><rect x="95" y="168" width="10" height="22" rx="2" fill="white"/></svg>
-        <div class="about-visual-text" data-i18n="about_quote">"Fortaleciendo los lazos entre el Líbano y Colombia a través de la diplomacia, la cultura y el servicio."</div>
-      </div>
-      <div class="about-content">
-        <div class="section-label" data-i18n="about_label">Nuestra Misión</div>
-        <h2 class="section-title" data-i18n="about_title">Embajada del Líbano en Bogotá</h2>
-        <p data-i18n="about_p1">La Embajada de la República del Líbano en Colombia representa los intereses del Estado libanés ante el gobierno colombiano y la comunidad internacional con sede en Bogotá.</p>
-        <p data-i18n="about_p2">Nuestra misión es fortalecer las relaciones bilaterales entre ambos países en los ámbitos diplomático, económico, cultural y consular, brindando asistencia y servicios a los ciudadanos libaneses residentes en Colombia.</p>
-        <p data-i18n="about_p3">Colombia alberga una de las comunidades libanesas más numerosas e influyentes de América Latina, con una historia de más de 130 años de inmigración y contribución al desarrollo del país.</p>
-        <div class="stats-row">
-          <div><div class="stat-number">130+</div><div class="stat-label" data-i18n="stat1">Años de presencia libanesa en Colombia</div></div>
-          <div><div class="stat-number">~1M</div><div class="stat-label" data-i18n="stat2">Colombianos de origen libanés</div></div>
-          <div><div class="stat-number">6.000+</div><div class="stat-label" data-i18n="stat3">Años de historia del Líbano</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AMBASSADOR -->
-<section class="ambassador-section" id="embajador">
-  <div class="section-inner fade-in">
-    <div class="section-label" data-i18n="amb_label">Representación Diplomática</div>
-    <h2 class="section-title" data-i18n="amb_title">Embajador</h2>
-    <div class="ambassador-grid">
-      <div class="ambassador-photo">
-        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
-        <span data-i18n="amb_photo_placeholder">Fotografía oficial<br>Por confirmar</span>
-      </div>
-      <div>
-        <div class="ambassador-name" data-i18n="amb_name">[Nombre del Embajador]</div>
-        <div class="ambassador-title" data-i18n="amb_title_role">Embajador Extraordinario y Plenipotenciario<br>República del Líbano ante Colombia</div>
-        <div class="ambassador-bio">
-          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5"></div>
-          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5;width:90%"></div>
-          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5;width:75%"></div>
-          <div style="margin-top:20px;background:var(--gold-light);border-radius:8px;padding:16px 20px;border-left:3px solid var(--gold)">
-            <p style="font-size:13px;color:#7a5c00;font-style:italic" data-i18n="amb_placeholder_note">Información biográfica del Embajador será publicada próximamente. Para consultas diplomáticas, por favor comuníquese directamente con la Embajada.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- SERVICES -->
 <section id="servicios">
   <div class="section-inner">
@@ -534,6 +486,56 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
         <div class="service-name" data-i18n="svc_fees">Tarifas Consulares</div>
         <div class="service-desc" data-i18n="svc_fees_desc">Información sobre costos y métodos de pago para servicios consulares.</div>
         <div class="service-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT EMBASSY -->
+<section id="embajada">
+  <div class="section-inner">
+    <div class="about-grid fade-in">
+      <div class="about-visual">
+        <svg style="width:140px;height:140px;opacity:.1" viewBox="0 0 200 200"><path d="M100 10C100 10,40 60,30 100C20 140,60 150,80 140C80 140,85 170,100 170C115 170,120 140,120 140C140 150,180 140,170 100C160 60,100 10,100 10Z" fill="white"/><rect x="95" y="168" width="10" height="22" rx="2" fill="white"/></svg>
+        <div class="about-visual-text" data-i18n="about_quote">"Fortaleciendo los lazos entre el Líbano y Colombia a través de la diplomacia, la cultura y el servicio."</div>
+      </div>
+      <div class="about-content">
+        <div class="section-label" data-i18n="about_label">Nuestra Misión</div>
+        <h2 class="section-title" data-i18n="about_title">Embajada del Líbano en Bogotá</h2>
+        <p data-i18n="about_p1">La Embajada de la República del Líbano en Colombia representa los intereses del Estado libanés ante el gobierno colombiano y la comunidad internacional con sede en Bogotá.</p>
+        <p data-i18n="about_p2">Nuestra misión es fortalecer las relaciones bilaterales entre ambos países en los ámbitos diplomático, económico, cultural y consular, brindando asistencia y servicios a los ciudadanos libaneses residentes en Colombia.</p>
+        <p data-i18n="about_p3">Colombia alberga una de las comunidades libanesas más numerosas e influyentes de América Latina, con una historia de más de 130 años de inmigración y contribución al desarrollo del país.</p>
+        <div class="stats-row">
+          <div><div class="stat-number">130+</div><div class="stat-label" data-i18n="stat1">Años de presencia libanesa en Colombia</div></div>
+          <div><div class="stat-number">~1M</div><div class="stat-label" data-i18n="stat2">Colombianos de origen libanés</div></div>
+          <div><div class="stat-number">6.000+</div><div class="stat-label" data-i18n="stat3">Años de historia del Líbano</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMBASSADOR -->
+<section class="ambassador-section" id="embajador">
+  <div class="section-inner fade-in">
+    <div class="section-label" data-i18n="amb_label">Representación Diplomática</div>
+    <h2 class="section-title" data-i18n="amb_title">Embajador</h2>
+    <div class="ambassador-grid">
+      <div class="ambassador-photo">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
+        <span data-i18n="amb_photo_placeholder">Fotografía oficial<br>Por confirmar</span>
+      </div>
+      <div>
+        <div class="ambassador-name" data-i18n="amb_name">[Nombre del Embajador]</div>
+        <div class="ambassador-title" data-i18n="amb_title_role">Embajador Extraordinario y Plenipotenciario<br>República del Líbano ante Colombia</div>
+        <div class="ambassador-bio">
+          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5"></div>
+          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5;width:90%"></div>
+          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5;width:75%"></div>
+          <div style="margin-top:20px;background:var(--gold-light);border-radius:8px;padding:16px 20px;border-left:3px solid var(--gold)">
+            <p style="font-size:13px;color:#7a5c00;font-style:italic" data-i18n="amb_placeholder_note">Información biográfica del Embajador será publicada próximamente. Para consultas diplomáticas, por favor comuníquese directamente con la Embajada.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
