@@ -86,8 +86,8 @@ html[lang="ar"] .dropdown-menu a:hover{border-left-color:transparent;border-righ
 .hero{position:relative;color:var(--white);padding:0;overflow:hidden;min-height:100vh;display:flex;align-items:center}
 .hero-video-wrap{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .hero-video-wrap iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.78vh;min-width:100%;height:56.25vw;min-height:100%}
-#heroBgCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:0.55}
-.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(4,20,4,0.82) 0%,rgba(4,20,4,0.65) 50%,rgba(4,20,4,0.78) 100%)}
+#heroBgCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:1}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(4,20,4,0.75) 0%,rgba(4,20,4,0.55) 50%,rgba(4,20,4,0.70) 100%)}
 .hero-overlay-bottom{position:absolute;bottom:0;left:0;right:0;height:120px;z-index:1;background:linear-gradient(to bottom,transparent,rgba(4,20,4,0.5))}
 .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2;width:100%;padding:100px 24px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .hero-eyebrow{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:16px;font-weight:400}
@@ -311,7 +311,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
   display:flex;flex-direction:column;align-items:center;gap:18px;
   opacity:0;animation:splashFadeUp 1.2s ease 0.5s forwards;
 }
-.splash-logo-img{width:100px;height:100px;object-fit:contain;filter:brightness(0) invert(1)}
+.splash-logo-img{width:160px;height:160px;object-fit:contain;background:rgba(255,255,255,0.95);border-radius:12px;padding:12px}
 .splash-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.8),transparent)}
 .splash-title{font-size:clamp(22px,4vw,38px);font-weight:400;color:#fff;letter-spacing:0.04em;text-align:center;line-height:1.25;text-shadow:0 2px 20px rgba(0,0,0,0.6)}
 .splash-subtitle{font-size:13px;font-weight:300;color:rgba(255,255,255,0.55);letter-spacing:0.2em;text-transform:uppercase;text-align:center}
@@ -388,7 +388,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
   <div class="splash-bar-bot"></div>
   <canvas id="splashBg"></canvas>
   <div class="splash-content">
-    <img src="Logo 2025.png" alt="Embajada del Líbano" class="splash-logo-img" onerror="this.style.display='none';document.getElementById('splashFallbackLogo').style.display='block'">
+    <img src="Logo_2025.png" alt="Embajada del Líbano" class="splash-logo-img" onerror="this.style.display='none';document.getElementById('splashFallbackLogo').style.display='block'">
     <svg id="splashFallbackLogo" style="display:none" viewBox="0 0 120 120" width="100" height="100">
       <path fill="rgba(255,255,255,0.9)" d="M60 8C60 8,28 34,22 56C16 76,32 84,44 80C44 80,47 96,60 96C73 96,76 80,76 80C88 84,104 76,98 56C92 34,60 8,60 8ZM57 96L57 112L63 112L63 96Z"/>
     </svg>
@@ -420,7 +420,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
 <header>
   <div class="header-inner">
     <a class="logo-wrap" onclick="scrollToTop()">
-      <img src="Logo 2025.png" alt="Embajada del Líbano en Colombia" style="height:78px;width:auto;object-fit:contain;">
+      <img src="Logo_2025.png" alt="Embajada del Líbano en Colombia" style="height:78px;width:auto;object-fit:contain;">
     </a>
     <nav>
       <button class="nav-link active" onclick="goTo('inicio')" data-i18n="nav_home">Inicio</button>
@@ -2017,6 +2017,24 @@ document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
   }
   function drawFrame(){
     ctx.clearRect(0,0,W,H);
+
+    // Sky gradient background
+    const sky=ctx.createLinearGradient(0,0,0,H);
+    sky.addColorStop(0,'#5b9bd5');
+    sky.addColorStop(0.55,'#87CEEB');
+    sky.addColorStop(1,'#b8d9f0');
+    ctx.fillStyle=sky;
+    ctx.fillRect(0,0,W,H);
+
+    // Subtle clouds
+    ctx.fillStyle='rgba(255,255,255,0.18)';
+    const cx1=W*0.2+Math.sin(t*0.12)*W*0.04;
+    const cx2=W*0.7+Math.sin(t*0.09+1)*W*0.03;
+    ctx.beginPath();ctx.ellipse(cx1,H*0.22,W*0.12,H*0.045,0,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.ellipse(cx1+W*0.08,H*0.2,W*0.09,H*0.035,0,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.ellipse(cx2,H*0.3,W*0.1,H*0.04,0,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.ellipse(cx2+W*0.07,H*0.28,W*0.08,H*0.03,0,0,Math.PI*2);ctx.fill();
+
     const stripe=H/3;
     const e0=buildEdge(t,0),e1=buildEdge(t,stripe),e2=buildEdge(t,stripe*2),e3=buildEdge(t,H);
     ctx.save();
@@ -2030,6 +2048,14 @@ document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
       ctx.fillRect(e0[i][0],e0[i][1],e0[i+1][0]-e0[i][0],e3[i][1]-e0[i][1]);
     }
     drawCedar(t);
+    ctx.restore();
+
+    // Flag shadow on ground
+    ctx.save();
+    tracePath(e0,e3);
+    ctx.strokeStyle='rgba(0,0,0,0.08)';
+    ctx.lineWidth=2;
+    ctx.stroke();
     ctx.restore();
   }
 
