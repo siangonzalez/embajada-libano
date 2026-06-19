@@ -350,6 +350,10 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
   pointer-events:none;
 }
 @media(max-width:700px){#floatMenu{display:none}}
+
+.yt-cover{position:absolute;left:0;right:0;z-index:2;pointer-events:none}
+.yt-cover-top{top:0;height:80px;background:linear-gradient(to bottom,rgba(0,0,0,0.5) 0%,transparent 100%)}
+.yt-cover-bottom{bottom:0;height:80px;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 100%)}
 </style>
 </head>
 <body>
@@ -460,6 +464,9 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
   <!-- Video background -->
   <div class="hero-video-wrap">
     <iframe src="https://www.youtube.com/embed/J5hawkpYLW8?autoplay=1&mute=1&loop=1&playlist=J5hawkpYLW8&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Bandera del Líbano"></iframe>
+    <!-- Cover YouTube title/channel overlay -->
+    <div class="yt-cover yt-cover-top"></div>
+    <div class="yt-cover yt-cover-bottom"></div>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-overlay-bottom"></div>
