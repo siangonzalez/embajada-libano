@@ -50,9 +50,26 @@ header{background:var(--white);border-bottom:1px solid var(--warm-gray);position
 .logo-subtitle{font-size:11px;color:var(--text-muted);font-weight:300;letter-spacing:.08em;text-transform:uppercase}
 html[lang="ar"] .logo-subtitle{text-transform:none;letter-spacing:0}
 html[lang="ar"] #floatMenu{right:auto;left:0}
-html[lang="ar"] .float-item{border-radius:0 8px 8px 0;border-right:1px solid rgba(255,255,255,0.12);border-left:none;flex-direction:row-reverse}
-html[lang="ar"] .float-tab{border-left:none;border-right:2px solid rgba(255,255,255,0.2)}
-html[lang="ar"] .float-label{padding:0 16px 0 0}
+html[lang="ar"] .float-item{
+  border-radius:0 8px 8px 0;
+  border-right:none;
+  border-left:none;
+  margin-left:0;
+  margin-right:auto;
+}
+html[lang="ar"] .float-item:hover .float-label{
+  padding-left:0;
+  padding-right:16px;
+}
+html[lang="ar"] .float-tab{
+  border-left:none;
+  border-right:2px solid rgba(255,255,255,0.2);
+  order:1;
+}
+html[lang="ar"] .float-label{
+  order:2;
+  text-align:right;
+}
 
 /* NAV */
 nav{display:flex;align-items:center;gap:2px}
@@ -519,7 +536,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
       <div class="hero-contact-row">
         <span class="hero-contact-icon">✉</span>
         <div>
-          <div class="hero-contact-label">Trámites Consulares</div>
+          <div class="hero-contact-label" data-i18n="label_consular_email">Trámites Consulares</div>
           <div class="hero-contact-value"><a href="mailto:consular@embajadalibanocolombia.com">consular@embajadalibanocolombia.com</a></div>
         </div>
       </div>
@@ -527,7 +544,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
         <span class="hero-contact-icon">🕐</span>
         <div>
           <div class="hero-contact-label" data-i18n="label_hours">Horario presencial</div>
-          <div class="hero-contact-value">Lunes – Jueves: 8:30–2:30 pm<br>Recepción docs: 9:30–11:30 am<br>Entrega trámites: 12:30–1:30 pm<br>Viernes: solo correo · Sáb./Dom./Festivos: cerrado</div>
+          <div class="hero-contact-value" data-i18n="hours_value">Lunes – Jueves: 8:30–2:30 pm<br>Recepción docs: 9:30–11:30 am<br>Entrega trámites: 12:30–1:30 pm<br>Viernes: solo correo · Sáb./Dom./Festivos: cerrado</div>
         </div>
       </div>
     </div>
@@ -643,12 +660,12 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
       </div>
       <div>
         <div class="ambassador-name">Brigitta Al-Ojeil</div>
-        <div class="ambassador-title">Embajadora Extraordinaria y Plenipotenciaria<br>de la República del Líbano ante Colombia,<br>concurrente ante Panamá y Perú</div>
+        <div class="ambassador-title" data-i18n="amb_title_role">Embajadora Extraordinaria y Plenipotenciaria<br>de la República del Líbano ante Colombia,<br>concurrente ante Panamá y Perú</div>
         <div class="ambassador-bio">
-          <p>Su Excelencia Brigitta Al-Ojeil es la Embajadora Extraordinaria y Plenipotenciaria de la República del Líbano ante Colombia, con concurrencia ante Panamá y Perú.</p>
-          <p>Presentó sus cartas credenciales ante el Presidente de la República de Colombia en abril de 2026, en una ceremonia realizada en la Casa de Nariño en Bogotá.</p>
-          <p>Cuenta con amplia trayectoria en el servicio diplomático de la República del Líbano, habiendo representado al país anteriormente como Embajadora ante Sierra Leona, donde promovió activamente las relaciones bilaterales y la cooperación entre ambas naciones.</p>
-          <p>Desde su llegada a Colombia, la Embajadora Al-Ojeil trabaja por el fortalecimiento de los vínculos diplomáticos, culturales y comerciales entre el Líbano y Colombia, en beneficio de ambos pueblos y de la numerosa comunidad libanesa establecida en el país.</p>
+          <p data-i18n="amb_bio_p1">Su Excelencia Brigitta Al-Ojeil es la Embajadora Extraordinaria y Plenipotenciaria de la República del Líbano ante Colombia, con concurrencia ante Panamá y Perú.</p>
+          <p data-i18n="amb_bio_p2">Presentó sus cartas credenciales ante el Presidente de la República de Colombia en abril de 2026, en una ceremonia realizada en la Casa de Nariño en la ciudad de Bogotá.</p>
+          <p data-i18n="amb_bio_p3">Cuenta con amplia trayectoria en el servicio diplomático de la República del Líbano, habiendo representado al país anteriormente como Embajadora ante Sierra Leona, donde promovió activamente las relaciones bilaterales y la cooperación entre ambas naciones.</p>
+          <p data-i18n="amb_bio_p4">Desde su llegada a Colombia, la Embajadora Al-Ojeil trabaja por el fortalecimiento de los vínculos diplomáticos, culturales y comerciales entre el Líbano y Colombia, en beneficio de ambos pueblos y de la numerosa comunidad libanesa establecida en el país.</p>
         </div>
       </div>
     </div>
@@ -714,53 +731,53 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
       </div>
     </div>
     <div class="tab-content" id="tab-bilateral">
-      <p style="font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:28px;font-weight:300">La relación entre Colombia y el Líbano está entre las más antiguas y significativas entre América Latina y el mundo árabe. Se fundamenta en cuatro pilares: la diáspora libanesa, los vínculos comerciales, las relaciones diplomáticas y la cooperación cultural.</p>
+      <p style="font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:28px;font-weight:300" data-i18n="bilateral_intro">La relación entre Colombia y el Líbano está entre las más antiguas y significativas entre América Latina y el mundo árabe. Se fundamenta en cuatro pilares: la diáspora libanesa, los vínculos comerciales, las relaciones diplomáticas y la cooperación cultural.</p>
 
       <div class="accordion">
         <button class="accordion-header open" onclick="toggleAccordion(this)">
-          1. La diáspora libanesa en Colombia
+          <span data-i18n="bilateral_h1">1. La diáspora libanesa en Colombia</span>
           <span class="accordion-icon">+</span>
         </button>
         <div class="accordion-body open">
           <div class="accordion-body-inner">
-            <p>La inmigración libanesa a Colombia se inició entre finales del siglo XIX y comienzos del XX, en una época en que el Líbano aún formaba parte del Imperio Otomano. Debido a esto, gran parte de los inmigrantes llegaron portando pasaportes otomanos, razón por la cual se les llamó "turcos", pese a que en su mayoría eran de origen libanés. Sus principales destinos en el país fueron Barranquilla, Cartagena, Santa Marta, Bogotá y Bucaramanga.</p>
-            <p>Con el paso del tiempo, esta comunidad logró integrarse plenamente a la sociedad colombiana, destacándose en ámbitos como el comercio, la industria, la banca, la política y la cultura. Actualmente, se calcula que varios cientos de miles de colombianos descienden de libaneses, lo que sitúa a Colombia entre los países latinoamericanos con mayor presencia de esta diáspora.</p>
+            <p data-i18n="bilateral_p1a">La inmigración libanesa a Colombia se inició entre finales del siglo XIX y comienzos del XX, en una época en que el Líbano aún formaba parte del Imperio Otomano. Debido a esto, gran parte de los inmigrantes llegaron portando pasaportes otomanos, razón por la cual se les llamó "turcos", pese a que en su mayoría eran de origen libanés. Sus principales destinos en el país fueron Barranquilla, Cartagena, Santa Marta, Bogotá y Bucaramanga.</p>
+            <p data-i18n="bilateral_p1b">Con el paso del tiempo, esta comunidad logró integrarse plenamente a la sociedad colombiana, destacándose en ámbitos como el comercio, la industria, la banca, la política y la cultura. Actualmente, se calcula que varios cientos de miles de colombianos descienden de libaneses, lo que sitúa a Colombia entre los países latinoamericanos con mayor presencia de esta diáspora.</p>
           </div>
         </div>
       </div>
 
       <div class="accordion">
         <button class="accordion-header" onclick="toggleAccordion(this)">
-          2. Relaciones comerciales
+          <span data-i18n="bilateral_h2">2. Relaciones comerciales</span>
           <span class="accordion-icon">+</span>
         </button>
         <div class="accordion-body">
           <div class="accordion-body-inner">
-            <p>El comercio bilateral entre Colombia y el Líbano ha sido tradicionalmente modesto, aunque con un notable potencial de crecimiento. En la balanza comercial, las exportaciones colombianas hacia el Líbano tienen un mayor peso relativo frente a las importaciones provenientes de ese país. En este dinamismo comercial, la comunidad libanesa radicada en Colombia ha jugado un papel fundamental, actuando como puente cultural y comercial que facilita los negocios y atrae inversión entre ambos países.</p>
+            <p data-i18n="bilateral_p2">El comercio bilateral entre Colombia y el Líbano ha sido tradicionalmente modesto, aunque con un notable potencial de crecimiento. En la balanza comercial, las exportaciones colombianas hacia el Líbano tienen un mayor peso relativo frente a las importaciones provenientes de ese país. En este dinamismo comercial, la comunidad libanesa radicada en Colombia ha jugado un papel fundamental, actuando como puente cultural y comercial que facilita los negocios y atrae inversión entre ambos países.</p>
           </div>
         </div>
       </div>
 
       <div class="accordion">
         <button class="accordion-header" onclick="toggleAccordion(this)">
-          3. Relaciones diplomáticas
+          <span data-i18n="bilateral_h3">3. Relaciones diplomáticas</span>
           <span class="accordion-icon">+</span>
         </button>
         <div class="accordion-body">
           <div class="accordion-body-inner">
-            <p>Colombia y el Líbano establecieron relaciones diplomáticas oficiales en 1945, poco después de que el país del Cercano Oriente alcanzara su independencia. Desde entonces, ambas naciones han mantenido una cooperación constante en diversos ámbitos, entre los que se destacan el trabajo conjunto en el marco de las Naciones Unidas, el diálogo político, la cooperación cultural, el intercambio académico y la asistencia consular. Como reflejo de la solidez de este vínculo bilateral, los dos Estados mantienen embajadas residentes: la Embajada del Líbano en Bogotá y la Embajada de Colombia en Beirut.</p>
+            <p data-i18n="bilateral_p3">Colombia y el Líbano establecieron relaciones diplomáticas oficiales en 1945, poco después de que el país del Cercano Oriente alcanzara su independencia. Desde entonces, ambas naciones han mantenido una cooperación constante en diversos ámbitos, entre los que se destacan el trabajo conjunto en el marco de las Naciones Unidas, el diálogo político, la cooperación cultural, el intercambio académico y la asistencia consular. Como reflejo de la solidez de este vínculo bilateral, los dos Estados mantienen embajadas residentes: la Embajada del Líbano en Bogotá y la Embajada de Colombia en Beirut.</p>
           </div>
         </div>
       </div>
 
       <div class="accordion">
         <button class="accordion-header" onclick="toggleAccordion(this)">
-          4. Cooperación cultural
+          <span data-i18n="bilateral_h4">4. Cooperación cultural</span>
           <span class="accordion-icon">+</span>
         </button>
         <div class="accordion-body">
           <div class="accordion-body-inner">
-            <p>La herencia libanesa forma parte del mosaico cultural colombiano, entrelazándose con las tradiciones libanesas y árabes que la comunidad ha mantenido vivas. Esta presencia se refleja en festivales gastronómicos, actividades culturales árabes, cooperación universitaria y encuentros empresariales de la diáspora.</p>
+            <p data-i18n="bilateral_p4">La herencia libanesa forma parte del mosaico cultural colombiano, entrelazándose con las tradiciones libanesas y árabes que la comunidad ha mantenido vivas. Esta presencia se refleja en festivales gastronómicos, actividades culturales árabes, cooperación universitaria y encuentros empresariales de la diáspora.</p>
           </div>
         </div>
       </div>
@@ -863,9 +880,11 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
             <div class="cr-label" data-i18n="label_hours">Horario</div>
             <div class="cr-value">
               <table class="hours-table">
-                <tr><td data-i18n="days_monfri">Lunes – Viernes</td><td>9:00 am – 3:00 pm</td></tr>
-                <tr><td data-i18n="days_consular">Servicios Consulares</td><td data-i18n="by_appointment">Con cita previa</td></tr>
-                <tr><td data-i18n="days_weekend">Sábados y Domingos</td><td data-i18n="closed">Cerrado</td></tr>
+                <tr><td data-i18n="days_monfri">Lunes – Jueves</td><td>8:30 am – 2:30 pm</td></tr>
+                <tr><td data-i18n="days_consular">Recepción de documentos</td><td>9:30 – 11:30 am</td></tr>
+                <tr><td data-i18n="days_delivery">Entrega de trámites</td><td>12:30 – 1:30 pm</td></tr>
+                <tr><td data-i18n="days_fri">Viernes</td><td data-i18n="days_fri_val">Solo por correo electrónico</td></tr>
+                <tr><td data-i18n="days_weekend">Sáb., Dom. y Festivos</td><td data-i18n="closed">Cerrado</td></tr>
               </table>
             </div>
           </div>
@@ -970,6 +989,8 @@ const t = {
     hero_cta1:"Servicios Consulares",hero_cta2:"Contactar la Embajada",
     card_contact_title:"Información de Contacto",
     label_address:"Dirección",label_phone:"Teléfono",label_email:"Correo",
+    label_consular_email:"Trámites Consulares",
+    days_fri:"Viernes",days_fri_val:"Solo por correo electrónico",
     label_hours:"Horario",label_web:"Sitio Web",
     hours_value:"Lunes – Viernes<br>9:00 am – 3:00 pm",
     notice_text:"<strong>Aviso:</strong> Para servicios consulares se requiere cita previa. Comuníquese al <a href='tel:+576013228991' style='color:#7a5c00;font-weight:500'>(601) 3228991</a> o a <a href='mailto:info@embajadalibanocolombia.com' style='color:#7a5c00;font-weight:500'>info@embajadalibanocolombia.com</a>",
@@ -999,6 +1020,16 @@ const t = {
     svc_fees_desc:"Información sobre costos y métodos de pago para servicios consulares.",
     svc_palestinian:"Doc. Viaje Palestino",
     svc_palestinian_desc:"Solicitud y renovación del documento de viaje para refugiados palestinos.",
+    bilateral_p1a:"La inmigración libanesa a Colombia se inició entre finales del siglo XIX y comienzos del XX, en una época en que el Líbano aún formaba parte del Imperio Otomano. Debido a esto, gran parte de los inmigrantes llegaron portando pasaportes otomanos, razón por la cual se les llamó \"turcos\", pese a que en su mayoría eran de origen libanés. Sus principales destinos en el país fueron Barranquilla, Cartagena, Santa Marta, Bogotá y Bucaramanga.",
+    bilateral_p1b:"Con el paso del tiempo, esta comunidad logró integrarse plenamente a la sociedad colombiana, destacándose en ámbitos como el comercio, la industria, la banca, la política y la cultura. Actualmente, se calcula que varios cientos de miles de colombianos descienden de libaneses, lo que sitúa a Colombia entre los países latinoamericanos con mayor presencia de esta diáspora.",
+    bilateral_p2:"El comercio bilateral entre Colombia y el Líbano ha sido tradicionalmente modesto, aunque con un notable potencial de crecimiento. En la balanza comercial, las exportaciones colombianas hacia el Líbano tienen un mayor peso relativo frente a las importaciones provenientes de ese país. En este dinamismo comercial, la comunidad libanesa radicada en Colombia ha jugado un papel fundamental, actuando como puente cultural y comercial que facilita los negocios y atrae inversión entre ambos países.",
+    bilateral_p3:"Colombia y el Líbano establecieron relaciones diplomáticas oficiales en 1945, poco después de que el país del Cercano Oriente alcanzara su independencia. Desde entonces, ambas naciones han mantenido una cooperación constante en diversos ámbitos, entre los que se destacan el trabajo conjunto en el marco de las Naciones Unidas, el diálogo político, la cooperación cultural, el intercambio académico y la asistencia consular. Como reflejo de la solidez de este vínculo bilateral, los dos Estados mantienen embajadas residentes: la Embajada del Líbano en Bogotá y la Embajada de Colombia en Beirut.",
+    bilateral_p4:"La herencia libanesa forma parte del mosaico cultural colombiano, entrelazándose con las tradiciones libanesas y árabes que la comunidad ha mantenido vivas. Esta presencia se refleja en festivales gastronómicos, actividades culturales árabes, cooperación universitaria y encuentros empresariales de la diáspora.",
+    bilateral_intro:"La relación entre Colombia y el Líbano está entre las más antiguas y significativas entre América Latina y el mundo árabe. Se fundamenta en cuatro pilares: la diáspora libanesa, los vínculos comerciales, las relaciones diplomáticas y la cooperación cultural.",
+    bilateral_h1:"1. La diáspora libanesa en Colombia",
+    bilateral_h2:"2. Relaciones comerciales",
+    bilateral_h3:"3. Relaciones diplomáticas",
+    bilateral_h4:"4. Cooperación cultural",
     lb_label:"Conoce el Líbano",lb_title:"El Líbano",
     tab_history:"Historia y Cultura",tab_tourism:"Turismo",tab_economy:"Economía",tab_facts:"Datos del País",
     hist_p1:"El Líbano es uno de los países más antiguos del mundo, con más de seis mil años de historia continua. Sede de la civilización fenicia, fue uno de los primeros centros del comercio marítimo y la escritura alfabética.",
@@ -1037,7 +1068,7 @@ const t = {
     news_contact_link:"Consultar a la Embajada →",news_nna_link:"Agencia Nacional de Noticias del Líbano →",
     contact_label:"Estamos para Ayudarle",contact_title:"Contacte la Embajada",
     contact_desc:"Para consultas, citas y servicios consulares, comuníquese con nosotros por cualquiera de los siguientes medios.",
-    days_monfri:"Lunes – Viernes",days_consular:"Servicios Consulares",days_weekend:"Sábados y Domingos",
+    days_monfri:"Lunes – Jueves",days_consular:"Recepción de documentos",days_delivery:"Entrega de trámites",days_weekend:"Sáb., Dom. y Festivos",
     by_appointment:"Con cita previa",closed:"Cerrado",
     map_title:"Embajada del Líbano en Colombia",map_neighborhood:"Chapinero, Bogotá D.C.",
     map_open:"Abrir en Google Maps →",
@@ -1063,10 +1094,12 @@ const t = {
     hero_sub:"We serve Lebanese and Colombian citizens from Bogotá, strengthening diplomatic, cultural, and commercial ties between both nations.",
     hero_cta1:"Consular Services",hero_cta2:"Contact the Embassy",
     card_contact_title:"Contact Information",
-    label_address:"Address",label_phone:"Phone",label_email:"Email",
+    label_address:"Address",label_phone:"Phone",label_email:"General Email",
+    label_consular_email:"Consular Procedures",
+    days_fri:"Fridays",days_fri_val:"Email inquiries only",
     label_hours:"Office Hours",label_web:"Website",
-    hours_value:"Monday – Friday<br>9:00 am – 3:00 pm",
-    notice_text:"<strong>Notice:</strong> Consular services require a prior appointment. Contact us at <a href='tel:+576013228991' style='color:#7a5c00;font-weight:500'>(601) 3228991</a> or <a href='mailto:info@embajadalibanocolombia.com' style='color:#7a5c00;font-weight:500'>info@embajadalibanocolombia.com</a>",
+    hours_value:"Monday – Thursday: 8:30–2:30 pm<br>Document reception: 9:30–11:30 am<br>Document delivery: 12:30–1:30 pm<br>Friday: email only · Sat./Sun./Holidays: closed",
+    notice_text:"<strong>Notice:</strong> Mon–Thu 8:30–2:30 pm. Document reception 9:30–11:30 am, delivery 12:30–1:30 pm. Fridays: email only. Tel: <a href='tel:+576013228991' style='color:#7a5c00;font-weight:500'>(601) 3228991</a> / <a href='tel:+576017169179' style='color:#7a5c00;font-weight:500'>(601) 7169179</a>",
     about_label:"Our Mission",about_title:"Embassy of Lebanon in Bogotá",
     about_quote:'"Strengthening the bonds between Lebanon and Colombia through diplomacy, culture, and service."',
     about_p1:"The Embassy of the Republic of Lebanon in Colombia represents the interests of the Lebanese State before the Colombian government and the international community based in Bogotá.",
@@ -1075,7 +1108,12 @@ const t = {
     stat1:"Years of Lebanese presence in Colombia",stat2:"Colombians of Lebanese origin",stat3:"Years of Lebanese history",
     amb_label:"Diplomatic Representation",amb_title:"Ambassador",
     amb_title_role:"Ambassador Extraordinary and Plenipotentiary<br>Republic of Lebanon to Colombia",
-    amb_name:"[Ambassador's Name]",amb_photo_placeholder:"Official photograph\nTo be confirmed",
+    amb_bio_p1:"Her Excellency Brigitta Al-Ojeil is the Ambassador Extraordinary and Plenipotentiary of the Republic of Lebanon to Colombia, with concurrence to Panama and Peru.",
+    amb_bio_p2:"She presented her credentials to the President of the Republic of Colombia in April 2026, in a ceremony held at the Casa de Nariño in Bogotá.",
+    amb_bio_p3:"She has an extensive career in the diplomatic service of the Republic of Lebanon, having previously represented the country as Ambassador to Sierra Leone, where she actively promoted bilateral relations and cooperation between both nations.",
+    amb_bio_p4:"Since her arrival in Colombia, Ambassador Al-Ojeil has worked to strengthen diplomatic, cultural and commercial ties between Lebanon and Colombia, for the benefit of both peoples and the large Lebanese community established in the country.",
+    amb_photo_placeholder:"Official photograph<br>To be confirmed",
+    amb_name:"Brigitta Al-Ojeil",amb_title_role:"Ambassador Extraordinary and Plenipotentiary<br>of the Republic of Lebanon to Colombia,<br>concurrent to Panama and Peru",amb_photo_placeholder:"Official photograph<br>To be confirmed",
     
     svc_label:"Available Services",svc_title:"Consular Services",
     svc_desc:"Click on any service to view detailed requirements and the application process.",
@@ -1091,6 +1129,16 @@ const t = {
     svc_translation_desc:"Official translation of documents into Arabic, Spanish, and English.",
     svc_remains_desc:"Procedures for the transfer of deceased persons to the Republic of Lebanon.",
     svc_fees_desc:"Information on costs and payment methods for consular services.",
+    bilateral_p1a:"Lebanese immigration to Colombia began between the late 19th and early 20th centuries, at a time when Lebanon was still part of the Ottoman Empire. As a result, many immigrants arrived carrying Ottoman passports, which is why they were called \"Turks\", even though most were of Lebanese origin. Their main destinations in Colombia were Barranquilla, Cartagena, Santa Marta, Bogotá and Bucaramanga.",
+    bilateral_p1b:"Over time, this community fully integrated into Colombian society, excelling in commerce, industry, banking, politics and culture. Today, it is estimated that several hundred thousand Colombians are of Lebanese descent, placing Colombia among the Latin American countries with the largest presence of this diaspora.",
+    bilateral_p2:"Bilateral trade between Colombia and Lebanon has traditionally been modest, although with notable growth potential. In the trade balance, Colombian exports to Lebanon carry greater relative weight compared to imports from that country. The Lebanese community in Colombia has played a fundamental role as a cultural and commercial bridge, facilitating business and attracting investment between both countries.",
+    bilateral_p3:"Colombia and Lebanon established official diplomatic relations in 1945, shortly after Lebanon achieved independence. Since then, both nations have maintained constant cooperation in various areas, including joint work within the United Nations, political dialogue, cultural cooperation, academic exchange and consular assistance. Reflecting the strength of this bilateral bond, both states maintain resident embassies: the Embassy of Lebanon in Bogotá and the Embassy of Colombia in Beirut.",
+    bilateral_p4:"The Lebanese heritage is part of the Colombian cultural mosaic, intertwining with the Lebanese and Arab traditions that the community has kept alive. This presence is reflected in gastronomic festivals, Arab cultural activities, university cooperation and diaspora business gatherings.",
+    bilateral_intro:"The relationship between Colombia and Lebanon is among the oldest and most significant between Latin America and the Arab world. It is built on four pillars: the Lebanese diaspora, commercial ties, diplomatic relations, and cultural cooperation.",
+    bilateral_h1:"1. The Lebanese diaspora in Colombia",
+    bilateral_h2:"2. Commercial relations",
+    bilateral_h3:"3. Diplomatic relations",
+    bilateral_h4:"4. Cultural cooperation",
     lb_label:"Discover Lebanon",lb_title:"Lebanon",
     tab_history:"History & Culture",tab_tourism:"Tourism",tab_economy:"Economy",tab_facts:"Country Facts",
     hist_p1:"Lebanon is one of the oldest countries in the world, with over six thousand years of continuous history. Home to the Phoenician civilization, it was one of the first centers of maritime trade and alphabetic writing in antiquity.",
@@ -1110,7 +1158,7 @@ const t = {
     fact_independence:"Independence",fact_religion:"Religions",fact_religion_val:"Christianity, Islam and Judaism",
     fact_diaspora:"Diaspora",fact_diaspora_val:"+14 million worldwide",
     hol_label:"Official Calendar",hol_title:"Public Holidays 2026",
-    hol_desc:"The Embassy will be closed on the following Lebanese and Colombian public holidays.",
+    hol_desc:"The Embassy will be closed on the following public holidays.",
     hol_newyear:"New Year's Day",hol_labor:"Labor Day",
     hol_assumption:"Assumption of the Virgin",
     hol_independence:"Lebanese Independence Day",hol_christmas:"Christmas Day",
@@ -1129,8 +1177,8 @@ const t = {
     news_contact_link:"Contact the Embassy →",news_nna_link:"National News Agency of Lebanon →",
     contact_label:"We Are Here to Help",contact_title:"Contact the Embassy",
     contact_desc:"For inquiries, appointments, and consular services, contact us through any of the following channels.",
-    days_monfri:"Monday – Friday",days_consular:"Consular Services",days_weekend:"Saturdays & Sundays",
-    by_appointment:"By appointment only",closed:"Closed",
+    days_monfri:"Monday – Thursday",days_consular:"Document reception",days_delivery:"Document delivery",days_weekend:"Sat., Sun. & Holidays",
+    by_appointment:"By appointment",closed:"Closed",
     map_title:"Embassy of Lebanon in Colombia",map_neighborhood:"Chapinero, Bogotá D.C.",
     map_open:"Open in Google Maps →",
     contact_cta_title:"Need additional information?",
@@ -1155,10 +1203,12 @@ const t = {
     hero_sub:"نخدم المواطنين اللبنانيين والكولومبيين من بوغوتا، ونعمل على تعزيز الروابط الدبلوماسية والثقافية والتجارية بين البلدين.",
     hero_cta1:"الخدمات القنصلية",hero_cta2:"تواصل مع السفارة",
     card_contact_title:"معلومات التواصل",
-    label_address:"العنوان",label_phone:"الهاتف",label_email:"البريد الإلكتروني",
+    label_address:"العنوان",label_phone:"الهاتف",label_email:"البريد العام",
+    label_consular_email:"المعاملات القنصلية",
+    days_fri:"الجمعة",days_fri_val:"استفسارات بالبريد الإلكتروني فقط",
     label_hours:"ساعات العمل",label_web:"الموقع الإلكتروني",
-    hours_value:"الاثنين – الجمعة<br>٩:٠٠ صباحاً – ٣:٠٠ مساءً",
-    notice_text:"<strong>إشعار:</strong> تستلزم الخدمات القنصلية تحديد موعد مسبق. يرجى التواصل على <a href='tel:+576013228991' style='color:#7a5c00;font-weight:500'>(601) 3228991</a> أو <a href='mailto:info@embajadalibanocolombia.com' style='color:#7a5c00;font-weight:500'>info@embajadalibanocolombia.com</a>",
+    hours_value:"الاثنين – الخميس: 8:30 ص – 2:30 م<br>استلام المستندات: 9:30 – 11:30 ص<br>تسليم المعاملات: 12:30 – 1:30 م<br>الجمعة: بريد إلكتروني فقط · السبت/الأحد/الأعياد: مغلق",
+    notice_text:"<strong>إشعار:</strong> الاثنين–الخميس 8:30–2:30 م. استلام المستندات 9:30–11:30 ص، التسليم 12:30–1:30 م. الجمعة: بريد إلكتروني فقط. هاتف: <a href='tel:+576013228991' style='color:#7a5c00;font-weight:500'>(601) 3228991</a> / <a href='tel:+576017169179' style='color:#7a5c00;font-weight:500'>(601) 7169179</a>",
     about_label:"مهمتنا",about_title:"سفارة لبنان في بوغوتا",
     about_quote:'"تعزيز الروابط بين لبنان وكولومبيا من خلال الدبلوماسية والثقافة والخدمة."',
     about_p1:"تمثل سفارة الجمهورية اللبنانية في كولومبيا مصالح الدولة اللبنانية لدى الحكومة الكولومبية والمجتمع الدولي في بوغوتا.",
@@ -1167,7 +1217,12 @@ const t = {
     stat1:"عاماً من الحضور اللبناني في كولومبيا",stat2:"كولومبي من أصل لبناني",stat3:"عام من تاريخ لبنان",
     amb_label:"التمثيل الدبلوماسي",amb_title:"السفير",
     amb_title_role:"سفير فوق العادة والمفوض<br>جمهورية لبنان لدى كولومبيا",
-    amb_name:"[اسم السفير]",amb_photo_placeholder:"الصورة الرسمية\nيُحدَّد لاحقاً",
+    amb_bio_p1:"معالي السفيرة بريجيتا الأوجيل هي سفيرة فوق العادة والمفوضة لجمهورية لبنان لدى كولومبيا، بالتزامن مع بنما وبيرو.",
+    amb_bio_p2:"قدّمت أوراق اعتمادها إلى رئيس جمهورية كولومبيا في أبريل 2026، في حفل أقيم في قصر كاسا دي ناريينيو في بوغوتا.",
+    amb_bio_p3:"تتمتع بمسيرة دبلوماسية واسعة في خدمة الجمهورية اللبنانية، إذ مثّلت لبنان سابقاً سفيرةً لدى سيراليون، حيث عملت بنشاط على تعزيز العلاقات الثنائية والتعاون بين البلدين.",
+    amb_bio_p4:"منذ وصولها إلى كولومبيا، تعمل السفيرة الأوجيل على تعزيز الروابط الدبلوماسية والثقافية والتجارية بين لبنان وكولومبيا، لصالح الشعبين والجالية اللبنانية الكبيرة المقيمة في البلاد.",
+    amb_photo_placeholder:"الصورة الرسمية<br>يُحدَّد لاحقاً",
+    amb_name:"بريجيتا الأوجيل",amb_title_role:"سفيرة فوق العادة والمفوضة<br>لجمهورية لبنان لدى كولومبيا،<br>بالتزامن مع بنما وبيرو",amb_photo_placeholder:"الصورة الرسمية<br>يُحدَّد لاحقاً",
     amb_placeholder_note:"سيتم نشر السيرة الذاتية للسفير قريباً. للاستفسارات الدبلوماسية، يرجى التواصل مباشرة مع السفارة.",
     svc_label:"الخدمات المتاحة",svc_title:"الخدمات القنصلية",
     svc_desc:"انقر على أي خدمة للاطلاع على المتطلبات التفصيلية وإجراءات الطلب.",
@@ -1183,6 +1238,16 @@ const t = {
     svc_translation_desc:"ترجمة رسمية للوثائق إلى العربية والإسبانية والإنجليزية.",
     svc_remains_desc:"إجراءات نقل رفات المتوفين إلى الجمهورية اللبنانية.",
     svc_fees_desc:"معلومات حول تكاليف الخدمات القنصلية وطرق الدفع.",
+    bilateral_p1a:"بدأت الهجرة اللبنانية إلى كولومبيا بين أواخر القرن التاسع عشر ومطلع القرن العشرين، في حقبة كان لبنان فيها جزءاً من الدولة العثمانية. لهذا السبب، وصل كثير من المهاجرين حاملين جوازات سفر عثمانية، مما جعل الكولومبيين يطلقون عليهم اسم \"الأتراك\"، رغم أن أغلبهم كانوا من أصول لبنانية. وكانت وجهاتهم الرئيسية في كولومبيا بارانكييا وكارتاخينا وسانتا مارتا وبوغوتا وبوكارامانغا.",
+    bilateral_p1b:"مع مرور الوقت، اندمجت هذه الجالية كلياً في المجتمع الكولومبي، وبرزت في مجالات التجارة والصناعة والمصارف والسياسة والثقافة. ويُقدَّر اليوم أن مئات الآلاف من الكولومبيين ينحدرون من أصول لبنانية، مما يجعل كولومبيا من أكثر دول أمريكا اللاتينية حضوراً لهذا الاغتراب.",
+    bilateral_p2:"ظل التبادل التجاري بين كولومبيا ولبنان محدوداً تقليدياً، غير أنه يتمتع بإمكانات نمو واعدة. وتتفوق الصادرات الكولومبية إلى لبنان على الواردات منه في الميزان التجاري. وقد أدّت الجالية اللبنانية في كولومبيا دوراً محورياً بوصفها جسراً ثقافياً وتجارياً يُيسّر الأعمال ويجذب الاستثمار بين البلدين.",
+    bilateral_p3:"أقامت كولومبيا ولبنان علاقات دبلوماسية رسمية عام 1945، بُعيد نيل لبنان استقلاله. ومنذ ذلك الحين، حافظت الدولتان على تعاون مستمر في مجالات عدة، أبرزها العمل المشترك في إطار الأمم المتحدة، والحوار السياسي، والتعاون الثقافي، والتبادل الأكاديمي، والمساعدة القنصلية. وتعبيراً عن متانة هذا الرابط الثنائي، تحتفظ الدولتان بسفارتين مقيمتين: سفارة لبنان في بوغوتا وسفارة كولومبيا في بيروت.",
+    bilateral_p4:"تُشكّل الموروث اللبناني جزءاً من الفسيفساء الثقافي الكولومبي، إذ تتشابك التقاليد اللبنانية والعربية التي حرصت الجالية على إحيائها. ويتجلى هذا الحضور في المهرجانات الغذائية والفعاليات الثقافية العربية والتعاون الجامعي واللقاءات التجارية للمغتربين.",
+    bilateral_intro:"تُعدّ العلاقة بين كولومبيا ولبنان من أقدم العلاقات وأكثرها أهمية بين أمريكا اللاتينية والعالم العربي. وتقوم على أربعة أركان: الجالية اللبنانية، والروابط التجارية، والعلاقات الدبلوماسية، والتعاون الثقافي.",
+    bilateral_h1:"١. الجالية اللبنانية في كولومبيا",
+    bilateral_h2:"٢. العلاقات التجارية",
+    bilateral_h3:"٣. العلاقات الدبلوماسية",
+    bilateral_h4:"٤. التعاون الثقافي",
     lb_label:"اكتشف لبنان",lb_title:"لبنان",
     tab_history:"التاريخ والثقافة",tab_tourism:"السياحة",tab_economy:"الاقتصاد",tab_facts:"معلومات عن البلد",
     hist_p1:"لبنان من أقدم بلدان العالم، بتاريخ متواصل يمتد لأكثر من ستة آلاف عام. كان مهداً للحضارة الفينيقية وأحد أولى مراكز التجارة البحرية والكتابة الأبجدية في العالم القديم.",
@@ -1219,8 +1284,8 @@ const t = {
     news_contact_link:"تواصل مع السفارة ←",news_nna_link:"وكالة الأنباء الوطنية اللبنانية ←",
     contact_label:"نحن هنا لمساعدتك",contact_title:"تواصل مع السفارة",
     contact_desc:"للاستفسارات والمواعيد والخدمات القنصلية، تواصل معنا عبر أي من القنوات التالية.",
-    days_monfri:"الاثنين – الجمعة",days_consular:"الخدمات القنصلية",days_weekend:"السبت والأحد",
-    by_appointment:"بموعد مسبق فقط",closed:"مغلق",
+    days_monfri:"الاثنين – الخميس",days_consular:"استلام المستندات",days_delivery:"تسليم المعاملات",days_weekend:"السبت والأحد والأعياد",
+    by_appointment:"بموعد مسبق",closed:"مغلق",
     map_title:"سفارة لبنان في كولومبيا",map_neighborhood:"شابينيرو، بوغوتا",
     map_open:"فتح في خرائط غوغل ←",
     contact_cta_title:"هل تحتاج إلى معلومات إضافية؟",
@@ -1261,6 +1326,37 @@ function setLang(lang){
     const key=el.getAttribute('data-i18n');
     if(t[lang]&&t[lang][key]!==undefined) el.innerHTML=t[lang][key];
   });
+  // Fix floating menu for RTL/LTR
+  const menu=document.getElementById('floatMenu');
+  if(menu){
+    if(lang==='ar'){
+      menu.style.right='auto';
+      menu.style.left='0';
+      document.querySelectorAll('.float-item').forEach(item=>{
+        item.style.borderRadius='0 8px 8px 0';
+        item.style.marginLeft='0';
+        item.style.marginRight='auto';
+        item.style.flexDirection='row';
+        const tab=item.querySelector('.float-tab');
+        const label=item.querySelector('.float-label');
+        if(tab) tab.style.order='1';
+        if(label){ label.style.order='2'; label.style.paddingLeft='0'; label.style.paddingRight='16px'; }
+      });
+    } else {
+      menu.style.right='0';
+      menu.style.left='auto';
+      document.querySelectorAll('.float-item').forEach(item=>{
+        item.style.borderRadius='8px 0 0 8px';
+        item.style.marginLeft='auto';
+        item.style.marginRight='0';
+        item.style.flexDirection='row';
+        const tab=item.querySelector('.float-tab');
+        const label=item.querySelector('.float-label');
+        if(tab) tab.style.order='2';
+        if(label){ label.style.order='1'; label.style.paddingLeft='16px'; label.style.paddingRight='16px'; }
+      });
+    }
+  }
 }
 
 function goTo(id){
@@ -1702,7 +1798,7 @@ function openService(svcId){
 <p style="font-size:13px;color:#7a5c00;margin:0"><strong>Pago:</strong> Efectivo en dólares americanos (billetes sin enmendaduras).</p>
 <a href="lista_de_precios-_trai_mites_consulares-_a_partir_1-3-2026_arreglado.xlsx" download style="display:inline-block;margin-top:10px;background:var(--cedar);color:#fff;padding:8px 16px;border-radius:4px;font-size:13px;text-decoration:none;font-weight:500">⬇ Descargar lista completa de tarifas</a>
 </div>`,
-      en:`<h4>Consular fee summary (valid from March 2026)</h4>
+      en:`<h4>Consular fees — valid from March 2026</h4>
 <ul>
 <li>Passport (1 yr): $31 | (2 yrs): $62 | Biometric (10 yrs): $309</li>
 <li>Single entry visa: $91 | Double: $129 | Multiple: $181</li>
@@ -1711,7 +1807,7 @@ function openService(svcId){
 <li>Document translation legalization: $25</li>
 </ul>
 <p style="font-size:13px;color:var(--text-muted)">Payment in cash USD only (unmarked bills). <a href="lista_de_precios-_trai_mites_consulares-_a_partir_1-3-2026_arreglado.xlsx" download style="color:var(--cedar);font-weight:500">Download full fee schedule →</a></p>`,
-      ar:`<h4>ملخص الرسوم القنصلية (سارية من مارس 2026)</h4>
+      ar:`<h4>الرسوم القنصلية — سارية من مارس 2026</h4>
 <ul>
 <li>جواز سفر (سنة): 31 دولار | (سنتان): 62 دولار | بيومتري (10 سنوات): 309 دولار</li>
 <li>تأشيرة دخول واحدة: 91 | دخولان: 129 | متعددة: 181 دولار</li>
@@ -1863,5 +1959,21 @@ document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
   <div class="float-item" onclick="openService('legal')"><div class="float-tab"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span class="float-label" data-i18n="svc_legal">Legalización</span></div>
   <div class="float-item" onclick="openService('fees')"><div class="float-tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div><span class="float-label" data-i18n="svc_fees">Tarifas Consulares</span></div>
 </div>
+
+<script>
+// ─── ACCORDION ───
+function toggleAccordion(btn){
+  var body = btn.nextElementSibling;
+  var isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.accordion-header').forEach(function(b){
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if(!isOpen){
+    btn.classList.add('open');
+    body.classList.add('open');
+  }
+}
+</script>
 </body>
 </html>
