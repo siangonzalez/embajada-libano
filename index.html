@@ -350,6 +350,19 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
   pointer-events:none;
 }
 @media(max-width:700px){#floatMenu{display:none}}
+
+/* ─── ACCORDION ─── */
+.accordion{border:1px solid var(--warm-gray);border-radius:8px;overflow:hidden;margin-bottom:8px}
+.accordion-header{width:100%;background:var(--white);border:none;padding:18px 20px;font-family:var(--font-serif);font-size:20px;font-weight:500;color:var(--text-dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left;transition:background .15s}
+.accordion-header:hover{background:var(--cedar-light)}
+.accordion-header.open{background:var(--cedar-light);color:var(--cedar)}
+.accordion-icon{font-size:18px;color:var(--cedar);transition:transform .25s;flex-shrink:0;margin-left:12px}
+.accordion-header.open .accordion-icon{transform:rotate(45deg)}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(0.4,0,0.2,1)}
+.accordion-body.open{max-height:600px}
+.accordion-body-inner{padding:16px 20px 24px;border-top:1px solid var(--warm-gray)}
+.accordion-body-inner p{font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:12px;font-weight:300}
+.accordion-body-inner p:last-child{margin-bottom:0}
 </style>
 </head>
 <body>
@@ -360,8 +373,9 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
   <div class="topbar-inner">
     <span data-i18n="topbar_official">🇱🇧 &nbsp;Sitio oficial de la Embajada de la República del Líbano en Colombia</span>
     <div class="topbar-right">
-      <a href="mailto:info@embajadalibanocolombia.com">info@embajadalibanocolombia.com</a>
+      <a href="mailto:consular@embajadalibanocolombia.com">consular@embajadalibanocolombia.com</a>
       <a href="tel:+576013228991">(601) 3228991</a>
+      <a href="tel:+576017169179">(601) 7169179</a>
       <div class="lang-switcher">
         <button class="lang-btn active" onclick="setLang('es')">ES</button>
         <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -407,6 +421,8 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
           <a onclick="goTo('libano'); setTab('historia')" data-i18n="tab_history">Historia y Cultura</a>
           <a onclick="goTo('libano'); setTab('turismo')" data-i18n="tab_tourism">Turismo</a>
           <a onclick="goTo('libano'); setTab('economia')" data-i18n="tab_economy">Economía</a>
+          <a onclick="goTo('libano'); setTab('datos')" data-i18n="tab_facts">Datos del País</a>
+          <a onclick="goTo('libano'); setTab('bilateral')">Relación con Colombia</a>
           <a onclick="goTo('festivos')" data-i18n="nav_holidays">Días Festivos</a>
         </div>
       </div>
@@ -443,6 +459,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
   <span class="mobile-nav-section-title" data-i18n="nav_lebanon">El Líbano</span>
   <a onclick="goTo('libano');toggleMobileMenu()" data-i18n="tab_history">Historia y Cultura</a>
   <a onclick="goTo('libano');setTab('turismo');toggleMobileMenu()" data-i18n="tab_tourism">Turismo</a>
+  <a onclick="goTo('libano');setTab('bilateral');toggleMobileMenu()">Relación con Colombia</a>
   <a onclick="goTo('noticias');toggleMobileMenu()" data-i18n="nav_news">Noticias</a>
   <a onclick="goTo('contacto');toggleMobileMenu()" data-i18n="nav_contact">Contacto</a>
 </div>
@@ -485,29 +502,32 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
       <div class="hero-contact-row">
         <span class="hero-contact-icon">📞</span>
         <div>
-          <div class="hero-contact-label" data-i18n="label_phone">Teléfono</div>
-          <div class="hero-contact-value"><a href="tel:+576013228991">(601) 3228991</a></div>
+          <div class="hero-contact-label" data-i18n="label_phone">Teléfonos</div>
+          <div class="hero-contact-value">
+            <a href="tel:+576013228991">(601) 3228991</a><br>
+            <a href="tel:+576017169179">(601) 7169179</a>
+          </div>
         </div>
       </div>
       <div class="hero-contact-row">
         <span class="hero-contact-icon">✉</span>
         <div>
-          <div class="hero-contact-label" data-i18n="label_email">Correo</div>
+          <div class="hero-contact-label" data-i18n="label_email">Correo General</div>
           <div class="hero-contact-value"><a href="mailto:info@embajadalibanocolombia.com">info@embajadalibanocolombia.com</a></div>
+        </div>
+      </div>
+      <div class="hero-contact-row">
+        <span class="hero-contact-icon">✉</span>
+        <div>
+          <div class="hero-contact-label">Trámites Consulares</div>
+          <div class="hero-contact-value"><a href="mailto:consular@embajadalibanocolombia.com">consular@embajadalibanocolombia.com</a></div>
         </div>
       </div>
       <div class="hero-contact-row">
         <span class="hero-contact-icon">🕐</span>
         <div>
           <div class="hero-contact-label" data-i18n="label_hours">Horario presencial</div>
-          <div class="hero-contact-value" data-i18n="hours_value">Lunes – Jueves<br>Recepción: 9:30–11:30 am · Entrega: 12:30–1:30 pm</div>
-        </div>
-      </div>
-      <div class="hero-contact-row">
-        <span class="hero-contact-icon">💻</span>
-        <div>
-          <div class="hero-contact-label">Viernes</div>
-          <div class="hero-contact-value">Solo atención por correo electrónico</div>
+          <div class="hero-contact-value">Lunes – Jueves: 8:30–2:30 pm<br>Recepción docs: 9:30–11:30 am<br>Entrega trámites: 12:30–1:30 pm<br>Viernes: solo correo · Sáb./Dom./Festivos: cerrado</div>
         </div>
       </div>
     </div>
@@ -603,7 +623,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
         <p data-i18n="about_p3">Colombia alberga una de las comunidades libanesas más numerosas e influyentes de América Latina, con una historia de más de 130 años de inmigración y contribución al desarrollo del país.</p>
         <div class="stats-row">
           <div><div class="stat-number">130+</div><div class="stat-label" data-i18n="stat1">Años de presencia libanesa en Colombia</div></div>
-          <div><div class="stat-number">~1M</div><div class="stat-label" data-i18n="stat2">Colombianos de origen libanés</div></div>
+          <div><div class="stat-number" style="font-size:22px;line-height:1.2">Varios cientos<br>de miles</div><div class="stat-label" data-i18n="stat2">Colombianos de origen libanés</div></div>
           <div><div class="stat-number">6.000+</div><div class="stat-label" data-i18n="stat3">Años de historia del Líbano</div></div>
         </div>
       </div>
@@ -622,15 +642,13 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
         <span data-i18n="amb_photo_placeholder">Fotografía oficial<br>Por confirmar</span>
       </div>
       <div>
-        <div class="ambassador-name" data-i18n="amb_name">[Nombre del Embajador]</div>
-        <div class="ambassador-title" data-i18n="amb_title_role">Embajador Extraordinario y Plenipotenciario<br>República del Líbano ante Colombia</div>
+        <div class="ambassador-name">Brigitta Al-Ojeil</div>
+        <div class="ambassador-title">Embajadora Extraordinaria y Plenipotenciaria<br>de la República del Líbano ante Colombia,<br>concurrente ante Panamá y Perú</div>
         <div class="ambassador-bio">
-          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5"></div>
-          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5;width:90%"></div>
-          <div class="modal-placeholder" style="height:14px;background:var(--warm-gray);border-radius:4px;margin-bottom:10px;opacity:.5;width:75%"></div>
-          <div style="margin-top:20px;background:var(--gold-light);border-radius:8px;padding:16px 20px;border-left:3px solid var(--gold)">
-            <p style="font-size:13px;color:#7a5c00;font-style:italic" data-i18n="amb_placeholder_note">Información biográfica del Embajador será publicada próximamente. Para consultas diplomáticas, por favor comuníquese directamente con la Embajada.</p>
-          </div>
+          <p>Su Excelencia Brigitta Al-Ojeil es la Embajadora Extraordinaria y Plenipotenciaria de la República del Líbano ante Colombia, con concurrencia ante Panamá y Perú.</p>
+          <p>Presentó sus cartas credenciales ante el Presidente de la República de Colombia en abril de 2026, en una ceremonia realizada en la Casa de Nariño en Bogotá.</p>
+          <p>Cuenta con amplia trayectoria en el servicio diplomático de la República del Líbano, habiendo representado al país anteriormente como Embajadora ante Sierra Leona, donde promovió activamente las relaciones bilaterales y la cooperación entre ambas naciones.</p>
+          <p>Desde su llegada a Colombia, la Embajadora Al-Ojeil trabaja por el fortalecimiento de los vínculos diplomáticos, culturales y comerciales entre el Líbano y Colombia, en beneficio de ambos pueblos y de la numerosa comunidad libanesa establecida en el país.</p>
         </div>
       </div>
     </div>
@@ -647,6 +665,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
       <button class="tab-btn" onclick="setTab('turismo')" data-i18n="tab_tourism">Turismo</button>
       <button class="tab-btn" onclick="setTab('economia')" data-i18n="tab_economy">Economía</button>
       <button class="tab-btn" onclick="setTab('datos')" data-i18n="tab_facts">Datos del País</button>
+      <button class="tab-btn" onclick="setTab('bilateral')">Relación con Colombia</button>
     </div>
 
     <div class="tab-content active" id="tab-historia">
@@ -690,9 +709,62 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
         <div class="fact-card"><div class="fact-label" data-i18n="fact_lang">Idioma oficial</div><div class="fact-value" data-i18n="fact_lang_val">Árabe (también francés e inglés)</div></div>
         <div class="fact-card"><div class="fact-label" data-i18n="fact_currency">Moneda</div><div class="fact-value" data-i18n="fact_currency_val">Libra libanesa (LBP)</div></div>
         <div class="fact-card"><div class="fact-label" data-i18n="fact_independence">Independencia</div><div class="fact-value">22 de noviembre de 1943</div></div>
-        <div class="fact-card"><div class="fact-label" data-i18n="fact_religion">Religiones</div><div class="fact-value" data-i18n="fact_religion_val">Islam, Cristianismo, Druzismo</div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_religion">Religiones</div><div class="fact-value" data-i18n="fact_religion_val">Cristianismo, Islam y Judaísmo</div></div>
         <div class="fact-card"><div class="fact-label" data-i18n="fact_diaspora">Diáspora</div><div class="fact-value" data-i18n="fact_diaspora_val">+14 millones en el mundo</div></div>
       </div>
+    </div>
+    <div class="tab-content" id="tab-bilateral">
+      <p style="font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:28px;font-weight:300">La relación entre Colombia y el Líbano está entre las más antiguas y significativas entre América Latina y el mundo árabe. Se fundamenta en cuatro pilares: la diáspora libanesa, los vínculos comerciales, las relaciones diplomáticas y la cooperación cultural.</p>
+
+      <div class="accordion">
+        <button class="accordion-header open" onclick="toggleAccordion(this)">
+          1. La diáspora libanesa en Colombia
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body open">
+          <div class="accordion-body-inner">
+            <p>La inmigración libanesa a Colombia se inició entre finales del siglo XIX y comienzos del XX, en una época en que el Líbano aún formaba parte del Imperio Otomano. Debido a esto, gran parte de los inmigrantes llegaron portando pasaportes otomanos, razón por la cual se les llamó "turcos", pese a que en su mayoría eran de origen libanés. Sus principales destinos en el país fueron Barranquilla, Cartagena, Santa Marta, Bogotá y Bucaramanga.</p>
+            <p>Con el paso del tiempo, esta comunidad logró integrarse plenamente a la sociedad colombiana, destacándose en ámbitos como el comercio, la industria, la banca, la política y la cultura. Actualmente, se calcula que varios cientos de miles de colombianos descienden de libaneses, lo que sitúa a Colombia entre los países latinoamericanos con mayor presencia de esta diáspora.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          2. Relaciones comerciales
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>El comercio bilateral entre Colombia y el Líbano ha sido tradicionalmente modesto, aunque con un notable potencial de crecimiento. En la balanza comercial, las exportaciones colombianas hacia el Líbano tienen un mayor peso relativo frente a las importaciones provenientes de ese país. En este dinamismo comercial, la comunidad libanesa radicada en Colombia ha jugado un papel fundamental, actuando como puente cultural y comercial que facilita los negocios y atrae inversión entre ambos países.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          3. Relaciones diplomáticas
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Colombia y el Líbano establecieron relaciones diplomáticas oficiales en 1945, poco después de que el país del Cercano Oriente alcanzara su independencia. Desde entonces, ambas naciones han mantenido una cooperación constante en diversos ámbitos, entre los que se destacan el trabajo conjunto en el marco de las Naciones Unidas, el diálogo político, la cooperación cultural, el intercambio académico y la asistencia consular. Como reflejo de la solidez de este vínculo bilateral, los dos Estados mantienen embajadas residentes: la Embajada del Líbano en Bogotá y la Embajada de Colombia en Beirut.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          4. Cooperación cultural
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>La herencia libanesa forma parte del mosaico cultural colombiano, entrelazándose con las tradiciones libanesas y árabes que la comunidad ha mantenido vivas. Esta presencia se refleja en festivales gastronómicos, actividades culturales árabes, cooperación universitaria y encuentros empresariales de la diáspora.</p>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -705,17 +777,17 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
     <p class="section-desc" data-i18n="hol_desc">La Embajada permanecerá cerrada en los siguientes días festivos libaneses y colombianos.</p>
     <div class="holidays-list">
       <div class="holiday-item"><div><div class="holiday-date">1</div><div class="holiday-month" data-i18n="month_jan">Enero</div></div><div><div class="holiday-name" data-i18n="hol_newyear">Año Nuevo</div><div class="holiday-type" data-i18n="hol_both">Colombia y Líbano</div></div></div>
-      <div class="holiday-item"><div><div class="holiday-date">6</div><div class="holiday-month" data-i18n="month_jan">Enero</div></div><div><div class="holiday-name" data-i18n="hol_epiphany">Epifanía / Navidad Ortodoxa Armenia</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
-      <div class="holiday-item"><div><div class="holiday-date">9</div><div class="holiday-month" data-i18n="month_feb">Febrero</div></div><div><div class="holiday-name" data-i18n="hol_stmaroun">San Marón</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
-      <div class="holiday-item"><div><div class="holiday-date">25</div><div class="holiday-month" data-i18n="month_mar">Marzo</div></div><div><div class="holiday-name" data-i18n="hol_annunciation">Anunciación</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
+      
+      
+      
       <div class="holiday-item"><div><div class="holiday-date">1</div><div class="holiday-month" data-i18n="month_may">Mayo</div></div><div><div class="holiday-name" data-i18n="hol_labor">Día del Trabajo</div><div class="holiday-type" data-i18n="hol_both">Colombia y Líbano</div></div></div>
-      <div class="holiday-item"><div><div class="holiday-date">25</div><div class="holiday-month" data-i18n="month_may">Mayo</div></div><div><div class="holiday-name" data-i18n="hol_resistance">Día de la Resistencia y Liberación</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
+      
       <div class="holiday-item"><div><div class="holiday-date">15</div><div class="holiday-month" data-i18n="month_aug">Agosto</div></div><div><div class="holiday-name" data-i18n="hol_assumption">Asunción de la Virgen</div><div class="holiday-type" data-i18n="hol_both">Colombia y Líbano</div></div></div>
-      <div class="holiday-item"><div><div class="holiday-date">1</div><div class="holiday-month" data-i18n="month_nov">Noviembre</div></div><div><div class="holiday-name" data-i18n="hol_allsaints">Día de Todos los Santos</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
-      <div class="holiday-item"><div><div class="holiday-date">11</div><div class="holiday-month" data-i18n="month_nov">Noviembre</div></div><div><div class="holiday-name" data-i18n="hol_independence">Día de la Independencia del Líbano</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
+      
+      <div class="holiday-item"><div><div class="holiday-date">22</div><div class="holiday-month" data-i18n="month_nov">Noviembre</div></div><div><div class="holiday-name" data-i18n="hol_independence">Día de la Independencia del Líbano</div><div class="holiday-type" data-i18n="hol_lb">Líbano</div></div></div>
       <div class="holiday-item"><div><div class="holiday-date">25</div><div class="holiday-month" data-i18n="month_dec">Diciembre</div></div><div><div class="holiday-name" data-i18n="hol_christmas">Navidad</div><div class="holiday-type" data-i18n="hol_both">Colombia y Líbano</div></div></div>
     </div>
-    <p style="margin-top:24px;font-size:13px;color:var(--text-muted);font-weight:300" data-i18n="hol_note">* También se observan festivos islámicos cuyas fechas varían anualmente. Para el calendario completo del año en curso, consulte directamente con la Embajada.</p>
+    
   </div>
 </section>
 
@@ -779,7 +851,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
         </div>
         <div class="contact-row">
           <div class="cr-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.11 7.11a16 16 0 006.78 6.78l1.29-1.29a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg></div>
-          <div><div class="cr-label" data-i18n="label_phone">Teléfono</div><div class="cr-value"><a href="tel:+576013228991">(601) 3228991</a></div></div>
+          <div><div class="cr-label" data-i18n="label_phone">Teléfono</div><div class="cr-value"><a href="tel:+576013228991">(601) 3228991</a><br><a href="tel:+576017169179">(601) 7169179</a></div></div>
         </div>
         <div class="contact-row">
           <div class="cr-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
@@ -800,7 +872,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
         </div>
         <div class="contact-row">
           <div class="cr-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
-          <div><div class="cr-label" data-i18n="label_web">Sitio Web</div><div class="cr-value"><a href="https://www.embajadadellibano.org.co">www.embajadadellibano.org.co</a></div></div>
+          <div><div class="cr-label" data-i18n="label_web">Sitio Web</div><div class="cr-value"><a href="https://www.embajadalibanocolombia.com">www.embajadalibanocolombia.com</a></div></div>
         </div>
       </div>
       <div>
@@ -850,6 +922,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
           <li><a onclick="goTo('libano');setTab('turismo')" data-i18n="tab_tourism">Turismo</a></li>
           <li><a onclick="goTo('libano');setTab('economia')" data-i18n="tab_economy">Economía</a></li>
           <li><a onclick="goTo('libano');setTab('datos')" data-i18n="tab_facts">Datos del País</a></li>
+          <li><a onclick="goTo('libano');setTab('bilateral')">Relación con Colombia</a></li>
           <li><a href="https://mot.gov.lb/en" target="_blank">Min. de Turismo</a></li>
         </ul>
       </div>
@@ -866,7 +939,7 @@ html[lang="ar"] .footer-col h4{letter-spacing:0;text-transform:none}
     </div>
     <div class="footer-bottom">
       <span class="footer-copy" data-i18n="footer_copy">© 2026 Embajada de la República del Líbano en Colombia. Todos los derechos reservados.</span>
-      <span class="footer-gov">www.embajadadellibano.org.co</span>
+      <span class="footer-gov">www.embajadalibanocolombia.com</span>
     </div>
   </div>
 </footer>
@@ -904,12 +977,12 @@ const t = {
     about_quote:'"Fortaleciendo los lazos entre el Líbano y Colombia a través de la diplomacia, la cultura y el servicio."',
     about_p1:"La Embajada de la República del Líbano en Colombia representa los intereses del Estado libanés ante el gobierno colombiano y la comunidad internacional con sede en Bogotá.",
     about_p2:"Nuestra misión es fortalecer las relaciones bilaterales entre ambos países en los ámbitos diplomático, económico, cultural y consular, brindando asistencia y servicios a los ciudadanos libaneses residentes en Colombia.",
-    about_p3:"Colombia alberga una de las comunidades libanesas más numerosas e influyentes de América Latina, con una historia de más de 130 años de inmigración y contribución al desarrollo del país.",
+    about_p3:"Colombia alberga una de las comunidades libanesas más influyentes de América Latina, con una historia de más de 130 años de inmigración y contribución al desarrollo del país. Se estima que varios cientos de miles de colombianos descienden de familias de origen libanés.",
     stat1:"Años de presencia libanesa en Colombia",stat2:"Colombianos de origen libanés",stat3:"Años de historia del Líbano",
     amb_label:"Representación Diplomática",amb_title:"Embajador",
     amb_title_role:"Embajador Extraordinario y Plenipotenciario<br>República del Líbano ante Colombia",
     amb_name:"[Nombre del Embajador]",amb_photo_placeholder:"Fotografía oficial\nPor confirmar",
-    amb_placeholder_note:"Información biográfica del Embajador será publicada próximamente. Para consultas diplomáticas, comuníquese con la Embajada.",
+    
     svc_label:"Servicios Disponibles",svc_title:"Servicios Consulares",
     svc_desc:"Haga clic en cualquier servicio para ver los requisitos detallados y el proceso de solicitud.",
     svc_visa:"Visas",svc_passport:"Pasaportes",svc_citizenship:"Ciudadanía Libanesa",
@@ -942,14 +1015,12 @@ const t = {
     img_placeholder_economy:"[ Imagen: Economía del Líbano — Por confirmar ]",
     fact_capital:"Capital",fact_area:"Superficie",fact_pop:"Población",fact_lang:"Idioma oficial",
     fact_lang_val:"Árabe (también francés e inglés)",fact_currency:"Moneda",fact_currency_val:"Libra libanesa (LBP)",
-    fact_independence:"Independencia",fact_religion:"Religiones",fact_religion_val:"Islam, Cristianismo, Druzismo",
+    fact_independence:"Independencia",fact_religion:"Religiones",fact_religion_val:"Cristianismo, Islam y Judaísmo",
     fact_diaspora:"Diáspora",fact_diaspora_val:"+14 millones en el mundo",
     hol_label:"Calendario Oficial",hol_title:"Días Festivos 2026",
     hol_desc:"La Embajada permanecerá cerrada en los siguientes días festivos libaneses y colombianos.",
-    hol_note:"* También se observan festivos islámicos cuyas fechas varían anualmente. Para el calendario completo consulte directamente con la Embajada.",
-    hol_newyear:"Año Nuevo",hol_epiphany:"Epifanía / Navidad Ortodoxa Armenia",hol_stmaroun:"San Marón",
-    hol_annunciation:"Anunciación",hol_labor:"Día del Trabajo",hol_resistance:"Día de la Resistencia y Liberación",
-    hol_assumption:"Asunción de la Virgen",hol_allsaints:"Día de Todos los Santos",
+    hol_newyear:"Año Nuevo",hol_labor:"Día del Trabajo",
+    hol_assumption:"Asunción de la Virgen",
     hol_independence:"Día de la Independencia del Líbano",hol_christmas:"Navidad",
     hol_both:"Colombia y Líbano",hol_lb:"Líbano",
     month_jan:"Enero",month_feb:"Febrero",month_mar:"Marzo",month_may:"Mayo",
@@ -1000,12 +1071,12 @@ const t = {
     about_quote:'"Strengthening the bonds between Lebanon and Colombia through diplomacy, culture, and service."',
     about_p1:"The Embassy of the Republic of Lebanon in Colombia represents the interests of the Lebanese State before the Colombian government and the international community based in Bogotá.",
     about_p2:"Our mission is to strengthen bilateral relations between both countries in the diplomatic, economic, cultural, and consular fields, providing assistance and services to Lebanese citizens residing in Colombia.",
-    about_p3:"Colombia is home to one of the largest and most influential Lebanese communities in Latin America, with a history of over 130 years of immigration and contribution to the country's development.",
+    about_p3:"Colombia is home to one of the most influential Lebanese communities in Latin America, with a history of over 130 years of immigration and contribution to the country's development. It is estimated that several hundred thousand Colombians are of Lebanese descent.",
     stat1:"Years of Lebanese presence in Colombia",stat2:"Colombians of Lebanese origin",stat3:"Years of Lebanese history",
     amb_label:"Diplomatic Representation",amb_title:"Ambassador",
     amb_title_role:"Ambassador Extraordinary and Plenipotentiary<br>Republic of Lebanon to Colombia",
     amb_name:"[Ambassador's Name]",amb_photo_placeholder:"Official photograph\nTo be confirmed",
-    amb_placeholder_note:"The Ambassador's biographical information will be published shortly. For diplomatic inquiries, please contact the Embassy directly.",
+    
     svc_label:"Available Services",svc_title:"Consular Services",
     svc_desc:"Click on any service to view detailed requirements and the application process.",
     svc_visa:"Visas",svc_passport:"Passports",svc_citizenship:"Lebanese Citizenship",
@@ -1036,14 +1107,12 @@ const t = {
     img_placeholder_economy:"[ Image: Lebanon Economy — To be confirmed ]",
     fact_capital:"Capital",fact_area:"Area",fact_pop:"Population",fact_lang:"Official language",
     fact_lang_val:"Arabic (also French and English)",fact_currency:"Currency",fact_currency_val:"Lebanese Pound (LBP)",
-    fact_independence:"Independence",fact_religion:"Religions",fact_religion_val:"Islam, Christianity, Druzism",
+    fact_independence:"Independence",fact_religion:"Religions",fact_religion_val:"Christianity, Islam and Judaism",
     fact_diaspora:"Diaspora",fact_diaspora_val:"+14 million worldwide",
     hol_label:"Official Calendar",hol_title:"Public Holidays 2026",
     hol_desc:"The Embassy will be closed on the following Lebanese and Colombian public holidays.",
-    hol_note:"* Islamic holidays are also observed; their dates vary annually. For the full current year calendar, contact the Embassy directly.",
-    hol_newyear:"New Year's Day",hol_epiphany:"Epiphany / Armenian Orthodox Christmas",hol_stmaroun:"Saint Maroun's Day",
-    hol_annunciation:"Annunciation",hol_labor:"Labor Day",hol_resistance:"Resistance and Liberation Day",
-    hol_assumption:"Assumption of the Virgin",hol_allsaints:"All Saints' Day",
+    hol_newyear:"New Year's Day",hol_labor:"Labor Day",
+    hol_assumption:"Assumption of the Virgin",
     hol_independence:"Lebanese Independence Day",hol_christmas:"Christmas Day",
     hol_both:"Colombia & Lebanon",hol_lb:"Lebanon",
     month_jan:"January",month_feb:"February",month_mar:"March",month_may:"May",
@@ -1094,7 +1163,7 @@ const t = {
     about_quote:'"تعزيز الروابط بين لبنان وكولومبيا من خلال الدبلوماسية والثقافة والخدمة."',
     about_p1:"تمثل سفارة الجمهورية اللبنانية في كولومبيا مصالح الدولة اللبنانية لدى الحكومة الكولومبية والمجتمع الدولي في بوغوتا.",
     about_p2:"مهمتنا تعزيز العلاقات الثنائية بين البلدين على الصعيدين الدبلوماسي والاقتصادي والثقافي والقنصلي، وتقديم المساعدة للمواطنين اللبنانيين المقيمين في كولومبيا.",
-    about_p3:"تحتضن كولومبيا إحدى أكبر الجاليات اللبنانية وأكثرها تأثيراً في أمريكا اللاتينية، بتاريخ يمتد لأكثر من 130 عاماً من الهجرة والمساهمة في تطور البلاد.",
+    about_p3:"تحتضن كولومبيا إحدى أكثر الجاليات اللبنانية تأثيراً في أمريكا اللاتينية، بتاريخ يمتد لأكثر من 130 عاماً من الهجرة والمساهمة في تطور البلاد. ويُقدَّر أن مئات الآلاف من الكولومبيين ينحدرون من أصول لبنانية.",
     stat1:"عاماً من الحضور اللبناني في كولومبيا",stat2:"كولومبي من أصل لبناني",stat3:"عام من تاريخ لبنان",
     amb_label:"التمثيل الدبلوماسي",amb_title:"السفير",
     amb_title_role:"سفير فوق العادة والمفوض<br>جمهورية لبنان لدى كولومبيا",
@@ -1130,15 +1199,11 @@ const t = {
     img_placeholder_economy:"[ صورة: اقتصاد لبنان — يُحدَّد لاحقاً ]",
     fact_capital:"العاصمة",fact_area:"المساحة",fact_pop:"عدد السكان",fact_lang:"اللغة الرسمية",
     fact_lang_val:"العربية (والفرنسية والإنجليزية)",fact_currency:"العملة",fact_currency_val:"الليرة اللبنانية (LBP)",
-    fact_independence:"الاستقلال",fact_religion:"الأديان",fact_religion_val:"الإسلام، المسيحية، الدرزية",
+    fact_independence:"الاستقلال",fact_religion:"الأديان",fact_religion_val:"المسيحية، الإسلام واليهودية",
     fact_diaspora:"الاغتراب",fact_diaspora_val:"+14 مليون حول العالم",
     hol_label:"التقويم الرسمي",hol_title:"العطل الرسمية 2026",
     hol_desc:"ستكون السفارة مغلقة في أيام الأعياد الرسمية اللبنانية والكولومبية التالية.",
-    hol_note:"* كما تُلاحظ الأعياد الإسلامية التي تتغير مواعيدها سنوياً. للاطلاع على التقويم الكامل، تواصل مع السفارة مباشرة.",
-    hol_newyear:"رأس السنة الميلادية",hol_epiphany:"الغطاس / عيد الميلاد الأرمني الأرثوذكسي",
-    hol_stmaroun:"عيد مار مارون",hol_annunciation:"عيد البشارة",hol_labor:"عيد العمال",
-    hol_resistance:"يوم المقاومة والتحرير",hol_assumption:"عيد انتقال السيدة العذراء",
-    hol_allsaints:"عيد جميع القديسين",hol_independence:"عيد الاستقلال اللبناني",hol_christmas:"عيد الميلاد المجيد",
+    hol_newyear:"رأس السنة الميلادية",hol_labor:"عيد العمال",hol_assumption:"عيد انتقال السيدة العذراء",hol_independence:"عيد الاستقلال اللبناني",hol_christmas:"عيد الميلاد المجيد",
     hol_both:"كولومبيا ولبنان",hol_lb:"لبنان",
     month_jan:"يناير",month_feb:"فبراير",month_mar:"مارس",month_may:"مايو",
     month_aug:"أغسطس",month_nov:"نوفمبر",month_dec:"ديسمبر",
@@ -1604,7 +1669,7 @@ function openService(svcId){
 </ul>`
     },
     fees:{
-      es:`<h4>Resumen de tarifas consulares (vigentes desde marzo 2026)</h4>
+      es:`<h4>Tarifas consulares vigentes a partir de marzo 2026</h4>
 <h4>Pasaportes</h4>
 <ul>
 <li>Pasaporte ordinario 1 año: $31 USD</li>
@@ -1634,7 +1699,8 @@ function openService(svcId){
 <li>Legalización documentos traducidos: $25 USD</li>
 </ul>
 <div style="background:var(--gold-light);border-radius:8px;padding:14px 18px;margin-top:16px;border-left:3px solid var(--gold)">
-<p style="font-size:13px;color:#7a5c00;margin:0"><strong>Pago:</strong> Efectivo en dólares americanos (billetes sin enmendaduras). Para la lista completa de tarifas comuníquese con la Embajada.</p>
+<p style="font-size:13px;color:#7a5c00;margin:0"><strong>Pago:</strong> Efectivo en dólares americanos (billetes sin enmendaduras).</p>
+<a href="lista_de_precios-_trai_mites_consulares-_a_partir_1-3-2026_arreglado.xlsx" download style="display:inline-block;margin-top:10px;background:var(--cedar);color:#fff;padding:8px 16px;border-radius:4px;font-size:13px;text-decoration:none;font-weight:500">⬇ Descargar lista completa de tarifas</a>
 </div>`,
       en:`<h4>Consular fee summary (valid from March 2026)</h4>
 <ul>
@@ -1644,7 +1710,7 @@ function openService(svcId){
 <li>Special power (per signature): $50</li>
 <li>Document translation legalization: $25</li>
 </ul>
-<p style="font-size:13px;color:var(--text-muted)">Payment in cash USD only (unmarked bills).</p>`,
+<p style="font-size:13px;color:var(--text-muted)">Payment in cash USD only (unmarked bills). <a href="lista_de_precios-_trai_mites_consulares-_a_partir_1-3-2026_arreglado.xlsx" download style="color:var(--cedar);font-weight:500">Download full fee schedule →</a></p>`,
       ar:`<h4>ملخص الرسوم القنصلية (سارية من مارس 2026)</h4>
 <ul>
 <li>جواز سفر (سنة): 31 دولار | (سنتان): 62 دولار | بيومتري (10 سنوات): 309 دولار</li>
