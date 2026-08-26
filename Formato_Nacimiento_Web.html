@@ -45,8 +45,8 @@
   }
   .bg-ref {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0.2cm; left: 0;
+    width: 100%; height: calc(100% - 0.2cm);
     object-fit: fill;
     opacity: 0.55;
     pointer-events: none;
@@ -132,7 +132,9 @@
   @media print {
     body { background: white; padding: 0; margin: 0; }
     .toolbar { display: none; }
-    .bg-ref { display: none; }
+    .bg-ref {
+    top: 0.2cm;
+    height: calc(100% - 0.2cm); display: none; }
     .page { box-shadow: none; margin: 0; }
     .field { border: none !important; background: transparent !important; }
     .coord-tag, .resize-handle, .del-handle { display: none !important; }
