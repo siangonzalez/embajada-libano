@@ -34,6 +34,9 @@
   .toolbar button.add { background: #2f7a3d; }
   .toolbar button:hover { filter: brightness(1.1); }
   .toolbar label { font-size: 12px; color: #444; display:flex; align-items:center; gap:6px; }
+  .print-group { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .print-buttons { display: flex; flex-direction: row; gap: 8px; }
+  .print-hint { font-size: 10px; color: #888; max-width: 320px; text-align: right; }
 
   .page {
     position: relative;
@@ -132,9 +135,8 @@
   @media print {
     body { background: white; padding: 0; margin: 0; }
     .toolbar { display: none; }
-    .bg-ref {
-    top: 0.2cm;
-    height: calc(100% - 0.2cm); display: none; }
+    .bg-ref { display: none; }
+    body.keep-bg-print .bg-ref { display: block; opacity: 1; }
     .page { box-shadow: none; margin: 0; }
     .field { border: none !important; background: transparent !important; }
     .coord-tag, .resize-handle, .del-handle { display: none !important; }
@@ -153,7 +155,13 @@
     <label><input type="checkbox" id="toggleEdit"> Modo edición</label>
     <button class="add" onclick="addField()">+ Agregar casilla</button>
     <button class="secondary" onclick="exportCoords()">Descargar coordenadas</button>
-    <button onclick="window.print()">Imprimir</button>
+    <div class="print-group">
+      <div class="print-buttons">
+        <button onclick="printPhysical()">Imprimir (solo texto)</button>
+        <button class="secondary" onclick="downloadPdf()">Descargar PDF (con formato)</button>
+      </div>
+      <span class="print-hint">"Imprimir" es para el papel preimpreso real. "Descargar PDF" incluye el formato de fondo, para guardar o enviar el documento completo — elige "Guardar como PDF" como destino en el diálogo.</span>
+    </div>
   </div>
 
   <div class="page" id="page">
@@ -714,6 +722,20 @@ function addField() {
     document.querySelectorAll('.field-text').forEach(function(f){ f.setAttribute('contenteditable','false'); });
   }
   updateTag(el);
+}
+
+function printPhysical() {
+  document.body.classList.remove('keep-bg-print');
+  window.print();
+}
+
+function downloadPdf() {
+  document.body.classList.add('keep-bg-print');
+  window.print();
+  window.addEventListener('afterprint', function handler(){
+    document.body.classList.remove('keep-bg-print');
+    window.removeEventListener('afterprint', handler);
+  });
 }
 
 function exportCoords() {
