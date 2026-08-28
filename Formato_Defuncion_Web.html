@@ -526,6 +526,16 @@
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
     </div>
+
+    <div class="field"
+         data-label="campo_nuevo_12"
+         style="left:13.72cm; top:9.09cm; width:1.66cm; height:0.61cm; justify-content:flex-start;"
+         data-name="campo_nuevo_12">
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <span class="coord-tag"></span>
+         <span class="del-handle" title="Eliminar casilla">&times;</span>
+         <span class="resize-handle"></span>
+    </div>
   </div>
 
 <script>
@@ -638,7 +648,12 @@ function setupField(el) {
 document.querySelectorAll('.field').forEach(setupField);
 
 function addField() {
-  const suggested = 'campo_nuevo_' + (++fieldCounter);
+  let maxN = 0;
+  document.querySelectorAll('.field').forEach(function(el){
+    const m = /^campo_nuevo_(\d+)$/.exec(el.dataset.name);
+    if (m) maxN = Math.max(maxN, parseInt(m[1]));
+  });
+  const suggested = 'campo_nuevo_' + (maxN + 1);
   const name = prompt('Nombre para la nueva casilla:', suggested);
   if (!name) { fieldCounter--; return; }
   const el = document.createElement('div');
