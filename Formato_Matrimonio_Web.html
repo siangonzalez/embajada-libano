@@ -6,7 +6,7 @@
 <style>
   * { box-sizing: border-box; }
   body {
-    font-family: Arial, "Segoe UI", Tahoma, sans-serif;
+    font-family: "Times New Roman", Times, serif;
     background: #666;
     margin: 0;
     padding: 24px;
@@ -60,7 +60,7 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding: 1px 2px;
+    padding: 1px 2px 1mm 2px;
   }
   .field-text {
     flex: 1 1 auto;
@@ -138,7 +138,8 @@
     .bg-ref { display: none; }
     body.keep-bg-print .bg-ref { display: block; opacity: 1; }
     .page { box-shadow: none; margin: 0; }
-    .field { border: none !important; background: transparent !important; }
+    .field { border: none !important; background: transparent !important; transform: translate(0mm, -1cm); }
+    body.keep-bg-print .field { transform: none; }
     .coord-tag, .resize-handle, .del-handle { display: none !important; }
     @page { size: 16.4cm 24.7cm; margin: 0; }
   }
@@ -169,9 +170,9 @@
     
     <div class="field"
          data-label="Página"
-         style="left:0.9cm; top:1.21cm; width:1.09cm; height:0.54cm; justify-content:center;"
+         style="left:0.9cm; top:1.41cm; width:1.09cm; height:0.54cm; justify-content:center;"
          data-name="pagina">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -179,9 +180,9 @@
 
     <div class="field"
          data-label="Número de registro"
-         style="left:3.31cm; top:1.24cm; width:1.3cm; height:0.53cm; justify-content:center;"
+         style="left:3.31cm; top:1.44cm; width:1.3cm; height:0.53cm; justify-content:center;"
          data-name="registro_num">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -189,9 +190,9 @@
 
     <div class="field"
          data-label="Ciudad"
-         style="left:7.94cm; top:0.77cm; width:3.4cm; height:0.58cm; justify-content:flex-start;"
+         style="left:7.94cm; top:1.05cm; width:3.4cm; height:0.58cm; justify-content:center;"
          data-name="ciudad">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -199,9 +200,9 @@
 
     <div class="field"
          data-label="Nombre de la esposa"
-         style="left:0.94cm; top:2.03cm; width:4.56cm; height:1.26cm; justify-content:flex-start;"
+         style="left:0.94cm; top:2.03cm; width:4.56cm; height:1.26cm; justify-content:center;"
          data-name="nombre_esposa">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -209,9 +210,9 @@
 
     <div class="field"
          data-label="Nombre del esposo"
-         style="left:8.29cm; top:2.03cm; width:3.99cm; height:1.23cm; justify-content:flex-start;"
+         style="left:8.29cm; top:2.03cm; width:3.99cm; height:1.23cm; justify-content:center;"
          data-name="nombre_esposo">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -219,9 +220,9 @@
 
     <div class="field"
          data-label="Nacionalidad de la esposa"
-         style="left:0.94cm; top:3.33cm; width:4.53cm; height:0.54cm; justify-content:flex-start;"
+         style="left:0.94cm; top:3.33cm; width:4.53cm; height:0.54cm; justify-content:center;"
          data-name="nacionalidad_esposa">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -229,9 +230,9 @@
 
     <div class="field"
          data-label="Nacionalidad del esposo"
-         style="left:8.29cm; top:3.3cm; width:4.02cm; height:0.51cm; justify-content:flex-start;"
+         style="left:8.29cm; top:3.3cm; width:4.02cm; height:0.51cm; justify-content:center;"
          data-name="nacionalidad_esposo">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -239,9 +240,9 @@
 
     <div class="field"
          data-label="Lugar y fecha de nacimiento de la esposa"
-         style="left:0.94cm; top:3.9cm; width:4.51cm; height:0.99cm; justify-content:flex-start;"
+         style="left:0.94cm; top:3.9cm; width:4.51cm; height:0.99cm; justify-content:center;"
          data-name="lugar_fecha_nac_esposa">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -249,9 +250,9 @@
 
     <div class="field"
          data-label="Lugar y fecha de nacimiento del esposo"
-         style="left:8.29cm; top:3.93cm; width:3.99cm; height:0.97cm; justify-content:flex-start;"
+         style="left:8.29cm; top:3.93cm; width:3.99cm; height:0.97cm; justify-content:center;"
          data-name="lugar_fecha_nac_esposo">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -259,9 +260,9 @@
 
     <div class="field"
          data-label="Rito de la esposa"
-         style="left:0.94cm; top:4.92cm; width:4.51cm; height:0.54cm; justify-content:flex-start;"
+         style="left:0.94cm; top:4.92cm; width:4.51cm; height:0.54cm; justify-content:center;"
          data-name="mezhab_esposa">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -269,9 +270,9 @@
 
     <div class="field"
          data-label="Rito del esposo"
-         style="left:8.29cm; top:4.95cm; width:4.02cm; height:0.51cm; justify-content:flex-start;"
+         style="left:8.29cm; top:4.95cm; width:4.02cm; height:0.51cm; justify-content:center;"
          data-name="mezhab_esposo">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -279,9 +280,9 @@
 
     <div class="field"
          data-label="Nombre del padre de la esposa"
-         style="left:0.94cm; top:5.49cm; width:4.51cm; height:0.58cm; justify-content:flex-start;"
+         style="left:0.94cm; top:5.49cm; width:4.51cm; height:0.58cm; justify-content:center;"
          data-name="nombre_padre_esposa">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -289,9 +290,9 @@
 
     <div class="field"
          data-label="Nombre del padre del esposo"
-         style="left:8.29cm; top:5.48cm; width:3.96cm; height:0.53cm; justify-content:flex-start;"
+         style="left:8.29cm; top:5.48cm; width:3.96cm; height:0.53cm; justify-content:center;"
          data-name="nombre_padre_esposo">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -299,9 +300,9 @@
 
     <div class="field"
          data-label="Nombre de la madre de la esposa"
-         style="left:0.94cm; top:6.05cm; width:4.51cm; height:1.05cm; justify-content:flex-start;"
+         style="left:0.94cm; top:6.05cm; width:4.51cm; height:1.05cm; justify-content:center;"
          data-name="nombre_madre_esposa">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -309,9 +310,9 @@
 
     <div class="field"
          data-label="Nombre de la madre del esposo"
-         style="left:8.3cm; top:6.05cm; width:3.99cm; height:1.02cm; justify-content:flex-start;"
+         style="left:8.3cm; top:6.05cm; width:3.99cm; height:1.02cm; justify-content:center;"
          data-name="nombre_madre_esposo">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -321,7 +322,7 @@
          data-label="Bogotá: rakm fardi (esposa)"
          style="left:0.91cm; top:8.26cm; width:1.53cm; height:0.54cm; justify-content:center;"
          data-name="reg_bepta_fardi_esposa">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -331,7 +332,7 @@
          data-label="Bogotá: rakm al-aila (esposa)"
          style="left:2.67cm; top:8.24cm; width:1.6cm; height:0.62cm; justify-content:center;"
          data-name="reg_bepta_familia_esposa">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -341,7 +342,7 @@
          data-label="Bogotá: página (esposa)"
          style="left:4.52cm; top:8.24cm; width:1.64cm; height:0.59cm; justify-content:center;"
          data-name="reg_bepta_pagina_esposa">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -351,7 +352,7 @@
          data-label="Bogotá: rakm as-sejell (esposa)"
          style="left:6.37cm; top:8.26cm; width:1.59cm; height:0.59cm; justify-content:center;"
          data-name="reg_bepta_sejell_esposa">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -361,7 +362,7 @@
          data-label="Bogotá: rakm fardi (esposo)"
          style="left:8.21cm; top:8.26cm; width:1.6cm; height:0.57cm; justify-content:center;"
          data-name="reg_bepta_fardi_esposo">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -371,7 +372,7 @@
          data-label="Bogotá: rakm al-aila (esposo)"
          style="left:10.1cm; top:8.26cm; width:1.54cm; height:0.54cm; justify-content:center;"
          data-name="reg_bepta_familia_esposo">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -381,7 +382,7 @@
          data-label="Bogotá: página (esposo)"
          style="left:11.91cm; top:8.24cm; width:1.61cm; height:0.62cm; justify-content:center;"
          data-name="reg_bepta_pagina_esposo">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -391,7 +392,7 @@
          data-label="Bogotá: rakm as-sejell (esposo)"
          style="left:13.8cm; top:8.24cm; width:1.45cm; height:0.57cm; justify-content:center;"
          data-name="reg_bepta_sejell_esposo">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -401,7 +402,7 @@
          data-label="Líbano: tipo/núm. registro (esposa)"
          style="left:0.91cm; top:12.1cm; width:1.83cm; height:0.56cm; justify-content:center;"
          data-name="reg_lbn_tipo_esposa">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -411,7 +412,7 @@
          data-label="Líbano: distrito (esposa)"
          style="left:2.94cm; top:12.07cm; width:1.32cm; height:0.62cm; justify-content:center;"
          data-name="reg_lbn_qada_esposa">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -419,9 +420,9 @@
 
     <div class="field"
          data-label="Líbano: localidad (esposa)"
-         style="left:8.36cm; top:12.73cm; width:5.45cm; height:0.56cm; justify-content:flex-start;"
+         style="left:8.36cm; top:12.73cm; width:5.45cm; height:0.56cm; justify-content:center;"
          data-name="reg_lbn_mahala_esposa">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -431,7 +432,7 @@
          data-label="Líbano: tipo/núm. registro (esposo)"
          style="left:1.15cm; top:13.07cm; width:5.8cm; height:0.62cm; justify-content:center;"
          data-name="reg_lbn_tipo_esposo">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -441,7 +442,7 @@
          data-label="Líbano: distrito (esposo)"
          style="left:1.15cm; top:13.74cm; width:4.73cm; height:0.62cm; justify-content:center;"
          data-name="reg_lbn_qada_esposo">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -449,9 +450,9 @@
 
     <div class="field"
          data-label="Líbano: localidad (esposo)"
-         style="left:2.27cm; top:15.3cm; width:2.63cm; height:0.62cm; justify-content:flex-start;"
+         style="left:2.27cm; top:15.3cm; width:2.63cm; height:0.62cm; justify-content:center;"
          data-name="reg_lbn_mahala_esposo">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -459,9 +460,9 @@
 
     <div class="field"
          data-label="Referencia autorización religiosa"
-         style="left:0.94cm; top:10.02cm; width:2.33cm; height:0.83cm; justify-content:flex-start;"
+         style="left:0.94cm; top:10.02cm; width:2.33cm; height:0.83cm; justify-content:center;"
          data-name="auth_referencia">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -471,7 +472,7 @@
          data-label="Número de autorización"
          style="left:5.64cm; top:10.07cm; width:2.34cm; height:0.78cm; justify-content:center;"
          data-name="auth_numero">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -481,7 +482,7 @@
          data-label="Fecha de autorización"
          style="left:8.27cm; top:10.02cm; width:2.21cm; height:0.83cm; justify-content:center;"
          data-name="auth_fecha">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -491,7 +492,7 @@
          data-label="Hora del acta"
          style="left:10.75cm; top:10.05cm; width:1.88cm; height:0.81cm; justify-content:center;"
          data-name="acta_hora">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -501,7 +502,7 @@
          data-label="Día del acta"
          style="left:12.89cm; top:10.04cm; width:2.38cm; height:0.86cm; justify-content:center;"
          data-name="acta_dia">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -511,7 +512,7 @@
          data-label="Mes del acta"
          style="left:8.35cm; top:13.28cm; width:5.47cm; height:1.15cm; justify-content:center;"
          data-name="acta_mes">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -521,7 +522,7 @@
          data-label="Año del acta"
          style="left:8.4cm; top:15.31cm; width:2.57cm; height:0.6cm; justify-content:center;"
          data-name="acta_anio">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -531,7 +532,7 @@
          data-label="Fecha de redacción"
          style="left:7.22cm; top:16.02cm; width:6.29cm; height:0.61cm; justify-content:center;"
          data-name="tahriran_fi">
-         <div class="field-text" contenteditable="true"  style="text-align:center;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -539,9 +540,9 @@
 
     <div class="field"
          data-label="Notas"
-         style="left:4.28cm; top:16.68cm; width:9.25cm; height:1.41cm; justify-content:flex-start;"
+         style="left:4.28cm; top:16.68cm; width:9.25cm; height:1.41cm; justify-content:center;"
          data-name="malahazat">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -549,9 +550,9 @@
 
     <div class="field"
          data-label="campo_nuevo_1"
-         style="left:2.16cm; top:0.34cm; width:2.13cm; height:0.57cm; justify-content:flex-start;"
+         style="left:2.16cm; top:0.95cm; width:2.13cm; height:0.57cm; justify-content:center;"
          data-name="campo_nuevo_1">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -559,9 +560,9 @@
 
     <div class="field"
          data-label="campo_nuevo_2"
-         style="left:3.49cm; top:10.08cm; width:1.89cm; height:0.79cm; justify-content:flex-start;"
+         style="left:3.49cm; top:10.08cm; width:1.89cm; height:0.79cm; justify-content:center;"
          data-name="campo_nuevo_2">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -569,9 +570,9 @@
 
     <div class="field"
          data-label="campo_nuevo_3"
-         style="left:4.47cm; top:12.09cm; width:3.48cm; height:0.6cm; justify-content:flex-start;"
+         style="left:4.47cm; top:12.09cm; width:3.48cm; height:0.6cm; justify-content:center;"
          data-name="campo_nuevo_3">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -579,9 +580,9 @@
 
     <div class="field"
          data-label="campo_nuevo_4"
-         style="left:8.22cm; top:12.09cm; width:1.68cm; height:0.6cm; justify-content:flex-start;"
+         style="left:8.22cm; top:12.09cm; width:1.68cm; height:0.6cm; justify-content:center;"
          data-name="campo_nuevo_4">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -589,9 +590,9 @@
 
     <div class="field"
          data-label="campo_nuevo_5"
-         style="left:10.15cm; top:12.06cm; width:1.52cm; height:0.6cm; justify-content:flex-start;"
+         style="left:10.15cm; top:12.06cm; width:1.52cm; height:0.6cm; justify-content:center;"
          data-name="campo_nuevo_5">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -599,9 +600,9 @@
 
     <div class="field"
          data-label="campo_nuevo_6"
-         style="left:11.92cm; top:12.06cm; width:1.52cm; height:0.68cm; justify-content:flex-start;"
+         style="left:11.92cm; top:12.06cm; width:1.52cm; height:0.68cm; justify-content:center;"
          data-name="campo_nuevo_6">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -609,9 +610,9 @@
 
     <div class="field"
          data-label="campo_nuevo_7"
-         style="left:13.67cm; top:12.09cm; width:1.65cm; height:0.6cm; justify-content:flex-start;"
+         style="left:13.67cm; top:12.09cm; width:1.65cm; height:0.6cm; justify-content:center;"
          data-name="campo_nuevo_7">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -619,9 +620,9 @@
 
     <div class="field"
          data-label="campo_nuevo_8"
-         style="left:1.1cm; top:19.67cm; width:2.71cm; height:0.6cm; justify-content:flex-start;"
+         style="left:1.1cm; top:19.67cm; width:2.71cm; height:0.6cm; justify-content:center;"
          data-name="campo_nuevo_8">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -629,9 +630,9 @@
 
     <div class="field"
          data-label="campo_nuevo_9"
-         style="left:4.9cm; top:19.65cm; width:4.91cm; height:0.65cm; justify-content:flex-start;"
+         style="left:4.9cm; top:19.65cm; width:4.91cm; height:0.65cm; justify-content:center;"
          data-name="campo_nuevo_9">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -639,9 +640,9 @@
 
     <div class="field"
          data-label="campo_nuevo_10"
-         style="left:7.32cm; top:20.72cm; width:2.5cm; height:0.6cm; justify-content:flex-start;"
+         style="left:7.32cm; top:20.72cm; width:2.5cm; height:0.6cm; justify-content:center;"
          data-name="campo_nuevo_10">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -649,9 +650,9 @@
 
     <div class="field"
          data-label="campo_nuevo_11"
-         style="left:6.09cm; top:21.75cm; width:7.63cm; height:1.8cm; justify-content:flex-start;"
+         style="left:6.09cm; top:21.75cm; width:7.63cm; height:1.8cm; justify-content:center;"
          data-name="campo_nuevo_11">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -659,9 +660,9 @@
 
     <div class="field"
          data-label="campo_nuevo_13"
-         style="left:11.42cm; top:20.69cm; width:2.47cm; height:0.6cm; justify-content:flex-start;"
+         style="left:11.42cm; top:20.69cm; width:2.47cm; height:0.6cm; justify-content:center;"
          data-name="campo_nuevo_13">
-         <div class="field-text" contenteditable="true" dir="auto" style="text-align:start;"></div>
+         <div class="field-text" contenteditable="true" dir="auto" style="text-align:center;"></div>
          <span class="coord-tag"></span>
          <span class="del-handle" title="Eliminar casilla">&times;</span>
          <span class="resize-handle"></span>
@@ -778,7 +779,12 @@ function setupField(el) {
 document.querySelectorAll('.field').forEach(setupField);
 
 function addField() {
-  const suggested = 'campo_nuevo_' + (++fieldCounter);
+  let maxN = 0;
+  document.querySelectorAll('.field').forEach(function(el){
+    const m = /^campo_nuevo_(\d+)$/.exec(el.dataset.name);
+    if (m) maxN = Math.max(maxN, parseInt(m[1]));
+  });
+  const suggested = 'campo_nuevo_' + (maxN + 1);
   const name = prompt('Nombre para la nueva casilla:', suggested);
   if (!name) { fieldCounter--; return; }
   const el = document.createElement('div');
@@ -789,10 +795,10 @@ function addField() {
   el.style.top = '1cm';
   el.style.width = '2.5cm';
   el.style.height = '0.6cm';
-  el.style.justifyContent = 'flex-start';
+  el.style.justifyContent = 'center';
   el.innerHTML = '<div class="field-text" contenteditable="' +
     (document.body.classList.contains('edit-mode') ? 'false' : 'true') +
-    '" dir="auto" style="text-align:start;"></div>' +
+    '" dir="auto" style="text-align:center;"></div>' +
     '<span class="coord-tag"></span><span class="del-handle" title="Eliminar casilla">&times;</span><span class="resize-handle"></span>';
   page.appendChild(el);
   setupField(el);
