@@ -67,7 +67,7 @@
     min-width: 0;
     max-width: 100%;
     outline: none;
-    font-size: 11pt;
+    font-size: 8pt;
     line-height: 1.15;
     color: #000;
     white-space: normal;
@@ -727,8 +727,8 @@ function updateAllTags() {
 }
 
 function fitText(fieldEl, textEl) {
-  textEl.style.fontSize = '11pt';
-  let size = 11;
+  textEl.style.fontSize = '8pt';
+  let size = 8;
   const min = 5;
   while ((textEl.scrollWidth > fieldEl.clientWidth || textEl.scrollHeight > fieldEl.clientHeight) && size > min) {
     size -= 0.5;
