@@ -251,7 +251,7 @@ function emb_sanitize_html($html) {
         'a' => array('href'), 'ul' => array('class'), 'ol' => array('class'), 'li' => array('class'),
         'h2' => array('class'), 'h3' => array('class'), 'h4' => array('class'), 'blockquote' => array('class'),
         'sub' => array(), 'sup' => array(), 'hr' => array(),
-        'img' => array('src', 'alt'), 'iframe' => array('src', 'class'),
+        'img' => array('src', 'alt', 'width'), 'iframe' => array('src', 'class'),
     );
 
     $doc = new DOMDocument('1.0', 'UTF-8');
@@ -313,6 +313,7 @@ function emb_sanitize_html($html) {
                     $child->setAttribute('src', $u);
                 }
                 if ($lname === 'alt') $child->setAttribute('alt', emb_clean_text($val, 200));
+                if ($lname === 'width' && !preg_match('/^(100|[1-9]?[0-9])%$/', trim($val))) $child->removeAttribute('width');
             }
             if ($tag === 'a' && !$child->hasAttribute('href')) {
                 // enlace inválido: dejar solo el texto
