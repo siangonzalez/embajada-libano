@@ -355,3 +355,124 @@ function emb_sort_posts($posts) {
     });
     return $posts;
 }
+
+/* ───────────── Vista previa de enlaces (como Facebook) ───────────── */
+
+/** true si la IP es pública (no local, privada ni reservada). */
+function emb_public_ip($ip) {
+    return (bool)filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+}
+
+/**
+ * Descarga una URL pública con límites de tamaño y tiempo.
+ * Bloquea direcciones internas del servidor y revisa cada redirección.
+ * Devuelve array('body','type','url') o null.
+ */
+function emb_fetch_url($url, $maxBytes, $accept) {
+    if (!function_exists('curl_init')) return null;
+    for ($hop = 0; $hop < 4; $hop++) {
+        $p = parse_url($url);
+        if (!$p || empty($p['host']) || !in_array(strtolower(isset($p['scheme']) ? $p['scheme'] : ''), array('http', 'https'), true)) return null;
+        $host = $p['host'];
+        $port = isset($p['port']) ? (int)$p['port'] : (strtolower($p['scheme']) === 'https' ? 443 : 80);
+        if (!in_array($port, array(80, 443), true)) return null;
+        $ips = filter_var($host, FILTER_VALIDATE_IP) ? array($host) : @gethostbynamel($host);
+        if (!$ips) return null;
+        foreach ($ips as $ip) { if (!emb_public_ip($ip)) return null; }
+
+        $body = '';
+        $ch = curl_init($url);
+        curl_setopt_array($ch, array(
+            CURLOPT_RETURNTRANSFER => false,
+            CURLOPT_FOLLOWLOCATION => false,
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT => 10,
+            CURLOPT_RESOLVE => array($host . ':' . $port . ':' . $ips[0]),
+            CURLOPT_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS,
+            CURLOPT_ENCODING => '',
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; facebookexternalhit/1.1; +https://embajadalibanocolombia.co)',
+            CURLOPT_HTTPHEADER => array('Accept: ' . $accept, 'Accept-Language: es,en;q=0.8'),
+            CURLOPT_WRITEFUNCTION => function ($ch, $chunk) use (&$body, $maxBytes) {
+                $body .= $chunk;
+                return strlen($body) > $maxBytes ? 0 : strlen($chunk); // cortar si es muy grande
+            },
+        ));
+        curl_exec($ch);
+        $code = (int)curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        $type = (string)curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+        $loc = (string)curl_getinfo($ch, CURLINFO_REDIRECT_URL);
+        curl_close($ch);
+        if ($code >= 300 && $code < 400 && $loc !== '') { $url = $loc; continue; }
+        if ($code < 200 || $code >= 300 || $body === '') return null;
+        return array('body' => substr($body, 0, $maxBytes), 'type' => $type, 'url' => $url);
+    }
+    return null;
+}
+
+/** Convierte una URL relativa en absoluta respecto a la página. */
+function emb_abs_url($rel, $base) {
+    $rel = trim(html_entity_decode($rel, ENT_QUOTES, 'UTF-8'));
+    if ($rel === '') return '';
+    if (preg_match('#^https?://#i', $rel)) return $rel;
+    $b = parse_url($base);
+    $origin = $b['scheme'] . '://' . $b['host'] . (isset($b['port']) ? ':' . $b['port'] : '');
+    if (strpos($rel, '//') === 0) return $b['scheme'] . ':' . $rel;
+    if ($rel[0] === '/') return $origin . $rel;
+    $dir = isset($b['path']) ? preg_replace('#/[^/]*$#', '/', $b['path']) : '/';
+    return $origin . $dir . $rel;
+}
+
+/** Lee título, descripción, imagen y sitio de una página (Open Graph / Twitter / HTML). */
+function emb_link_meta($url) {
+    $res = emb_fetch_url($url, 1500000, 'text/html,application/xhtml+xml');
+    $host = preg_replace('/^www\./', '', (string)parse_url($url, PHP_URL_HOST));
+    $meta = array('url' => $url, 'title' => '', 'description' => '', 'image' => '', 'site' => $host);
+    if (!$res || stripos($res['type'], 'html') === false) return $meta;
+    return emb_parse_meta($res['body'], $res['type'], $res['url'], $meta);
+}
+
+function emb_parse_meta($html, $ctype, $pageUrl, $meta) {
+    $res = array('type' => $ctype, 'url' => $pageUrl);
+    // codificación
+    $charset = '';
+    if (preg_match('/charset=([\w-]+)/i', $res['type'], $m)) $charset = $m[1];
+    elseif (preg_match('/<meta[^>]+charset=["\']?([\w-]+)/i', $html, $m)) $charset = $m[1];
+    if ($charset && strtoupper($charset) !== 'UTF-8' && function_exists('mb_convert_encoding')) {
+        $html = @mb_convert_encoding($html, 'UTF-8', $charset);
+    }
+    // el HTML ya está en UTF-8: que las etiquetas meta no digan otra cosa
+    $html = preg_replace('/(<meta[^>]+charset=["\']?)[\w-]+/i', '${1}utf-8', $html);
+    $doc = new DOMDocument();
+    libxml_use_internal_errors(true);
+    $doc->loadHTML('<?xml encoding="UTF-8">' . $html);
+    libxml_clear_errors();
+    $tags = array();
+    foreach ($doc->getElementsByTagName('meta') as $mt) {
+        $k = strtolower($mt->getAttribute('property') ?: $mt->getAttribute('name'));
+        if ($k !== '' && !isset($tags[$k])) $tags[$k] = trim($mt->getAttribute('content'));
+    }
+    $pick = function ($keys) use ($tags) { foreach ($keys as $k) { if (!empty($tags[$k])) return $tags[$k]; } return ''; };
+    $title = $pick(array('og:title', 'twitter:title'));
+    if ($title === '') { $t = $doc->getElementsByTagName('title'); if ($t->length) $title = trim($t->item(0)->textContent); }
+    $meta['title'] = emb_clean_text(html_entity_decode($title, ENT_QUOTES, 'UTF-8'), 200);
+    $meta['description'] = emb_clean_text(html_entity_decode($pick(array('og:description', 'twitter:description', 'description')), ENT_QUOTES, 'UTF-8'), 300);
+    $site = $pick(array('og:site_name'));
+    if ($site !== '') $meta['site'] = emb_clean_text($site, 80);
+    $img = $pick(array('og:image:secure_url', 'og:image', 'og:image:url', 'twitter:image', 'twitter:image:src'));
+    if ($img !== '') $meta['image'] = emb_abs_url($img, $res['url']);
+    return $meta;
+}
+
+/** Valida el bloque de enlace guardado en una publicación. */
+function emb_clean_link($in) {
+    if (!is_array($in) || empty($in['url'])) return null;
+    $url = trim((string)$in['url']);
+    if (!preg_match('#^https?://#i', $url) || emb_safe_url($url, false) === '') return null;
+    return array(
+        'url' => substr($url, 0, 2000),
+        'title' => emb_clean_text(isset($in['title']) ? $in['title'] : '', 200),
+        'description' => emb_clean_text(isset($in['description']) ? $in['description'] : '', 300),
+        'image' => emb_safe_url(isset($in['image']) ? (string)$in['image'] : '', true),
+        'site' => emb_clean_text(isset($in['site']) ? $in['site'] : '', 80),
+    );
+}

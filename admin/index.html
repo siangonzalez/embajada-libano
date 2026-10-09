@@ -131,6 +131,19 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
 .att-ico{width:30px;height:30px;border-radius:6px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--cedar);flex-shrink:0;border:1px solid var(--line)}
 .progress{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:6px}
 .progress div{height:100%;background:var(--cedar);width:0;transition:width .15s}
+.link-row{display:flex;gap:8px}
+.link-row .input{flex:1}
+.link-card{display:grid;grid-template-columns:180px 1fr auto;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:12px;background:#fff}
+.link-card.noimg{grid-template-columns:1fr auto}
+.link-img{background:var(--bg) center/cover no-repeat;min-height:110px}
+.link-txt{padding:12px 14px;min-width:0;background:#f7f6f2}
+.link-site{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.link-title{font-weight:650;font-size:15px;line-height:1.3;margin:3px 0;overflow-wrap:anywhere}
+.link-desc{font-size:13px;color:var(--mid);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.link-x{background:#f7f6f2;border:none;border-left:1px solid var(--line);padding:0 12px;cursor:pointer;color:var(--muted);font-size:18px}
+.link-x:hover{color:#b3161c;background:#fdecec}
+.link-msg{font-size:13px;color:var(--muted);margin-top:8px}
+@media (max-width:700px){.link-card{grid-template-columns:1fr auto}.link-img{grid-column:1/-1;aspect-ratio:1.91/1}}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .check{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:14px}
 .check input{width:18px;height:18px;margin-top:2px;accent-color:var(--cedar)}
@@ -236,8 +249,15 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
       <div class="pane" data-pane="ar" dir="rtl" hidden></div>
 
       <div class="block">
+        <h4>Enlace</h4>
+        <p class="desc">Pegue un enlace (noticia, video, página oficial…) y se mostrará con su vista previa, como en Facebook. Si el enlace trae imagen, no hace falta subir portada.</p>
+        <div class="link-row"><input class="input" id="linkUrl" type="url" inputmode="url" placeholder="https://…"><button type="button" class="btn btn-ghost" id="btnLink">Vista previa</button></div>
+        <div id="linkBox"></div>
+      </div>
+
+      <div class="block">
         <h4>Imagen de portada</h4>
-        <p class="desc">Se muestra en la tarjeta. Opcional, pero recomendada. Ideal horizontal.</p>
+        <p class="desc">Se muestra en la tarjeta. Opcional: si no sube una y agregó un enlace con imagen, se usa la imagen del enlace.</p>
         <div class="cover-box">
           <div class="cover-prev" id="coverPrev">Sin imagen</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -405,7 +425,6 @@ function enterApp(user){
   $('#whoName').textContent=user.name;
   $('#whoRole').textContent=user.role==='admin'?'Administrador':'Editor';
   $('#avatar').textContent=(user.name||'?').trim().charAt(0).toUpperCase();
-  $('#btnNew').textContent='¿Qué quiere publicar hoy, '+user.name.split(' ')[0]+'?';
   showView('vApp');loadPosts();
 }
 
@@ -444,11 +463,12 @@ function renderList(){
     else meta.push('Creada el '+fmtDate(p.created));
     if(p.updatedBy&&p.updated!==p.created&&p.updated!==p.publishedAt)meta.push('editada por '+esc(p.updatedBy)+' el '+fmtDate(p.updated));
     if(p.expires)meta.push((st==='exp'?'venció el ':'se oculta después del ')+fmtDay(p.expires));
-    const thumb=p.cover?`style="background-image:url('${esc(p.cover)}')"`:'';
+    const img=p.cover||(p.link&&p.link.image)||'';
+    const thumb=img?`style="background-image:url('${esc(img)}')"`:'';
     return `<article class="post">
-      <div class="post-thumb" ${thumb}>${p.cover?'':'📰'}</div>
+      <div class="post-thumb" ${thumb}>${img?'':'📰'}</div>
       <div class="post-body">
-        <div class="badges">${badge}${p.pinned?'<span class="badge b-pin">📌 Fijada</span>':''}${langs}${p.attachments&&p.attachments.length?'<span class="badge b-lang">📎 '+p.attachments.length+'</span>':''}</div>
+        <div class="badges">${badge}${p.pinned?'<span class="badge b-pin">📌 Fijada</span>':''}${langs}${p.attachments&&p.attachments.length?'<span class="badge b-lang">📎 '+p.attachments.length+'</span>':''}${p.link?'<span class="badge b-lang">🔗 Enlace</span>':''}</div>
         <h3>${esc(es.title)}</h3>
         ${es.summary?`<p>${esc(es.summary)}</p>`:''}
         <div class="meta">${meta.join(' · ')}</div>
@@ -523,7 +543,33 @@ function switchLang(l){
   $('#langNote').hidden=l==='es';
 }
 
-let cover='',atts=[];
+let cover='',atts=[],link=null,linkBusy=false;
+function renderLink(msg){
+  const box=$('#linkBox');
+  if(linkBusy){box.innerHTML='<div class="link-msg">Buscando la vista previa…</div>';return;}
+  if(!link){box.innerHTML=msg?`<div class="link-msg">${esc(msg)}</div>`:'';return;}
+  box.innerHTML=`<div class="link-card${link.image?'':' noimg'}">
+    ${link.image?`<div class="link-img" style="background-image:url('${esc(link.image)}')"></div>`:''}
+    <div class="link-txt"><div class="link-site">${esc(link.site||'')}</div><div class="link-title">${esc(link.title||link.url)}</div>${link.description?`<div class="link-desc">${esc(link.description)}</div>`:''}</div>
+    <button type="button" class="link-x" id="linkX" title="Quitar enlace">×</button></div>
+    ${!link.title&&!link.image?'<div class="link-msg">Esa página no permitió leer su vista previa; se mostrará solo el enlace. Puede subir una imagen de portada si quiere.</div>':''}`;
+  $('#linkX').onclick=()=>{link=null;$('#linkUrl').value='';renderLink();};
+}
+async function fetchLink(){
+  const u=$('#linkUrl').value.trim();
+  if(!u){link=null;renderLink();return;}
+  if(link&&link.url===u)return;
+  if(linkBusy)return;
+  linkBusy=true;renderLink();pendingUploads++;
+  try{const r=await api('preview',{method:'POST',data:{url:u}});link=r.link;$('#linkUrl').value=r.link.url;}
+  catch(x){link=null;linkBusy=false;renderLink(x.message);return;}
+  finally{linkBusy=false;pendingUploads--;}
+  renderLink();
+}
+$('#btnLink').onclick=fetchLink;
+$('#linkUrl').addEventListener('paste',()=>setTimeout(fetchLink,50));
+$('#linkUrl').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();fetchLink();}});
+$('#linkUrl').addEventListener('change',fetchLink);
 function renderCover(){
   const p=$('#coverPrev');
   p.classList.toggle('has',!!cover);
@@ -560,7 +606,7 @@ $('#fileAtt').addEventListener('change',e=>{
 
 let editorSnapshot='';
 function editorState(){
-  const o={cover,atts:atts.map(a=>a.url),pin:$('#optPin').checked,exp:$('#optExp').value};
+  const o={cover,link:link&&link.url,atts:atts.map(a=>a.url),pin:$('#optPin').checked,exp:$('#optExp').value};
   LANGS.forEach(l=>{const p=$(`.pane[data-pane="${l}"]`);o[l]=[p.querySelector('[data-f="title"]').value,p.querySelector('[data-f="summary"]').value,editors[l].root.innerHTML];});
   return JSON.stringify(o);
 }
@@ -578,6 +624,7 @@ function openEditor(p){
     if(d.content)editors[l].clipboard.dangerouslyPasteHTML(d.content);
     editors[l].history.clear();
   });
+  link=p&&p.link?Object.assign({},p.link):null;$('#linkUrl').value=link?link.url:'';renderLink();
   cover=p?p.cover||'':'';atts=p&&p.attachments?p.attachments.map(a=>Object.assign({},a)):[];
   $('#optPin').checked=!!(p&&p.pinned);
   $('#optExp').value=p?p.expires||'':'';
@@ -624,7 +671,7 @@ async function save(status,btn){
       await api('save',{method:'POST',data:{post:{
         id:editing?editing.id:'',status,i18n,cover,
         attachments:atts.filter(a=>a.url).map(a=>({name:a.name,url:a.url,size:a.size})),
-        pinned:$('#optPin').checked,expires:$('#optExp').value
+        link,pinned:$('#optPin').checked,expires:$('#optExp').value
       }}});
     });
     closeEditor(true);

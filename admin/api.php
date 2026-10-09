@@ -150,6 +150,7 @@ case 'save:POST':
         'expires' => $expires,
         'cover' => $cover,
         'attachments' => $atts,
+        'link' => emb_clean_link(isset($in['link']) ? $in['link'] : null),
         'i18n' => $i18n,
         'created' => $old ? $old['created'] : $now,
         'author' => $old ? $old['author'] : $me['name'],
@@ -199,6 +200,39 @@ case 'delete:POST':
     emb_json(array('ok' => true));
 
 /* ───────── Subida de imágenes y archivos ───────── */
+case 'preview:POST':
+    emb_require_user();
+    $url = trim((string)arg('url'));
+    if (!preg_match('#^https?://#i', $url)) $url = 'https://' . $url;
+    if (!filter_var($url, FILTER_VALIDATE_URL)) emb_fail('El enlace no es válido.');
+    $meta = emb_link_meta($url);
+    // Guardar una copia de la imagen en el servidor (así no se rompe si la otra página la cambia)
+    if ($meta['image'] !== '') {
+        $img = emb_fetch_url($meta['image'], 8 * 1024 * 1024, 'image/*');
+        $local = '';
+        if ($img) {
+            $tmp = tempnam(sys_get_temp_dir(), 'emb');
+            file_put_contents($tmp, $img['body']);
+            $info = @getimagesize($tmp);
+            $types = array(IMAGETYPE_JPEG => 'jpg', IMAGETYPE_PNG => 'png', IMAGETYPE_GIF => 'gif', IMAGETYPE_WEBP => 'webp');
+            if ($info && isset($types[$info[2]])) {
+                $sub = date('Y/m');
+                $dir = emb_uploads_dir() . '/' . $sub;
+                if (is_dir($dir) || @mkdir($dir, 0755, true)) {
+                    $name = date('Ymd') . '-' . bin2hex(random_bytes(8)) . '.' . $types[$info[2]];
+                    $dest = $dir . '/' . $name;
+                    if (emb_resize_image($tmp, $dest, $info[2]) || @copy($tmp, $dest)) {
+                        @chmod($dest, 0644);
+                        $local = 'uploads/novedades/' . $sub . '/' . $name;
+                    }
+                }
+            }
+            @unlink($tmp);
+        }
+        $meta['image'] = $local !== '' ? $local : emb_safe_url($meta['image'], true);
+    }
+    emb_json(array('ok' => true, 'link' => $meta));
+
 case 'upload:POST':
     emb_require_user();
     if (empty($_FILES['file']) || !is_array($_FILES['file'])) emb_fail('No llegó ningún archivo.');

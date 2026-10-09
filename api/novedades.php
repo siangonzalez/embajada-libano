@@ -17,6 +17,7 @@ foreach (emb_sort_posts(emb_posts()) as $p) {
         'date' => !empty($p['publishedAt']) ? $p['publishedAt'] : $p['updated'],
         'cover' => isset($p['cover']) ? $p['cover'] : '',
         'attachments' => isset($p['attachments']) ? $p['attachments'] : array(),
+        'link' => isset($p['link']) ? $p['link'] : null,
         'i18n' => $p['i18n'],
     );
 }
