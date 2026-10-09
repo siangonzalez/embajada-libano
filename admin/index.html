@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<base href="/">
+<title>Panel de Novedades · Embajada del Líbano</title>
+<link rel="icon" href="Logo_2025.png">
+<link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cedar:#006400;--cedar-mid:#008000;--cedar-light:#e8f5e8;--cedar-dark:#004d00;
+  --red:#EE161F;--cream:#f9f6f0;--warm:#e8e4dc;--gold:#c9a84c;--gold-light:#f5edda;
+  --ink:#1a1a1a;--mid:#3d3d3d;--muted:#6b6b6b;--line:#e3dfd6;--bg:#f4f2ed;
+  --shadow:0 1px 3px rgba(0,0,0,.06),0 6px 20px rgba(0,0,0,.05);
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5;min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--cedar)}
+[hidden]{display:none!important}
+
+/* ── Pantallas de acceso ── */
+.auth{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(160deg,#0b2e0b 0%,#004d00 55%,#0b2e0b 100%)}
+.auth-card{background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.35);width:100%;max-width:400px;padding:36px 32px}
+.auth-logo{display:block;height:64px;margin:0 auto 18px}
+.auth h1{font-family:'Times New Roman',Times,serif;font-weight:500;font-size:24px;text-align:center;margin-bottom:4px}
+.auth p.sub{text-align:center;color:var(--muted);font-size:14px;margin-bottom:24px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--mid);margin-bottom:6px}
+.field .hint{font-size:12px;color:var(--muted);margin-top:5px}
+.input{width:100%;padding:11px 13px;border:1px solid #cfcac0;border-radius:8px;background:#fff;transition:border-color .15s,box-shadow .15s}
+.input:focus{outline:none;border-color:var(--cedar);box-shadow:0 0 0 3px rgba(0,100,0,.12)}
+textarea.input{resize:vertical;min-height:84px}
+.err{background:#fdecec;color:#a4161a;border:1px solid #f5c2c4;padding:10px 12px;border-radius:8px;font-size:14px;margin-bottom:16px}
+
+/* ── Botones ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:8px;border:1px solid transparent;cursor:pointer;font-weight:600;font-size:14px;transition:background .15s,border-color .15s,opacity .15s;text-decoration:none;white-space:nowrap}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn-primary{background:var(--cedar);color:#fff}
+.btn-primary:hover:not(:disabled){background:var(--cedar-dark)}
+.btn-ghost{background:#fff;border-color:#d6d1c7;color:var(--mid)}
+.btn-ghost:hover:not(:disabled){background:var(--cream)}
+.btn-danger{background:#fff;border-color:#f0c4c6;color:#b3161c}
+.btn-danger:hover:not(:disabled){background:#fdecec}
+.btn-block{width:100%}
+.btn-sm{padding:6px 11px;font-size:13px;font-weight:500}
+.btn svg{width:16px;height:16px;flex-shrink:0}
+
+/* ── Barra superior ── */
+.top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.top-in{max-width:980px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.top-logo{height:42px}
+.top-title{font-family:'Times New Roman',Times,serif;font-size:19px;line-height:1.15}
+.top-title small{display:block;font-family:var(--font);font-size:12px;color:var(--muted)}
+.top-spacer{flex:1}
+.who{font-size:13px;color:var(--muted);text-align:right;line-height:1.3}
+.who b{display:block;color:var(--ink);font-weight:600}
+
+/* ── Contenido ── */
+main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
+.composer{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:16px;display:flex;gap:12px;align-items:center;margin-bottom:18px}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--cedar);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.composer-input{flex:1;text-align:left;background:var(--bg);border:none;border-radius:999px;padding:12px 18px;color:var(--muted);cursor:pointer;font-size:15px;transition:background .15s}
+.composer-input:hover{background:#ebe8e1}
+.site-status{background:var(--cedar-light);border:1px solid #cfe5cf;color:var(--cedar-dark);border-radius:10px;padding:11px 14px;font-size:14px;margin-bottom:18px;display:flex;gap:10px;align-items:flex-start}
+.site-status.off{background:var(--gold-light);border-color:#ead9a9;color:#7a5c00}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;cursor:pointer;color:var(--mid)}
+.tab.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.tab span{opacity:.7;margin-left:4px}
+
+.post{background:#fff;border-radius:12px;box-shadow:var(--shadow);margin-bottom:14px;display:grid;grid-template-columns:150px 1fr;overflow:hidden}
+.post-thumb{background:var(--cedar-light) center/cover no-repeat;min-height:130px;display:flex;align-items:center;justify-content:center;color:var(--cedar);font-size:30px}
+.post-body{padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.b-pub{background:#dff1df;color:#1d6b1d}
+.b-draft{background:#ecebe7;color:#555}
+.b-exp{background:#fdecec;color:#a4161a}
+.b-pin{background:var(--gold-light);color:#7a5c00}
+.b-lang{background:#eef2f7;color:#40556e}
+.post h3{font-size:17px;font-weight:650;line-height:1.3;overflow-wrap:anywhere}
+.post p{color:var(--mid);font-size:14px;overflow-wrap:anywhere}
+.post .meta{font-size:12px;color:var(--muted)}
+.post-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.empty{text-align:center;color:var(--muted);padding:48px 20px;background:#fff;border-radius:12px;box-shadow:var(--shadow)}
+.empty b{display:block;color:var(--ink);font-size:17px;margin-bottom:4px}
+
+/* ── Editor ── */
+.overlay{position:fixed;inset:0;background:rgba(10,20,10,.55);z-index:50;display:flex;align-items:flex-start;justify-content:center;padding:28px 16px;overflow-y:auto}
+.sheet{background:#fff;border-radius:14px;width:100%;max-width:860px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--line)}
+.sheet-head h2{font-size:18px;font-weight:650}
+.x{background:none;border:none;font-size:26px;line-height:1;cursor:pointer;color:var(--muted);padding:2px 8px;border-radius:6px}
+.x:hover{background:var(--bg)}
+.sheet-body{padding:20px 22px}
+.sheet-foot{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;padding:14px 22px;border-top:1px solid var(--line);background:#fbfaf7;border-radius:0 0 14px 14px;position:sticky;bottom:0}
+.lang-tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:18px;gap:2px}
+.lang-tab{background:none;border:none;border-bottom:3px solid transparent;padding:9px 14px;cursor:pointer;font-weight:600;color:var(--muted);font-size:14px;display:flex;gap:6px;align-items:center}
+.lang-tab.active{color:var(--cedar);border-bottom-color:var(--cedar)}
+.lang-tab .dot{width:7px;height:7px;border-radius:50%;background:#d0ccc3}
+.lang-tab .dot.on{background:var(--cedar-mid)}
+.lang-note{font-size:13px;color:var(--muted);background:var(--bg);border-radius:8px;padding:9px 12px;margin-bottom:16px}
+.req{color:var(--red)}
+.counter{float:right;font-weight:400;color:var(--muted);font-size:12px}
+.pane[dir="rtl"] .input,.pane[dir="rtl"] .ql-editor{font-family:'Noto Naskh Arabic',serif;font-size:17px}
+.pane[dir="rtl"] .ql-editor{direction:rtl;text-align:right}
+.editor-wrap{border-radius:8px;background:#fff}
+.editor-wrap .ql-toolbar{border-radius:8px 8px 0 0;border-color:#cfcac0;background:#fbfaf7}
+.editor-wrap .ql-container{border-radius:0 0 8px 8px;border-color:#cfcac0;font-family:var(--font);font-size:15px}
+.editor-wrap .ql-editor{min-height:220px;max-height:55vh;overflow-y:auto;line-height:1.65}
+.editor-wrap .ql-editor img{max-width:100%;height:auto;border-radius:6px}
+.editor-wrap .ql-editor .ql-video{width:100%;max-width:560px;aspect-ratio:16/9;height:auto}
+.editor-wrap .ql-snow .ql-tooltip{z-index:5}
+.uploading-note{font-size:12px;color:var(--cedar);margin-top:6px}
+
+.block{border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:20px}
+.block h4{font-size:14px;font-weight:650;margin-bottom:4px}
+.block .desc{font-size:13px;color:var(--muted);margin-bottom:12px}
+.cover-box{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.cover-prev{width:200px;aspect-ratio:16/9;border-radius:8px;background:var(--bg) center/cover no-repeat;border:1px dashed #cfcac0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;text-align:center}
+.cover-prev.has{border-style:solid}
+.att-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.att-list li{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:8px;padding:8px 10px;font-size:14px}
+.att-list .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.att-list .sz{color:var(--muted);font-size:12px}
+.att-ico{width:30px;height:30px;border-radius:6px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--cedar);flex-shrink:0;border:1px solid var(--line)}
+.progress{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:6px}
+.progress div{height:100%;background:var(--cedar);width:0;transition:width .15s}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.check{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:14px}
+.check input{width:18px;height:18px;margin-top:2px;accent-color:var(--cedar)}
+.check small{display:block;color:var(--muted);font-size:12px}
+
+/* ── Avisos ── */
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#1f2a1f;color:#fff;padding:12px 18px;border-radius:10px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:all .25s;z-index:100;max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.bad{background:#8f1318}
+
+.users-table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:12px}
+.users-table td{padding:9px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+.users-table td:last-child{text-align:right;white-space:nowrap}
+.role{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+@media (max-width:700px){
+  .top-title small,.who{display:none}
+  .post{grid-template-columns:1fr}
+  .post-thumb{min-height:150px}
+  .overlay{padding:0}
+  .sheet{border-radius:0;min-height:100vh}
+  .sheet-foot{border-radius:0}
+  .opts,.grid2{grid-template-columns:1fr}
+  .cover-prev{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- Cargando -->
+<div id="vLoading" class="auth"><div class="auth-card"><p class="sub" style="margin:0">Cargando…</p></div></div>
+
+<!-- Configuración inicial -->
+<div id="vSetup" class="auth" hidden>
+  <form class="auth-card" id="fSetup" autocomplete="off">
+    <img class="auth-logo" src="Logo_2025.png" alt="">
+    <h1>Configuración inicial</h1>
+    <p class="sub">Cree la cuenta de administrador del panel de Novedades.</p>
+    <div class="err" id="setupErr" hidden></div>
+    <div id="setupDisabled" class="err" hidden>La configuración inicial no está habilitada todavía. Pida al administrador técnico que active la clave de configuración.</div>
+    <div class="field"><label for="sKey">Clave de configuración</label><input class="input" id="sKey" type="password" required><div class="hint">La entregó el administrador técnico del sitio.</div></div>
+    <div class="field"><label for="sName">Su nombre</label><input class="input" id="sName" required maxlength="80"></div>
+    <div class="field"><label for="sUser">Usuario</label><input class="input" id="sUser" required pattern="[a-z0-9._\-]{3,32}" autocapitalize="none" autocomplete="username"><div class="hint">Minúsculas, sin espacios. Ej: sian.gonzalez</div></div>
+    <div class="field"><label for="sPass">Contraseña</label><input class="input" id="sPass" type="password" required minlength="10" autocomplete="new-password"><div class="hint">Mínimo 10 caracteres, con letras y números.</div></div>
+    <div class="field"><label for="sPass2">Repita la contraseña</label><input class="input" id="sPass2" type="password" required autocomplete="new-password"></div>
+    <button class="btn btn-primary btn-block" type="submit">Crear cuenta y entrar</button>
+  </form>
+</div>
+
+<!-- Ingreso -->
+<div id="vLogin" class="auth" hidden>
+  <form class="auth-card" id="fLogin">
+    <img class="auth-logo" src="Logo_2025.png" alt="">
+    <h1>Panel de Novedades</h1>
+    <p class="sub">Embajada del Líbano en Colombia</p>
+    <div class="err" id="loginErr" hidden></div>
+    <div class="field"><label for="lUser">Usuario</label><input class="input" id="lUser" required autocapitalize="none" autocomplete="username"></div>
+    <div class="field"><label for="lPass">Contraseña</label><input class="input" id="lPass" type="password" required autocomplete="current-password"></div>
+    <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+    <p class="sub" style="margin:18px 0 0;font-size:13px"><a href="./">← Volver al sitio</a></p>
+  </form>
+</div>
+
+<!-- Aplicación -->
+<div id="vApp" hidden>
+  <header class="top">
+    <div class="top-in">
+      <img class="top-logo" src="Logo_2025.png" alt="Embajada del Líbano">
+      <div class="top-title">Panel de Novedades<small>Embajada del Líbano en Colombia</small></div>
+      <div class="top-spacer"></div>
+      <div class="who"><b id="whoName"></b><span id="whoRole"></span></div>
+      <a class="btn btn-ghost btn-sm" href="./#novedades" target="_blank" rel="noopener">Ver sitio</a>
+      <button class="btn btn-ghost btn-sm" id="btnAccount">Cuenta</button>
+      <button class="btn btn-ghost btn-sm" id="btnLogout">Salir</button>
+    </div>
+  </header>
+  <main>
+    <div class="composer">
+      <div class="avatar" id="avatar"></div>
+      <button class="composer-input" id="btnNew">¿Qué quiere publicar hoy?</button>
+      <button class="btn btn-primary" id="btnNew2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Nueva</button>
+    </div>
+    <div class="site-status" id="siteStatus"></div>
+    <div class="tabs" id="filters"></div>
+    <div id="list"></div>
+  </main>
+</div>
+
+<!-- Editor de publicación -->
+<div class="overlay" id="editor" hidden>
+  <form class="sheet" id="fPost" novalidate>
+    <div class="sheet-head"><h2 id="edTitle">Nueva publicación</h2><button type="button" class="x" data-close aria-label="Cerrar">×</button></div>
+    <div class="sheet-body">
+      <div class="lang-tabs" id="langTabs">
+        <button type="button" class="lang-tab active" data-lang="es"><span class="dot"></span>Español <span class="req">*</span></button>
+        <button type="button" class="lang-tab" data-lang="en"><span class="dot"></span>English</button>
+        <button type="button" class="lang-tab" data-lang="ar"><span class="dot"></span>العربية</button>
+      </div>
+      <div class="lang-note" id="langNote" hidden>Opcional. Si deja este idioma vacío, quienes vean la página en este idioma verán la versión en español.</div>
+      <div class="pane" data-pane="es"></div>
+      <div class="pane" data-pane="en" hidden></div>
+      <div class="pane" data-pane="ar" dir="rtl" hidden></div>
+
+      <div class="block">
+        <h4>Imagen de portada</h4>
+        <p class="desc">Se muestra en la tarjeta. Opcional, pero recomendada. Ideal horizontal.</p>
+        <div class="cover-box">
+          <div class="cover-prev" id="coverPrev">Sin imagen</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button type="button" class="btn btn-ghost btn-sm" id="btnCover">Subir imagen</button>
+            <button type="button" class="btn btn-danger btn-sm" id="btnCoverDel" hidden>Quitar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>Archivos adjuntos</h4>
+        <p class="desc">Documentos para descargar: PDF, Word, Excel, etc. (máx. 25 MB cada uno).</p>
+        <ul class="att-list" id="attList"></ul>
+        <button type="button" class="btn btn-ghost btn-sm" id="btnAtt">+ Adjuntar archivos</button>
+      </div>
+
+      <div class="block">
+        <h4>Opciones</h4>
+        <div class="opts" style="margin-top:10px">
+          <label class="check"><input type="checkbox" id="optPin"><span>Fijar publicación<small>Siempre aparece de primera.</small></span></label>
+          <div class="field" style="margin:0"><label for="optExp">Ocultar automáticamente el día…</label><input class="input" type="date" id="optExp"><div class="hint">Opcional. Se oculta al terminar ese día.</div></div>
+        </div>
+      </div>
+      <div class="err" id="edErr" hidden style="margin:18px 0 0"></div>
+    </div>
+    <div class="sheet-foot">
+      <button type="button" class="btn btn-ghost" data-close>Cancelar</button>
+      <button type="button" class="btn btn-ghost" id="btnDraft">Guardar borrador</button>
+      <button type="submit" class="btn btn-primary" id="btnPublish">Publicar</button>
+    </div>
+  </form>
+</div>
+
+<!-- Cuenta -->
+<div class="overlay" id="account" hidden>
+  <div class="sheet" style="max-width:600px">
+    <div class="sheet-head"><h2>Cuenta</h2><button type="button" class="x" data-close aria-label="Cerrar">×</button></div>
+    <div class="sheet-body">
+      <form id="fPass" class="block" style="margin-top:0">
+        <h4>Cambiar mi contraseña</h4>
+        <p class="desc">Mínimo 10 caracteres, con letras y números.</p>
+        <div class="field"><label for="pCur">Contraseña actual</label><input class="input" type="password" id="pCur" required autocomplete="current-password"></div>
+        <div class="grid2">
+          <div class="field"><label for="pNew">Nueva contraseña</label><input class="input" type="password" id="pNew" required autocomplete="new-password"></div>
+          <div class="field"><label for="pNew2">Repítala</label><input class="input" type="password" id="pNew2" required autocomplete="new-password"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" type="submit">Guardar contraseña</button>
+      </form>
+      <div class="block" id="usersBlock" hidden>
+        <h4>Usuarios del panel</h4>
+        <p class="desc">Personas que pueden publicar. Los administradores además pueden crear y eliminar usuarios.</p>
+        <table class="users-table"><tbody id="usersBody"></tbody></table>
+        <form id="fUser">
+          <div class="grid2">
+            <div class="field"><label for="uName">Nombre</label><input class="input" id="uName" required maxlength="80"></div>
+            <div class="field"><label for="uUser">Usuario</label><input class="input" id="uUser" required autocapitalize="none" pattern="[a-z0-9._\-]{3,32}"></div>
+            <div class="field"><label for="uPass">Contraseña temporal</label><input class="input" id="uPass" required autocomplete="new-password"></div>
+            <div class="field"><label for="uRole">Permisos</label><select class="input" id="uRole"><option value="editor">Editor (solo publicaciones)</option><option value="admin">Administrador</option></select></div>
+          </div>
+          <button class="btn btn-primary btn-sm" type="submit">+ Agregar usuario</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="fileCover" accept="image/jpeg,image/png,image/gif,image/webp" hidden>
+<input type="file" id="fileAtt" multiple hidden>
+<input type="file" id="fileImg" accept="image/jpeg,image/png,image/gif,image/webp" hidden>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+<script>
+(function(){
+'use strict';
+const API='admin/api.php';
+const LANGS=['es','en','ar'];
+let CSRF='', ME=null, POSTS=[], FILTER='all';
+let editing=null;           // publicación en edición
+const editors={};           // instancias de Quill por idioma
+let pendingUploads=0;
+
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ───── Llamadas al servidor ───── */
+async function api(action,{method='GET',data}={}){
+  const opt={method,headers:{'X-CSRF-Token':CSRF},credentials:'same-origin'};
+  if(data!==undefined){opt.headers['Content-Type']='application/json';opt.body=JSON.stringify(data);}
+  let res,json;
+  try{res=await fetch(API+'?action='+action,opt);json=await res.json();}
+  catch(e){throw new Error('No hay conexión con el servidor. Revise su internet e intente de nuevo.');}
+  if(res.status===401&&action!=='login'){showView('vLogin');throw new Error(json.error||'Sesión expirada');}
+  if(!json.ok) throw new Error(json.error||'Ocurrió un error.');
+  return json;
+}
+function upload(file,kind,onProgress){
+  return new Promise((resolve,reject)=>{
+    const fd=new FormData();fd.append('file',file);fd.append('kind',kind);
+    const x=new XMLHttpRequest();
+    x.open('POST',API+'?action=upload');
+    x.setRequestHeader('X-CSRF-Token',CSRF);
+    x.upload.onprogress=e=>{if(e.lengthComputable&&onProgress)onProgress(e.loaded/e.total);};
+    x.onload=()=>{let j;try{j=JSON.parse(x.responseText);}catch(e){return reject(new Error(x.status===413?'El archivo es demasiado grande para el servidor.':'Error al subir el archivo.'));}
+      if(x.status===401){showView('vLogin');}
+      j.ok?resolve(j):reject(new Error(j.error||'Error al subir el archivo.'));};
+    x.onerror=()=>reject(new Error('No se pudo subir el archivo. Revise su conexión.'));
+    x.send(fd);
+  });
+}
+
+/* ───── Utilidades de interfaz ───── */
+function showView(id){['vLoading','vSetup','vLogin','vApp'].forEach(v=>$('#'+v).hidden=v!==id);}
+let toastT;
+function toast(msg,bad){const t=$('#toast');t.textContent=msg;t.className='toast show'+(bad?' bad':'');clearTimeout(toastT);toastT=setTimeout(()=>t.className='toast',3800);}
+function showErr(el,msg){el.textContent=msg;el.hidden=!msg;}
+function fmtDate(iso){if(!iso)return '';const d=new Date(iso);return d.toLocaleDateString('es-CO',{day:'numeric',month:'short',year:'numeric'});}
+function fmtDay(ymd){if(!ymd)return '';const[y,m,d]=ymd.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString('es-CO',{day:'numeric',month:'short',year:'numeric'});}
+function fmtSize(b){if(!b)return '';if(b<1024)return b+' B';if(b<1048576)return Math.round(b/1024)+' KB';return (b/1048576).toFixed(1)+' MB';}
+function today(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+async function busy(btn,fn){const t=btn.innerHTML;btn.disabled=true;btn.textContent='Un momento…';try{return await fn();}finally{btn.disabled=false;btn.innerHTML=t;}}
+$$('[data-close]').forEach(b=>b.addEventListener('click',()=>b.closest('.overlay').id==='editor'?closeEditor():closeOverlay(b.closest('.overlay'))));
+function openOverlay(el){el.hidden=false;document.body.style.overflow='hidden';el.scrollTop=0;}
+function closeOverlay(el){el.hidden=true;document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(!$('#editor').hidden)closeEditor();else if(!$('#account').hidden)closeOverlay($('#account'));});
+
+/* ───── Arranque ───── */
+async function boot(){
+  try{
+    const s=await api('status');
+    CSRF=s.csrf;
+    if(s.needsSetup){
+      $('#setupDisabled').hidden=s.setupEnabled;
+      $('#fSetup').querySelectorAll('input,button').forEach(i=>i.disabled=!s.setupEnabled);
+      showView('vSetup');
+    } else if(s.user){enterApp(s.user);}
+    else showView('vLogin');
+  }catch(e){
+    $('#vLoading .sub').textContent='No se pudo conectar con el panel: '+e.message;
+  }
+}
+
+$('#fSetup').addEventListener('submit',async e=>{
+  e.preventDefault();const err=$('#setupErr');showErr(err,'');
+  if($('#sPass').value!==$('#sPass2').value)return showErr(err,'Las contraseñas no coinciden.');
+  try{
+    const r=await busy(e.submitter||$('#fSetup button'),()=>api('setup',{method:'POST',data:{key:$('#sKey').value,name:$('#sName').value,username:$('#sUser').value,password:$('#sPass').value}}));
+    enterApp(r.user);toast('¡Listo! Su cuenta fue creada.');
+  }catch(x){showErr(err,x.message);}
+});
+
+$('#fLogin').addEventListener('submit',async e=>{
+  e.preventDefault();const err=$('#loginErr');showErr(err,'');
+  try{
+    const r=await busy($('#fLogin button'),()=>api('login',{method:'POST',data:{username:$('#lUser').value,password:$('#lPass').value}}));
+    $('#lPass').value='';enterApp(r.user);
+  }catch(x){showErr(err,x.message);}
+});
+
+$('#btnLogout').addEventListener('click',async()=>{try{await api('logout',{method:'POST'});}catch(e){}ME=null;showView('vLogin');});
+
+function enterApp(user){
+  ME=user;
+  $('#whoName').textContent=user.name;
+  $('#whoRole').textContent=user.role==='admin'?'Administrador':'Editor';
+  $('#avatar').textContent=(user.name||'?').trim().charAt(0).toUpperCase();
+  $('#btnNew').textContent='¿Qué quiere publicar hoy, '+user.name.split(' ')[0]+'?';
+  showView('vApp');loadPosts();
+}
+
+/* ───── Lista de publicaciones ───── */
+async function loadPosts(){
+  try{POSTS=(await api('posts')).posts;renderList();}
+  catch(e){toast(e.message,true);}
+}
+function state(p){return p.expired?'exp':p.status==='published'?'pub':'draft';}
+function renderList(){
+  const counts={all:POSTS.length,pub:0,draft:0,exp:0};
+  POSTS.forEach(p=>counts[state(p)]++);
+  const live=counts.pub;
+  const ss=$('#siteStatus');
+  ss.className='site-status'+(live?'':' off');
+  ss.innerHTML=live
+    ?'✅ <span>En la página se '+(live===1?'ve <b>1 publicación</b>':'ven <b>'+live+' publicaciones</b>')+(live>3?' (3 a la vista y el resto con el botón “Ver más”)':'')+' en la sección <b>Novedades</b>.</span>'
+    :'ℹ️ <span>No hay publicaciones activas: la sección <b>Novedades</b> está oculta en la página.</span>';
+  const f=[['all','Todas'],['pub','Publicadas'],['draft','Borradores'],['exp','Vencidas']];
+  $('#filters').innerHTML=f.map(([k,l])=>`<button class="tab${FILTER===k?' active':''}" data-f="${k}">${l}<span>${counts[k]}</span></button>`).join('');
+  $$('#filters .tab').forEach(b=>b.onclick=()=>{FILTER=b.dataset.f;renderList();});
+
+  const items=POSTS.filter(p=>FILTER==='all'||state(p)===FILTER);
+  if(!items.length){
+    $('#list').innerHTML=POSTS.length
+      ?'<div class="empty"><b>No hay publicaciones en este filtro</b></div>'
+      :'<div class="empty"><b>Aún no hay publicaciones</b>Use el botón “Nueva” para crear la primera.</div>';
+    return;
+  }
+  $('#list').innerHTML=items.map(p=>{
+    const st=state(p),es=p.i18n.es;
+    const badge={pub:'<span class="badge b-pub">Publicada</span>',draft:'<span class="badge b-draft">Borrador</span>',exp:'<span class="badge b-exp">Vencida</span>'}[st];
+    const langs=LANGS.filter(l=>p.i18n[l]&&p.i18n[l].title).map(l=>`<span class="badge b-lang">${l.toUpperCase()}</span>`).join('');
+    const meta=[];
+    if(p.publishedAt)meta.push('Publicada el '+fmtDate(p.publishedAt));
+    else meta.push('Creada el '+fmtDate(p.created));
+    if(p.updatedBy&&p.updated!==p.created&&p.updated!==p.publishedAt)meta.push('editada por '+esc(p.updatedBy)+' el '+fmtDate(p.updated));
+    if(p.expires)meta.push((st==='exp'?'venció el ':'se oculta después del ')+fmtDay(p.expires));
+    const thumb=p.cover?`style="background-image:url('${esc(p.cover)}')"`:'';
+    return `<article class="post">
+      <div class="post-thumb" ${thumb}>${p.cover?'':'📰'}</div>
+      <div class="post-body">
+        <div class="badges">${badge}${p.pinned?'<span class="badge b-pin">📌 Fijada</span>':''}${langs}${p.attachments&&p.attachments.length?'<span class="badge b-lang">📎 '+p.attachments.length+'</span>':''}</div>
+        <h3>${esc(es.title)}</h3>
+        ${es.summary?`<p>${esc(es.summary)}</p>`:''}
+        <div class="meta">${meta.join(' · ')}</div>
+        <div class="post-actions">
+          <button class="btn btn-ghost btn-sm" data-act="edit" data-id="${p.id}">✏️ Editar</button>
+          ${st==='exp'?'':`<button class="btn btn-ghost btn-sm" data-act="status" data-id="${p.id}">${p.status==='published'?'🙈 Ocultar':'🚀 Publicar'}</button>`}
+          <button class="btn btn-ghost btn-sm" data-act="pin" data-id="${p.id}">${p.pinned?'Desfijar':'📌 Fijar'}</button>
+          <button class="btn btn-danger btn-sm" data-act="del" data-id="${p.id}">🗑 Eliminar</button>
+        </div>
+      </div></article>`;
+  }).join('');
+  $$('#list [data-act]').forEach(b=>b.onclick=()=>postAction(b.dataset.act,b.dataset.id,b));
+}
+async function postAction(act,id,btn){
+  const p=POSTS.find(x=>x.id===id);if(!p)return;
+  if(act==='edit')return openEditor(p);
+  if(act==='del'){
+    if(!confirm('¿Eliminar definitivamente “'+p.i18n.es.title+'”?\n\nEsta acción no se puede deshacer.'))return;
+    try{await busy(btn,()=>api('delete',{method:'POST',data:{id}}));toast('Publicación eliminada');loadPosts();}catch(e){toast(e.message,true);}
+    return;
+  }
+  try{
+    await busy(btn,()=>api('toggle',{method:'POST',data:{id,field:act==='pin'?'pinned':'status'}}));
+    toast(act==='pin'?(p.pinned?'Publicación desfijada':'Publicación fijada'):(p.status==='published'?'Publicación ocultada':'¡Publicada! Ya se ve en la página.'));
+    loadPosts();
+  }catch(e){toast(e.message,true);}
+}
+
+/* ───── Editor ───── */
+function buildPanes(){
+  LANGS.forEach(l=>{
+    const pane=$(`.pane[data-pane="${l}"]`);
+    const ar=l==='ar';
+    pane.innerHTML=`
+      <div class="field"><label>Título ${l==='es'?'<span class="req">*</span>':''}</label><input class="input" data-f="title" maxlength="150" placeholder="${ar?'العنوان':l==='en'?'Title':'Ej: Nuevo horario de atención consular'}"></div>
+      <div class="field"><label>Resumen ${l==='es'?'<span class="req">*</span>':''}<span class="counter" data-count>0 / 300</span></label><textarea class="input" data-f="summary" maxlength="300" rows="3" placeholder="${ar?'ملخص قصير يظهر على البطاقة':l==='en'?'Short text shown on the card':'Texto corto que se ve en la tarjeta, antes de abrirla'}"></textarea></div>
+      <div class="field"><label>Contenido completo</label><div class="hint" style="margin:0 0 8px">Se ve al abrir la publicación. Puede dar formato, agregar enlaces, fotos (botón de imagen) y videos de YouTube.</div><div class="editor-wrap"><div data-editor></div></div><div class="uploading-note" data-upnote hidden>Subiendo imagen…</div></div>`;
+    const ta=pane.querySelector('[data-f="summary"]'),cnt=pane.querySelector('[data-count]');
+    ta.addEventListener('input',()=>{cnt.textContent=ta.value.length+' / 300';markDots();});
+    pane.querySelector('[data-f="title"]').addEventListener('input',markDots);
+    const q=new Quill(pane.querySelector('[data-editor]'),{
+      theme:'snow',
+      placeholder:ar?'اكتب المحتوى هنا…':l==='en'?'Write the content here…':'Escriba aquí el contenido completo…',
+      modules:{toolbar:{container:[[{header:[2,3,false]}],['bold','italic','underline','strike'],[{list:'ordered'},{list:'bullet'}],[{align:[]}],['blockquote','link','image','video'],['clean']],
+        handlers:{image:()=>pickImage(l)}}}
+    });
+    editors[l]=q;
+  });
+}
+let imgTargetLang='es';
+function pickImage(l){imgTargetLang=l;$('#fileImg').value='';$('#fileImg').click();}
+$('#fileImg').addEventListener('change',async e=>{
+  const f=e.target.files[0];if(!f)return;
+  const q=editors[imgTargetLang],note=$(`.pane[data-pane="${imgTargetLang}"] [data-upnote]`);
+  const range=q.getSelection(true)||{index:q.getLength()};
+  note.hidden=false;pendingUploads++;
+  try{const r=await upload(f,'image');q.insertEmbed(range.index,'image',r.url,'user');q.setSelection(range.index+1);}
+  catch(x){toast(x.message,true);}
+  finally{note.hidden=true;pendingUploads--;}
+});
+
+function markDots(){
+  LANGS.forEach(l=>{
+    const has=$(`.pane[data-pane="${l}"] [data-f="title"]`).value.trim()!=='';
+    $(`.lang-tab[data-lang="${l}"] .dot`).classList.toggle('on',has);
+  });
+}
+$$('.lang-tab').forEach(t=>t.addEventListener('click',()=>switchLang(t.dataset.lang)));
+function switchLang(l){
+  $$('.lang-tab').forEach(t=>t.classList.toggle('active',t.dataset.lang===l));
+  $$('.pane').forEach(p=>p.hidden=p.dataset.pane!==l);
+  $('#langNote').hidden=l==='es';
+}
+
+let cover='',atts=[];
+function renderCover(){
+  const p=$('#coverPrev');
+  p.classList.toggle('has',!!cover);
+  p.style.backgroundImage=cover?`url('${cover}')`:'';
+  p.textContent=cover?'':'Sin imagen';
+  $('#btnCover').textContent=cover?'Cambiar imagen':'Subir imagen';
+  $('#btnCoverDel').hidden=!cover;
+}
+$('#btnCover').onclick=()=>{$('#fileCover').value='';$('#fileCover').click();};
+$('#btnCoverDel').onclick=()=>{cover='';renderCover();};
+$('#fileCover').addEventListener('change',async e=>{
+  const f=e.target.files[0];if(!f)return;
+  const p=$('#coverPrev');p.textContent='Subiendo…';pendingUploads++;
+  try{const r=await upload(f,'image');cover=r.url;}catch(x){toast(x.message,true);}
+  finally{pendingUploads--;renderCover();}
+});
+
+function extOf(n){const m=/\.([a-z0-9]+)$/i.exec(n||'');return m?m[1].toUpperCase().slice(0,4):'DOC';}
+function renderAtts(){
+  $('#attList').innerHTML=atts.map((a,i)=>`<li><span class="att-ico">${esc(extOf(a.name))}</span><span class="nm">${esc(a.name)}${a.progress!=null?`<div class="progress"><div style="width:${Math.round(a.progress*100)}%"></div></div>`:''}</span><span class="sz">${a.progress!=null?'Subiendo…':fmtSize(a.size)}</span>${a.progress!=null?'':`<button type="button" class="btn btn-danger btn-sm" data-rm="${i}">Quitar</button>`}</li>`).join('');
+  $$('#attList [data-rm]').forEach(b=>b.onclick=()=>{atts.splice(+b.dataset.rm,1);renderAtts();});
+}
+$('#btnAtt').onclick=()=>{$('#fileAtt').value='';$('#fileAtt').click();};
+$('#fileAtt').addEventListener('change',e=>{
+  Array.from(e.target.files).forEach(async f=>{
+    const item={name:f.name,size:f.size,progress:0};atts.push(item);renderAtts();pendingUploads++;
+    try{
+      const r=await upload(f,'file',pr=>{item.progress=pr;renderAtts();});
+      Object.assign(item,{name:r.name,url:r.url,size:r.size});delete item.progress;
+    }catch(x){toast(f.name+': '+x.message,true);atts.splice(atts.indexOf(item),1);}
+    finally{pendingUploads--;renderAtts();}
+  });
+});
+
+let editorSnapshot='';
+function editorState(){
+  const o={cover,atts:atts.map(a=>a.url),pin:$('#optPin').checked,exp:$('#optExp').value};
+  LANGS.forEach(l=>{const p=$(`.pane[data-pane="${l}"]`);o[l]=[p.querySelector('[data-f="title"]').value,p.querySelector('[data-f="summary"]').value,editors[l].root.innerHTML];});
+  return JSON.stringify(o);
+}
+function openEditor(p){
+  editing=p||null;
+  showErr($('#edErr'),'');
+  $('#edTitle').textContent=p?'Editar publicación':'Nueva publicación';
+  LANGS.forEach(l=>{
+    const d=(p&&p.i18n[l])||{title:'',summary:'',content:''};
+    const pane=$(`.pane[data-pane="${l}"]`);
+    pane.querySelector('[data-f="title"]').value=d.title;
+    pane.querySelector('[data-f="summary"]').value=d.summary;
+    pane.querySelector('[data-count]').textContent=d.summary.length+' / 300';
+    editors[l].setContents([]);
+    if(d.content)editors[l].clipboard.dangerouslyPasteHTML(d.content);
+    editors[l].history.clear();
+  });
+  cover=p?p.cover||'':'';atts=p&&p.attachments?p.attachments.map(a=>Object.assign({},a)):[];
+  $('#optPin').checked=!!(p&&p.pinned);
+  $('#optExp').value=p?p.expires||'':'';
+  $('#optExp').min=today();
+  renderCover();renderAtts();markDots();switchLang('es');
+  const pub=p&&p.status==='published'&&!p.expired;
+  $('#btnPublish').textContent=pub?'Guardar cambios':'Publicar';
+  $('#btnDraft').textContent=pub?'Pasar a borrador':'Guardar borrador';
+  openOverlay($('#editor'));
+  editorSnapshot=editorState();
+  setTimeout(()=>$('.pane[data-pane="es"] [data-f="title"]').focus(),50);
+}
+function closeEditor(force){
+  if(!force&&editorState()!==editorSnapshot&&!confirm('Tiene cambios sin guardar. ¿Desea salir sin guardar?'))return;
+  closeOverlay($('#editor'));
+}
+['#btnNew','#btnNew2'].forEach(s=>$(s).onclick=()=>openEditor(null));
+
+/** Imágenes pegadas directamente (base64) se suben al servidor antes de guardar. */
+async function uploadPastedImages(l){
+  const imgs=Array.from(editors[l].root.querySelectorAll('img')).filter(i=>i.src.startsWith('data:'));
+  for(const img of imgs){
+    const blob=await (await fetch(img.src)).blob();
+    const ext=(blob.type.split('/')[1]||'png').replace('jpeg','jpg');
+    const r=await upload(new File([blob],'imagen-pegada.'+ext,{type:blob.type}),'image');
+    img.setAttribute('src',r.url);
+  }
+}
+async function save(status,btn){
+  const err=$('#edErr');showErr(err,'');
+  if(pendingUploads>0)return showErr(err,'Espere a que terminen de subir los archivos.');
+  const es=$('.pane[data-pane="es"]');
+  if(!es.querySelector('[data-f="title"]').value.trim()){switchLang('es');es.querySelector('[data-f="title"]').focus();return showErr(err,'Escriba el título en español.');}
+  if(status==='published'&&!es.querySelector('[data-f="summary"]').value.trim()){switchLang('es');es.querySelector('[data-f="summary"]').focus();return showErr(err,'Para publicar, escriba el resumen en español: es el texto que se ve en la tarjeta.');}
+  try{
+    await busy(btn,async()=>{
+      const i18n={};
+      for(const l of LANGS){
+        await uploadPastedImages(l);
+        const pane=$(`.pane[data-pane="${l}"]`);
+        const html=editors[l].getText().trim()===''&&!editors[l].root.querySelector('img,iframe')?'':editors[l].root.innerHTML;
+        i18n[l]={title:pane.querySelector('[data-f="title"]').value,summary:pane.querySelector('[data-f="summary"]').value,content:html};
+      }
+      await api('save',{method:'POST',data:{post:{
+        id:editing?editing.id:'',status,i18n,cover,
+        attachments:atts.filter(a=>a.url).map(a=>({name:a.name,url:a.url,size:a.size})),
+        pinned:$('#optPin').checked,expires:$('#optExp').value
+      }}});
+    });
+    closeEditor(true);
+    toast(status==='published'?'¡Publicada! Ya se ve en la página.':'Guardado como borrador. No se ve en la página.');
+    loadPosts();
+  }catch(e){showErr(err,e.message);err.scrollIntoView({behavior:'smooth',block:'center'});}
+}
+$('#fPost').addEventListener('submit',e=>{e.preventDefault();save('published',$('#btnPublish'));});
+$('#btnDraft').onclick=()=>save('draft',$('#btnDraft'));
+
+/* ───── Cuenta y usuarios ───── */
+$('#btnAccount').onclick=()=>{
+  $('#fPass').reset();$('#usersBlock').hidden=ME.role!=='admin';
+  if(ME.role==='admin')loadUsers();
+  openOverlay($('#account'));
+};
+$('#fPass').addEventListener('submit',async e=>{
+  e.preventDefault();
+  if($('#pNew').value!==$('#pNew2').value)return toast('Las contraseñas nuevas no coinciden.',true);
+  try{await busy($('#fPass button'),()=>api('password',{method:'POST',data:{current:$('#pCur').value,new:$('#pNew').value}}));$('#fPass').reset();toast('Contraseña actualizada');}
+  catch(x){toast(x.message,true);}
+});
+async function loadUsers(){
+  try{
+    const{users}=await api('users');
+    $('#usersBody').innerHTML=users.map(u=>`<tr><td><b>${esc(u.name)}</b><br><span style="color:var(--muted);font-size:13px">${esc(u.username)}</span></td><td><span class="role">${u.role==='admin'?'Administrador':'Editor'}</span></td><td>
+      <button class="btn btn-ghost btn-sm" data-reset="${esc(u.username)}">Nueva clave</button>
+      ${u.username===ME.username?'':`<button class="btn btn-danger btn-sm" data-deluser="${esc(u.username)}">Eliminar</button>`}</td></tr>`).join('');
+    $$('[data-reset]').forEach(b=>b.onclick=async()=>{
+      const pw=prompt('Nueva contraseña para '+b.dataset.reset+' (mínimo 10 caracteres, letras y números):');if(!pw)return;
+      try{await api('user_reset',{method:'POST',data:{username:b.dataset.reset,password:pw}});toast('Contraseña cambiada. Compártala con la persona por un medio seguro.');}catch(x){toast(x.message,true);}
+    });
+    $$('[data-deluser]').forEach(b=>b.onclick=async()=>{
+      if(!confirm('¿Eliminar el usuario '+b.dataset.deluser+'? Ya no podrá entrar al panel.'))return;
+      try{await api('user_delete',{method:'POST',data:{username:b.dataset.deluser}});toast('Usuario eliminado');loadUsers();}catch(x){toast(x.message,true);}
+    });
+  }catch(x){toast(x.message,true);}
+}
+$('#fUser').addEventListener('submit',async e=>{
+  e.preventDefault();
+  try{
+    await busy($('#fUser button'),()=>api('user_add',{method:'POST',data:{name:$('#uName').value,username:$('#uUser').value,password:$('#uPass').value,role:$('#uRole').value}}));
+    toast('Usuario creado. Comparta el usuario y la contraseña por un medio seguro.');$('#fUser').reset();loadUsers();
+  }catch(x){toast(x.message,true);}
+});
+
+buildPanes();
+boot();
+})();
+</script>
+</body>
+</html>

@@ -12,6 +12,16 @@ jobs:
       - name: Descargar archivos del repo
         uses: actions/checkout@v4
 
+      # Clave para crear la primera cuenta del panel /admin.
+      # Se toma del secret ADMIN_SETUP_KEY; nunca queda escrita en el repositorio.
+      - name: Preparar clave de configuración del panel
+        env:
+          KEY: ${{ secrets.ADMIN_SETUP_KEY }}
+        run: |
+          if [ -n "$KEY" ]; then
+            php -r 'file_put_contents("admin/setup-key.php", "<?php return " . var_export(getenv("KEY"), true) . ";\n");'
+          fi
+
       - name: Subir a GoDaddy por FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -25,3 +35,5 @@ jobs:
             **/.git*
             **/.git*/**
             README.md
+            uploads/**
+            _datos_novedades/**
