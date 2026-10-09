@@ -13,6 +13,7 @@ foreach (emb_sort_posts(emb_posts()) as $p) {
     if ($p['status'] !== 'published' || emb_is_expired($p)) continue;
     $out[] = array(
         'id' => $p['id'],
+        'section' => isset($p['section']) ? $p['section'] : 'novedades',
         'pinned' => !empty($p['pinned']),
         'date' => !empty($p['publishedAt']) ? $p['publishedAt'] : $p['updated'],
         'cover' => isset($p['cover']) ? $p['cover'] : '',

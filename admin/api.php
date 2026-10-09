@@ -146,6 +146,7 @@ case 'save:POST':
     $post = array(
         'id' => $old ? $old['id'] : bin2hex(random_bytes(6)),
         'status' => $status,
+        'section' => (isset($in['section']) && $in['section'] === 'noticias') ? 'noticias' : 'novedades',
         'pinned' => !empty($in['pinned']),
         'expires' => $expires,
         'cover' => $cover,

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <base href="/">
-<title>Panel de Novedades · Embajada del Líbano</title>
+<title>Panel de Publicaciones · Embajada del Líbano</title>
 <link rel="icon" href="Logo_2025.png">
 <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
@@ -144,6 +144,14 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
 .link-x:hover{color:#b3161c;background:#fdecec}
 .link-msg{font-size:13px;color:var(--muted);margin-top:8px}
 @media (max-width:700px){.link-card{grid-template-columns:1fr auto}.link-img{grid-column:1/-1;aspect-ratio:1.91/1}}
+.where{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;margin-bottom:20px}
+.where-q{width:100%;font-size:13px;font-weight:600;color:var(--mid)}
+.where-opt{flex:1;min-width:220px;display:flex;gap:10px;align-items:flex-start;border:1px solid #cfcac0;border-radius:10px;padding:11px 13px;cursor:pointer;transition:border-color .15s,background .15s}
+.where-opt input{width:18px;height:18px;margin-top:2px;accent-color:var(--cedar)}
+.where-opt b{display:block;font-size:14px}
+.where-opt small{display:block;font-size:12px;color:var(--muted)}
+.where-opt:has(input:checked){border-color:var(--cedar);background:var(--cedar-light)}
+.b-sec{background:#e6eefb;color:#2c4a7a}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .check{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:14px}
 .check input{width:18px;height:18px;margin-top:2px;accent-color:var(--cedar)}
@@ -198,7 +206,7 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
 <div id="vLogin" class="auth" hidden>
   <form class="auth-card" id="fLogin">
     <img class="auth-logo" src="Logo_2025.png" alt="">
-    <h1>Panel de Novedades</h1>
+    <h1>Panel de Publicaciones</h1>
     <p class="sub">Embajada del Líbano en Colombia</p>
     <div class="err" id="loginErr" hidden></div>
     <div class="field"><label for="lUser">Usuario</label><input class="input" id="lUser" required autocapitalize="none" autocomplete="username"></div>
@@ -213,7 +221,7 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
   <header class="top">
     <div class="top-in">
       <img class="top-logo" src="Logo_2025.png" alt="Embajada del Líbano">
-      <div class="top-title">Panel de Novedades<small>Embajada del Líbano en Colombia</small></div>
+      <div class="top-title">Panel de Publicaciones<small>Embajada del Líbano en Colombia</small></div>
       <div class="top-spacer"></div>
       <div class="who"><b id="whoName"></b><span id="whoRole"></span></div>
       <a class="btn btn-ghost btn-sm" href="./#novedades" target="_blank" rel="noopener">Ver sitio</a>
@@ -238,6 +246,11 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
   <form class="sheet" id="fPost" novalidate>
     <div class="sheet-head"><h2 id="edTitle">Nueva publicación</h2><button type="button" class="x" data-close aria-label="Cerrar">×</button></div>
     <div class="sheet-body">
+      <div class="where">
+        <span class="where-q">¿Dónde se publica?</span>
+        <label class="where-opt"><input type="radio" name="where" value="novedades" checked><span><b>Novedades</b><small>Arriba de la página, después del video</small></span></label>
+        <label class="where-opt"><input type="radio" name="where" value="noticias"><span><b>Noticias y Comunicados</b><small>Más abajo, en la sección de noticias</small></span></label>
+      </div>
       <div class="lang-tabs" id="langTabs">
         <button type="button" class="lang-tab active" data-lang="es"><span class="dot"></span>Español <span class="req">*</span></button>
         <button type="button" class="lang-tab" data-lang="en"><span class="dot"></span>English</button>
@@ -438,11 +451,12 @@ function renderList(){
   const counts={all:POSTS.length,pub:0,draft:0,exp:0};
   POSTS.forEach(p=>counts[state(p)]++);
   const live=counts.pub;
+  const liveIn=sec=>POSTS.filter(p=>state(p)==='pub'&&(p.section||'novedades')===sec).length;
+  const nNov=liveIn('novedades'),nNot=liveIn('noticias');
+  const say=(n,where)=>n?'<b>'+n+'</b> en '+where+(n>3?' (3 a la vista y el resto con “Ver más”)':''):'ninguna en '+where+(where==='<b>Novedades</b>'?' (la sección está oculta)':'');
   const ss=$('#siteStatus');
   ss.className='site-status'+(live?'':' off');
-  ss.innerHTML=live
-    ?'✅ <span>En la página se '+(live===1?'ve <b>1 publicación</b>':'ven <b>'+live+' publicaciones</b>')+(live>3?' (3 a la vista y el resto con el botón “Ver más”)':'')+' en la sección <b>Novedades</b>.</span>'
-    :'ℹ️ <span>No hay publicaciones activas: la sección <b>Novedades</b> está oculta en la página.</span>';
+  ss.innerHTML=(live?'✅':'ℹ️')+' <span>Publicaciones activas en la página: '+say(nNov,'<b>Novedades</b>')+' y '+say(nNot,'<b>Noticias y Comunicados</b>')+'.</span>';
   const f=[['all','Todas'],['pub','Publicadas'],['draft','Borradores'],['exp','Vencidas']];
   $('#filters').innerHTML=f.map(([k,l])=>`<button class="tab${FILTER===k?' active':''}" data-f="${k}">${l}<span>${counts[k]}</span></button>`).join('');
   $$('#filters .tab').forEach(b=>b.onclick=()=>{FILTER=b.dataset.f;renderList();});
@@ -468,7 +482,7 @@ function renderList(){
     return `<article class="post">
       <div class="post-thumb" ${thumb}>${img?'':'📰'}</div>
       <div class="post-body">
-        <div class="badges">${badge}${p.pinned?'<span class="badge b-pin">📌 Fijada</span>':''}${langs}${p.attachments&&p.attachments.length?'<span class="badge b-lang">📎 '+p.attachments.length+'</span>':''}${p.link?'<span class="badge b-lang">🔗 Enlace</span>':''}</div>
+        <div class="badges">${badge}<span class="badge b-sec">${p.section==='noticias'?'Noticias':'Novedades'}</span>${p.pinned?'<span class="badge b-pin">📌 Fijada</span>':''}${langs}${p.attachments&&p.attachments.length?'<span class="badge b-lang">📎 '+p.attachments.length+'</span>':''}${p.link?'<span class="badge b-lang">🔗 Enlace</span>':''}</div>
         <h3>${esc(es.title)}</h3>
         ${es.summary?`<p>${esc(es.summary)}</p>`:''}
         <div class="meta">${meta.join(' · ')}</div>
@@ -605,8 +619,10 @@ $('#fileAtt').addEventListener('change',e=>{
 });
 
 let editorSnapshot='';
+function whereVal(){const r=document.querySelector('input[name="where"]:checked');return r?r.value:'novedades';}
+function setWhere(v){$$('input[name="where"]').forEach(r=>r.checked=r.value===v);}
 function editorState(){
-  const o={cover,link:link&&link.url,atts:atts.map(a=>a.url),pin:$('#optPin').checked,exp:$('#optExp').value};
+  const o={where:whereVal(),cover,link:link&&link.url,atts:atts.map(a=>a.url),pin:$('#optPin').checked,exp:$('#optExp').value};
   LANGS.forEach(l=>{const p=$(`.pane[data-pane="${l}"]`);o[l]=[p.querySelector('[data-f="title"]').value,p.querySelector('[data-f="summary"]').value,editors[l].root.innerHTML];});
   return JSON.stringify(o);
 }
@@ -624,6 +640,7 @@ function openEditor(p){
     if(d.content)editors[l].clipboard.dangerouslyPasteHTML(d.content);
     editors[l].history.clear();
   });
+  setWhere(p&&p.section==='noticias'?'noticias':'novedades');
   link=p&&p.link?Object.assign({},p.link):null;$('#linkUrl').value=link?link.url:'';renderLink();
   cover=p?p.cover||'':'';atts=p&&p.attachments?p.attachments.map(a=>Object.assign({},a)):[];
   $('#optPin').checked=!!(p&&p.pinned);
@@ -671,7 +688,7 @@ async function save(status,btn){
       await api('save',{method:'POST',data:{post:{
         id:editing?editing.id:'',status,i18n,cover,
         attachments:atts.filter(a=>a.url).map(a=>({name:a.name,url:a.url,size:a.size})),
-        link,pinned:$('#optPin').checked,expires:$('#optExp').value
+        section:whereVal(),link,pinned:$('#optPin').checked,expires:$('#optExp').value
       }}});
     });
     closeEditor(true);

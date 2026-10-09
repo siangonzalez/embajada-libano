@@ -480,7 +480,9 @@ html[lang="ar"] .nov-files h4{letter-spacing:0;text-transform:none}
   .nov-row.single .nov-body{padding:22px 24px}
   .nov-panel-inner{padding:24px 20px}
 }
-[data-nov-nav][hidden],.nov-section[hidden],.nov-more-wrap[hidden]{display:none!important}
+[data-nov-nav][hidden],.nov-section[hidden],.nov-more-wrap[hidden],.not-board[hidden]{display:none!important}
+.not-board{margin-bottom:24px}
+.not-board .nov-more-wrap{margin-top:22px}
 
 </style>
 </head>
@@ -959,6 +961,11 @@ html[lang="ar"] .nov-files h4{letter-spacing:0;text-transform:none}
       <div class="section-label" data-i18n="news_label">Actualidad</div>
       <h2 class="section-title" data-i18n="news_title">Noticias y Comunicados</h2>
       <p class="section-desc" data-i18n="news_desc">Información oficial de la Embajada y noticias relevantes del Líbano.</p>
+    </div>
+    <!-- Noticias publicadas desde el panel /admin (solo aparece si hay alguna) -->
+    <div class="not-board" id="notBoard" hidden>
+      <div id="notRows"></div>
+      <div class="nov-more-wrap" id="notMoreWrap" hidden><button class="nov-more" id="notMore" type="button"></button></div>
     </div>
     <div class="news-grid fade-in">
       <div class="news-card">
@@ -2127,19 +2134,16 @@ function toggleAccordion(btn){
 }
 </script>
 <script>
-/* ─── NOVEDADES: carga las publicaciones del panel /admin ─── */
+/* ─── NOVEDADES y NOTICIAS: publicaciones gestionadas desde el panel /admin ─── */
 (function(){
   var TXT={
-    es:{label:'Lo más reciente',title:'Novedades',read:'Leer más',hide:'Ocultar',close:'Cerrar',files:'Documentos adjuntos',pin:'Destacado',more:function(n){return 'Ver más novedades ('+n+')';},less:'Ver menos',nav:'Novedades'},
+    es:{label:'Lo más reciente',title:'Novedades',read:'Leer más',hide:'Ocultar',close:'Cerrar',files:'Documentos adjuntos',pin:'Destacado',more:function(n){return 'Ver más ('+n+')';},less:'Ver menos',nav:'Novedades'},
     en:{label:'Latest',title:'News & Updates',read:'Read more',hide:'Hide',close:'Close',files:'Attachments',pin:'Featured',more:function(n){return 'Show more ('+n+')';},less:'Show less',nav:'Updates'},
     ar:{label:'الأحدث',title:'المستجدات',read:'اقرأ المزيد',hide:'إخفاء',close:'إغلاق',files:'المرفقات',pin:'مميّز',more:function(n){return 'عرض المزيد ('+n+')';},less:'عرض أقل',nav:'المستجدات'}
   };
   var LOCALE={es:'es-CO',en:'en-US',ar:'ar-LB'};
-  var posts=[],showAll=false,openId=null;
-  var sec=document.getElementById('novedades');
-  if(!sec) return;
-
   function lang(){var l=document.documentElement.lang;return TXT[l]?l:'es';}
+  function T(){return TXT[lang()];}
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   function version(p){
     var l=lang(),es=p.i18n.es||{},loc=p.i18n[l];
@@ -2150,8 +2154,10 @@ function toggleAccordion(btn){
   function fmtDate(iso){try{return new Date(iso).toLocaleDateString(LOCALE[lang()],{day:'numeric',month:'long',year:'numeric'});}catch(e){return '';}}
   function fmtSize(b){if(!b)return '';if(b<1048576)return Math.max(1,Math.round(b/1024))+' KB';return (b/1048576).toFixed(1)+' MB';}
   function ext(n){var m=/\.([a-z0-9]+)$/i.exec(n||'');return m?m[1].toUpperCase().slice(0,4):'DOC';}
-
   function img(p){return p.cover||(p.link&&p.link.image)||'';}
+  // En celular cada tarjeta va en su propia fila, para que el acordeón abra justo debajo de ella
+  function perRow(){return window.matchMedia('(max-width:860px)').matches?1:3;}
+
   function linkCard(l){
     if(!l||!l.url) return '';
     var host=l.site||l.url.replace(/^https?:\/\/(www\.)?/,'').split('/')[0];
@@ -2161,64 +2167,31 @@ function toggleAccordion(btn){
       '<span class="nov-link-title">'+esc(l.title||l.url)+'</span>'+
       (l.description?'<span class="nov-link-desc">'+esc(l.description)+'</span>':'')+'</span></a>';
   }
-  function card(p,placeholder){
-    var v=version(p),T=TXT[lang()],open=openId===p.id;
+  function card(p,placeholder,open){
+    var v=version(p);
     return '<button type="button" class="nov-card'+(open?' open':'')+'" data-nov="'+esc(p.id)+'" aria-expanded="'+open+'"'+langAttr(v)+'>'+
       (img(p)?'<div class="nov-cover" style="background-image:url(\''+esc(img(p))+'\')"></div>':(placeholder?'<div class="nov-cover nov-cover-ph"></div>':''))+
       '<div class="nov-body">'+
-        '<div class="nov-meta">'+(p.pinned?'<span class="nov-pin">'+T.pin+'</span>':'')+'<span>'+esc(fmtDate(p.date))+'</span></div>'+
+        '<div class="nov-meta">'+(p.pinned?'<span class="nov-pin">'+T().pin+'</span>':'')+'<span>'+esc(fmtDate(p.date))+'</span></div>'+
         '<h3 class="nov-title">'+esc(v.title)+'</h3>'+
         (v.summary?'<p class="nov-summary">'+esc(v.summary)+'</p>':'')+
-        '<span class="nov-toggle">'+(open?T.hide:T.read)+' <i>▾</i></span>'+
+        '<span class="nov-toggle">'+(open?T().hide:T().read)+' <i>▾</i></span>'+
       '</div></button>';
   }
   function panelHTML(p){
-    var v=version(p),T=TXT[lang()];
+    var v=version(p);
     var files=(p.attachments||[]).map(function(a){
       return '<li><a href="'+esc(a.url)+'" target="_blank" rel="noopener" download="'+esc(a.name)+'">'+
         '<span class="nov-file-ext">'+esc(ext(a.name))+'</span><span class="nov-file-name">'+esc(a.name)+'</span><span class="nov-file-size">'+fmtSize(a.size)+'</span></a></li>';
     }).join('');
     return '<div class="nov-panel-inner"'+langAttr(v)+'>'+
       '<div class="nov-panel-head"><div><div class="nov-meta" style="margin-bottom:6px">'+esc(fmtDate(p.date))+'</div><h3>'+esc(v.title)+'</h3></div>'+
-      '<button type="button" class="nov-close" data-nov-close aria-label="'+T.close+'">✕</button></div>'+
+      '<button type="button" class="nov-close" data-nov-close aria-label="'+T().close+'">✕</button></div>'+
       '<div class="nov-content">'+(v.content||('<p>'+esc(v.summary)+'</p>'))+'</div>'+
       linkCard(p.link)+
-      (files?'<div class="nov-files"><h4>'+T.files+'</h4><ul>'+files+'</ul></div>':'')+
+      (files?'<div class="nov-files"><h4>'+T().files+'</h4><ul>'+files+'</ul></div>':'')+
     '</div>';
   }
-
-  function render(){
-    var T=TXT[lang()];
-    sec.hidden=!posts.length;
-    document.querySelectorAll('[data-nov-nav]').forEach(function(a){a.hidden=!posts.length;a.textContent=T.nav;});
-    if(!posts.length) return;
-    document.getElementById('novLabel').textContent=T.label;
-    document.getElementById('novTitle').textContent=T.title;
-    var list=showAll?posts:posts.slice(0,3),html='',size=perRow();
-    for(var i=0;i<list.length;i+=size){
-      var row=list.slice(i,i+size);
-      html+='<div class="nov-row'+(row.length===1?' single':'')+'" style="grid-template-columns:repeat('+row.length+',1fr)">'+row.map(function(p){return card(p,row.some(function(x){return img(x);}));}).join('')+'</div>'+
-            '<div class="nov-panel" data-panel="'+(i/size)+'"></div>';
-    }
-    var rows=document.getElementById('novRows');
-    rows.innerHTML=html;
-    var wrap=document.getElementById('novMoreWrap'),more=document.getElementById('novMore');
-    wrap.hidden=posts.length<=3;
-    more.textContent=showAll?T.less:T.more(posts.length-3);
-    // si había una publicación abierta, mostrarla abierta sin animación
-    if(openId){
-      var p=find(openId),idx=list.indexOf(p);
-      if(idx<0){openId=null;return;}
-      var panel=rows.querySelector('[data-panel="'+Math.floor(idx/size)+'"]');
-      panel.innerHTML=panelHTML(p);panel.style.height='auto';
-    }
-  }
-  // En celular cada tarjeta va en su propia fila, para que el acordeón abra justo debajo de ella
-  function perRow(){return window.matchMedia('(max-width:860px)').matches?1:3;}
-  var lastPerRow=perRow();
-  window.addEventListener('resize',function(){var n=perRow();if(n!==lastPerRow){lastPerRow=n;if(posts.length)render();}});
-  function find(id){for(var i=0;i<posts.length;i++)if(posts[i].id===id)return posts[i];return null;}
-
   function animate(panel,toOpen,done){
     var start=panel.offsetHeight;
     panel.style.height=start+'px';
@@ -2230,61 +2203,108 @@ function toggleAccordion(btn){
     if(start===end) fin();
   }
 
-  function toggle(id,cardEl){
-    var rows=document.getElementById('novRows');
-    var target=cardEl.closest('.nov-row').nextElementSibling;
-    var current=openId?rows.querySelector('.nov-card.open'):null;
-    var currentPanel=current?current.closest('.nov-row').nextElementSibling:null;
+  /** Un tablero de tarjetas con acordeón (se usa en Novedades y en Noticias). */
+  function Board(cfg){
+    var self=this,posts=[],showAll=false,openId=null;
+    var rowsEl=cfg.rows,moreWrap=cfg.moreWrap,moreBtn=cfg.more;
+    function find(id){for(var i=0;i<posts.length;i++)if(posts[i].id===id)return posts[i];return null;}
+    function render(){
+      cfg.onCount(posts.length);
+      if(!posts.length){rowsEl.innerHTML='';moreWrap.hidden=true;return;}
+      var list=showAll?posts:posts.slice(0,3),html='',size=perRow();
+      for(var i=0;i<list.length;i+=size){
+        var row=list.slice(i,i+size),ph=row.some(function(x){return img(x);});
+        html+='<div class="nov-row'+(row.length===1?' single':'')+'" style="grid-template-columns:repeat('+row.length+',1fr)">'+
+              row.map(function(p){return card(p,ph,p.id===openId);}).join('')+'</div>'+
+              '<div class="nov-panel" data-panel="'+(i/size)+'"></div>';
+      }
+      rowsEl.innerHTML=html;
+      moreWrap.hidden=posts.length<=3;
+      moreBtn.textContent=showAll?T().less:T().more(posts.length-3);
+      if(openId){ // conservar abierta la publicación al redibujar
+        var idx=list.indexOf(find(openId));
+        if(idx<0){openId=null;return;}
+        var panel=rowsEl.querySelector('[data-panel="'+Math.floor(idx/size)+'"]');
+        panel.innerHTML=panelHTML(find(openId));panel.style.height='auto';
+      }
+    }
     function setCard(el,isOpen){
-      var T=TXT[lang()];
       el.classList.toggle('open',isOpen);el.setAttribute('aria-expanded',isOpen);
-      el.querySelector('.nov-toggle').innerHTML=(isOpen?T.hide:T.read)+' <i>▾</i>';
+      el.querySelector('.nov-toggle').innerHTML=(isOpen?T().hide:T().read)+' <i>▾</i>';
     }
-    if(openId===id){ // cerrar
-      openId=null;setCard(cardEl,false);animate(target,false,function(){target.innerHTML='';});return;
-    }
-    if(current) setCard(current,false);
-    openId=id;setCard(cardEl,true);
-    if(currentPanel&&currentPanel!==target){animate(currentPanel,false,function(){currentPanel.innerHTML='';});}
-    if(currentPanel===target){ // misma fila: cambiar contenido
+    function toggle(id,cardEl){
+      var target=cardEl.closest('.nov-row').nextElementSibling;
+      var current=openId?rowsEl.querySelector('.nov-card.open'):null;
+      var currentPanel=current?current.closest('.nov-row').nextElementSibling:null;
+      if(openId===id){openId=null;setCard(cardEl,false);animate(target,false,function(){target.innerHTML='';});return;}
+      if(current) setCard(current,false);
+      openId=id;setCard(cardEl,true);
+      if(currentPanel&&currentPanel!==target) animate(currentPanel,false,function(){currentPanel.innerHTML='';});
       target.style.height=target.offsetHeight+'px';
       target.innerHTML=panelHTML(find(id));
-      animate(target,true,scrollTo);
-    } else {
-      target.innerHTML=panelHTML(find(id));
-      animate(target,true,scrollTo);
+      animate(target,true,function(){
+        var r=target.getBoundingClientRect();
+        if(r.top<100||r.top>window.innerHeight*0.6) target.scrollIntoView({behavior:'smooth',block:'start'});
+      });
     }
-    function scrollTo(){
-      var r=target.getBoundingClientRect();
-      if(r.top<100||r.top>window.innerHeight*0.6) target.scrollIntoView({behavior:'smooth',block:'start'});
-    }
+    rowsEl.addEventListener('click',function(e){
+      if(e.target.closest('[data-nov-close]')){
+        var c=rowsEl.querySelector('.nov-card.open');
+        if(c){toggle(openId,c);c.scrollIntoView({behavior:'smooth',block:'nearest'});}
+        return;
+      }
+      var c2=e.target.closest('[data-nov]');
+      if(c2) toggle(c2.getAttribute('data-nov'),c2);
+    });
+    moreBtn.addEventListener('click',function(){
+      showAll=!showAll;
+      if(!showAll&&openId&&posts.indexOf(find(openId))>2) openId=null;
+      render();
+      if(!showAll) cfg.scrollTarget.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+    self.set=function(list){posts=list;render();};
+    self.render=render;
   }
 
-  document.getElementById('novRows').addEventListener('click',function(e){
-    if(e.target.closest('[data-nov-close]')){
-      var c=document.querySelector('.nov-card.open');if(c){var id=openId;toggle(id,c);c.scrollIntoView({behavior:'smooth',block:'nearest'});}
-      return;
-    }
-    var c2=e.target.closest('[data-nov]');
-    if(c2) toggle(c2.getAttribute('data-nov'),c2);
-  });
-  document.getElementById('novMore').addEventListener('click',function(){
-    showAll=!showAll;
-    if(!showAll&&openId){var p=find(openId);if(posts.indexOf(p)>2)openId=null;}
-    render();
-    if(!showAll) sec.scrollIntoView({behavior:'smooth',block:'start'});
-  });
+  var novSec=document.getElementById('novedades');
+  var boards=[];
+  if(novSec){
+    boards.push({section:'novedades',board:new Board({
+      rows:document.getElementById('novRows'),moreWrap:document.getElementById('novMoreWrap'),more:document.getElementById('novMore'),scrollTarget:novSec,
+      onCount:function(n){
+        novSec.hidden=!n;
+        document.querySelectorAll('[data-nov-nav]').forEach(function(a){a.hidden=!n;a.textContent=T().nav;});
+        document.getElementById('novLabel').textContent=T().label;
+        document.getElementById('novTitle').textContent=T().title;
+      }
+    })});
+  }
+  var notWrap=document.getElementById('notBoard');
+  if(notWrap){
+    boards.push({section:'noticias',board:new Board({
+      rows:document.getElementById('notRows'),moreWrap:document.getElementById('notMoreWrap'),more:document.getElementById('notMore'),scrollTarget:document.getElementById('noticias'),
+      onCount:function(n){notWrap.hidden=!n;}
+    })});
+  }
+
+  var lastPerRow=perRow();
+  window.addEventListener('resize',function(){var n=perRow();if(n!==lastPerRow){lastPerRow=n;boards.forEach(function(b){b.board.render();});}});
 
   // Re-dibujar al cambiar de idioma
   var origSetLang=window.setLang;
   if(typeof origSetLang==='function'){
-    window.setLang=function(l){origSetLang.apply(this,arguments);render();};
+    window.setLang=function(){origSetLang.apply(this,arguments);boards.forEach(function(b){b.board.render();});};
   }
 
   fetch('api/novedades.php',{cache:'no-store'})
     .then(function(r){return r.ok?r.json():null;})
-    .then(function(j){if(j&&j.ok&&j.posts){posts=j.posts;render();}})
-    .catch(function(){/* sin servidor PHP: la sección sigue oculta */});
+    .then(function(j){
+      if(!j||!j.ok||!j.posts) return;
+      boards.forEach(function(b){
+        b.board.set(j.posts.filter(function(p){return (p.section||'novedades')===b.section;}));
+      });
+    })
+    .catch(function(){/* sin servidor PHP: las secciones siguen ocultas */});
 })();
 </script>
 
