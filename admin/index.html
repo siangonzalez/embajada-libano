@@ -113,6 +113,18 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
 .editor-wrap .ql-toolbar{border-radius:8px 8px 0 0;border-color:#cfcac0;background:#fbfaf7}
 .editor-wrap .ql-container{border-radius:0 0 8px 8px;border-color:#cfcac0;font-family:var(--font);font-size:15px}
 .editor-wrap .ql-editor{min-height:220px;max-height:55vh;overflow-y:auto;line-height:1.65}
+.editor-wrap .ql-editor hr{border:none;border-top:2px solid var(--line);margin:16px 0}
+.editor-wrap .ql-editor h4{font-size:1.05em}
+.editor-wrap .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="4"]::before,.editor-wrap .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="4"]::before{content:'Subtítulo pequeño'}
+.editor-wrap .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="2"]::before,.editor-wrap .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before{content:'Título'}
+.editor-wrap .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="3"]::before,.editor-wrap .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before{content:'Subtítulo'}
+.editor-wrap .ql-snow .ql-picker.ql-header .ql-picker-label::before,.editor-wrap .ql-snow .ql-picker.ql-header .ql-picker-item::before{content:'Normal'}
+.editor-wrap .ql-snow .ql-picker.ql-header{width:118px}
+.editor-wrap .ql-snow .ql-picker.ql-size .ql-picker-label::before,.editor-wrap .ql-snow .ql-picker.ql-size .ql-picker-item::before{content:'Normal'}
+.editor-wrap .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="small"]::before,.editor-wrap .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="small"]::before{content:'Pequeña'}
+.editor-wrap .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="large"]::before,.editor-wrap .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="large"]::before{content:'Grande'}
+.editor-wrap .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="huge"]::before,.editor-wrap .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="huge"]::before{content:'Muy grande'}
+.editor-wrap .ql-toolbar{position:sticky;top:0;z-index:3}
 .editor-wrap .ql-editor img{max-width:100%;height:auto;border-radius:6px}
 .editor-wrap .ql-editor .ql-video{width:100%;max-width:560px;aspect-ratio:16/9;height:auto}
 .editor-wrap .ql-snow .ql-tooltip{z-index:5}
@@ -348,6 +360,31 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
 'use strict';
 const API='admin/api.php';
 const LANGS=['es','en','ar'];
+
+/* ───── Editor de texto: opciones y extras ───── */
+const TOOLBAR=[
+  [{header:[2,3,4,false]}],[{size:['small',false,'large','huge']}],
+  ['bold','italic','underline','strike'],[{color:[]},{background:[]}],[{script:'sub'},{script:'super'}],
+  [{list:'ordered'},{list:'bullet'},{indent:'-1'},{indent:'+1'}],
+  [{align:[]},{direction:'rtl'}],
+  ['blockquote','divider','link','image','video'],['clean']
+];
+// Línea divisoria (no viene incluida en el editor)
+(function(){
+  const BlockEmbed=Quill.import('blots/block/embed');
+  class Divider extends BlockEmbed{}
+  Divider.blotName='divider';Divider.tagName='hr';
+  Quill.register(Divider);
+  Quill.import('ui/icons').divider='<svg viewBox="0 0 18 18"><line class="ql-stroke" x1="3" x2="15" y1="9" y2="9"></line></svg>';
+})();
+function insertDivider(q){const r=q.getSelection(true);q.insertEmbed(r.index,'divider',true,'user');q.setSelection(r.index+1,'silent');}
+// Nombres en español al pasar el mouse sobre cada botón
+const TIPS={'.ql-header':'Tipo de texto (título / normal)','.ql-size':'Tamaño de letra','.ql-bold':'Negrita','.ql-italic':'Cursiva','.ql-underline':'Subrayado','.ql-strike':'Tachado',
+  '.ql-color':'Color del texto','.ql-background':'Resaltar (color de fondo)','.ql-script[value="sub"]':'Subíndice','.ql-script[value="super"]':'Superíndice',
+  '.ql-list[value="ordered"]':'Lista numerada','.ql-list[value="bullet"]':'Lista con viñetas','.ql-indent[value="-1"]':'Reducir sangría','.ql-indent[value="+1"]':'Aumentar sangría',
+  '.ql-align':'Alineación','.ql-direction':'Texto de derecha a izquierda (árabe)','.ql-blockquote':'Cita','.ql-divider':'Línea divisoria','.ql-link':'Enlace',
+  '.ql-image':'Insertar imagen','.ql-video':'Insertar video de YouTube','.ql-clean':'Quitar formato'};
+function addTips(root){Object.entries(TIPS).forEach(([sel,t])=>root.querySelectorAll(sel).forEach(el=>el.setAttribute('title',t)));}
 let CSRF='', ME=null, POSTS=[], FILTER='all';
 let editing=null;           // publicación en edición
 const editors={};           // instancias de Quill por idioma
@@ -526,9 +563,10 @@ function buildPanes(){
     const q=new Quill(pane.querySelector('[data-editor]'),{
       theme:'snow',
       placeholder:ar?'اكتب المحتوى هنا…':l==='en'?'Write the content here…':'Escriba aquí el contenido completo…',
-      modules:{toolbar:{container:[[{header:[2,3,false]}],['bold','italic','underline','strike'],[{list:'ordered'},{list:'bullet'}],[{align:[]}],['blockquote','link','image','video'],['clean']],
-        handlers:{image:()=>pickImage(l)}}}
+      modules:{toolbar:{container:TOOLBAR,
+        handlers:{image:()=>pickImage(l),divider:function(){insertDivider(this.quill);}}}}
     });
+    addTips(q.getModule('toolbar').container);
     editors[l]=q;
   });
 }

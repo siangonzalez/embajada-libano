@@ -247,9 +247,10 @@ function emb_sanitize_html($html) {
 
     $allowed = array(
         'p' => array('class'), 'br' => array(), 'strong' => array(), 'b' => array(), 'em' => array(),
-        'i' => array(), 'u' => array(), 's' => array(), 'span' => array('class'),
+        'i' => array(), 'u' => array(), 's' => array(), 'span' => array('class', 'style'),
         'a' => array('href'), 'ul' => array('class'), 'ol' => array('class'), 'li' => array('class'),
-        'h2' => array('class'), 'h3' => array('class'), 'blockquote' => array('class'),
+        'h2' => array('class'), 'h3' => array('class'), 'h4' => array('class'), 'blockquote' => array('class'),
+        'sub' => array(), 'sup' => array(), 'hr' => array(),
         'img' => array('src', 'alt'), 'iframe' => array('src', 'class'),
     );
 
@@ -284,6 +285,17 @@ function emb_sanitize_html($html) {
                 $lname = strtolower($name);
                 $val = $child->getAttribute($name);
                 if (!in_array($lname, $allowed[$tag], true)) { $child->removeAttribute($name); continue; }
+                if ($lname === 'style') {
+                    // solo color de texto y de fondo, con valores simples
+                    $keep = array();
+                    foreach (explode(';', $val) as $decl) {
+                        if (preg_match('/^\s*(color|background-color)\s*:\s*(#[0-9a-fA-F]{3,8}|rgba?\(\s*[\d.]+%?\s*,\s*[\d.]+%?\s*,\s*[\d.]+%?\s*(,\s*[\d.]+\s*)?\)|[a-zA-Z]{3,20})\s*$/', $decl, $m)) {
+                            $keep[] = strtolower($m[1]) . ': ' . $m[2];
+                        }
+                    }
+                    if ($keep) $child->setAttribute('style', implode('; ', $keep)); else $child->removeAttribute('style');
+                    continue;
+                }
                 if ($lname === 'class') {
                     $keep = array();
                     foreach (preg_split('/\s+/', $val) as $cl) {
@@ -321,7 +333,7 @@ function emb_sanitize_html($html) {
                 $child->setAttribute('class', 'ql-video');
                 $child->setAttribute('loading', 'lazy');
             }
-            if ($tag !== 'img' && $tag !== 'br' && $tag !== 'iframe') $walk($child);
+            if ($tag !== 'img' && $tag !== 'br' && $tag !== 'iframe' && $tag !== 'hr') $walk($child);
             else { while ($child->firstChild) $child->removeChild($child->firstChild); }
         }
     };
