@@ -198,6 +198,7 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
   .opts,.grid2{grid-template-columns:1fr}
   .cover-prev{width:100%}
 }
+.ok-msg{background:#eaf6ee;color:#1d6b3a;border:1px solid #bfe3cc;border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:14px;line-height:1.45}
 </style>
 </head>
 <body>
@@ -216,6 +217,7 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
     <div class="field"><label for="sKey">Clave de configuración</label><input class="input" id="sKey" type="password" required><div class="hint">La entregó el administrador técnico del sitio.</div></div>
     <div class="field"><label for="sName">Su nombre</label><input class="input" id="sName" required maxlength="80"></div>
     <div class="field"><label for="sUser">Usuario</label><input class="input" id="sUser" required pattern="[a-z0-9._\-]{3,32}" autocapitalize="none" autocomplete="username"><div class="hint">Minúsculas, sin espacios. Ej: sian.gonzalez</div></div>
+    <div class="field"><label for="sEmail">Correo de recuperación <span style="font-weight:400;color:var(--muted)">(opcional)</span></label><input class="input" id="sEmail" type="email" maxlength="120" autocomplete="email"><div class="hint">Si olvida la contraseña, le llegará aquí un enlace para crear una nueva.</div></div>
     <div class="field"><label for="sPass">Contraseña</label><input class="input" id="sPass" type="password" required minlength="10" autocomplete="new-password"><div class="hint">Mínimo 10 caracteres, con letras y números.</div></div>
     <div class="field"><label for="sPass2">Repita la contraseña</label><input class="input" id="sPass2" type="password" required autocomplete="new-password"></div>
     <button class="btn btn-primary btn-block" type="submit">Crear cuenta y entrar</button>
@@ -232,7 +234,54 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
     <div class="field"><label for="lUser">Usuario</label><input class="input" id="lUser" required autocapitalize="none" autocomplete="username"></div>
     <div class="field"><label for="lPass">Contraseña</label><input class="input" id="lPass" type="password" required autocomplete="current-password"></div>
     <button class="btn btn-primary btn-block" type="submit">Entrar</button>
-    <p class="sub" style="margin:18px 0 0;font-size:13px"><a href="./">← Volver al sitio</a></p>
+    <p class="sub" style="margin:14px 0 0;font-size:14px"><a href="#" id="lnkForgot">¿Olvidó su contraseña?</a></p>
+    <p class="sub" style="margin:10px 0 0;font-size:13px"><a href="./">← Volver al sitio</a></p>
+  </form>
+</div>
+
+<!-- Recuperar contraseña: pedir enlace -->
+<div id="vForgot" class="auth" hidden>
+  <form class="auth-card" id="fForgot">
+    <img class="auth-logo" src="Logo_2025.png" alt="">
+    <h1>Recuperar contraseña</h1>
+    <p class="sub">Escriba su usuario o su correo. Le enviaremos un enlace para crear una contraseña nueva.</p>
+    <div class="err" id="forgotErr" hidden></div>
+    <div class="ok-msg" id="forgotOk" hidden></div>
+    <div class="field"><label for="fId">Usuario o correo</label><input class="input" id="fId" required autocapitalize="none" autocomplete="username"></div>
+    <button class="btn btn-primary btn-block" type="submit">Enviar enlace</button>
+    <p class="sub" style="margin:14px 0 0;font-size:13px">¿No tiene un correo registrado? Pida a un administrador del panel que le asigne una contraseña nueva.</p>
+    <p class="sub" id="keyRecoveryLink" style="margin:10px 0 0;font-size:13px" hidden><a href="#" id="lnkKeyReset">Soy el administrador técnico: usar la clave de configuración</a></p>
+    <p class="sub" style="margin:10px 0 0;font-size:13px"><a href="#" data-back-login>← Volver al ingreso</a></p>
+  </form>
+</div>
+
+<!-- Recuperar contraseña: crear la nueva (desde el enlace del correo) -->
+<div id="vReset" class="auth" hidden>
+  <form class="auth-card" id="fReset">
+    <img class="auth-logo" src="Logo_2025.png" alt="">
+    <h1>Nueva contraseña</h1>
+    <p class="sub" id="resetSub">Cree una contraseña nueva para su cuenta.</p>
+    <div class="err" id="resetErr" hidden></div>
+    <div class="field"><label for="rPass">Nueva contraseña</label><input class="input" id="rPass" type="password" required minlength="10" autocomplete="new-password"><div class="hint">Mínimo 10 caracteres, con letras y números.</div></div>
+    <div class="field"><label for="rPass2">Repítala</label><input class="input" id="rPass2" type="password" required autocomplete="new-password"></div>
+    <button class="btn btn-primary btn-block" type="submit">Guardar y entrar</button>
+    <p class="sub" style="margin:14px 0 0;font-size:13px"><a href="#" data-back-login>← Volver al ingreso</a></p>
+  </form>
+</div>
+
+<!-- Recuperar con la clave de configuración -->
+<div id="vKeyReset" class="auth" hidden>
+  <form class="auth-card" id="fKeyReset" autocomplete="off">
+    <img class="auth-logo" src="Logo_2025.png" alt="">
+    <h1>Restablecer con clave</h1>
+    <p class="sub">Solo para el administrador técnico del sitio. Use la clave de configuración del panel.</p>
+    <div class="err" id="keyResetErr" hidden></div>
+    <div class="field"><label for="kKey">Clave de configuración</label><input class="input" id="kKey" type="password" required></div>
+    <div class="field"><label for="kUser">Usuario</label><input class="input" id="kUser" required autocapitalize="none"></div>
+    <div class="field"><label for="kPass">Nueva contraseña</label><input class="input" id="kPass" type="password" required minlength="10" autocomplete="new-password"><div class="hint">Mínimo 10 caracteres, con letras y números.</div></div>
+    <div class="field"><label for="kPass2">Repítala</label><input class="input" id="kPass2" type="password" required autocomplete="new-password"></div>
+    <button class="btn btn-primary btn-block" type="submit">Guardar contraseña</button>
+    <p class="sub" style="margin:14px 0 0;font-size:13px"><a href="#" data-back-login>← Volver al ingreso</a></p>
   </form>
 </div>
 
@@ -339,6 +388,15 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
         </div>
         <button class="btn btn-primary btn-sm" type="submit">Guardar contraseña</button>
       </form>
+      <form id="fEmail" class="block">
+        <h4>Correo de recuperación</h4>
+        <p class="desc" id="emailDesc">Si olvida su contraseña, le llegará a este correo un enlace para crear una nueva.</p>
+        <div class="grid2">
+          <div class="field"><label for="eEmail">Correo</label><input class="input" type="email" id="eEmail" maxlength="120" autocomplete="email"></div>
+          <div class="field"><label for="eCur">Contraseña actual</label><input class="input" type="password" id="eCur" required autocomplete="current-password"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" type="submit">Guardar correo</button>
+      </form>
       <div class="block" id="usersBlock" hidden>
         <h4>Usuarios del panel</h4>
         <p class="desc">Personas que pueden publicar. Los administradores además pueden crear y eliminar usuarios.</p>
@@ -347,6 +405,7 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
           <div class="grid2">
             <div class="field"><label for="uName">Nombre</label><input class="input" id="uName" required maxlength="80"></div>
             <div class="field"><label for="uUser">Usuario</label><input class="input" id="uUser" required autocapitalize="none" pattern="[a-z0-9._\-]{3,32}"></div>
+            <div class="field"><label for="uEmail">Correo de recuperación <span style="font-weight:400;color:var(--muted)">(opcional)</span></label><input class="input" id="uEmail" type="email" maxlength="120"></div>
             <div class="field"><label for="uPass">Contraseña temporal</label><input class="input" id="uPass" required autocomplete="new-password"></div>
             <div class="field"><label for="uRole">Permisos</label><select class="input" id="uRole"><option value="editor">Editor (solo publicaciones)</option><option value="admin">Administrador</option></select></div>
           </div>
@@ -427,6 +486,7 @@ const TIPS={'.ql-header':'Tipo de texto (título / normal)','.ql-size':'Tamaño 
   '.ql-align':'Alineación','.ql-direction':'Texto de derecha a izquierda (árabe)','.ql-blockquote':'Cita','.ql-divider':'Línea divisoria','.ql-link':'Enlace',
   '.ql-image':'Insertar imagen','.ql-video':'Insertar video de YouTube','.ql-clean':'Quitar formato'};
 function addTips(root){Object.entries(TIPS).forEach(([sel,t])=>root.querySelectorAll(sel).forEach(el=>el.setAttribute('title',t)));}
+let KEY_RECOVERY=false, RESET_TOKEN='';
 let CSRF='', ME=null, POSTS=[], FILTER='all';
 let editing=null;           // publicación en edición
 const editors={};           // instancias de Quill por idioma
@@ -463,7 +523,7 @@ function upload(file,kind,onProgress){
 }
 
 /* ───── Utilidades de interfaz ───── */
-function showView(id){['vLoading','vSetup','vLogin','vApp'].forEach(v=>$('#'+v).hidden=v!==id);}
+function showView(id){['vLoading','vSetup','vLogin','vForgot','vReset','vKeyReset','vApp'].forEach(v=>$('#'+v).hidden=v!==id);}
 let toastT;
 function toast(msg,bad){const t=$('#toast');t.textContent=msg;t.className='toast show'+(bad?' bad':'');clearTimeout(toastT);toastT=setTimeout(()=>t.className='toast',3800);}
 function showErr(el,msg){el.textContent=msg;el.hidden=!msg;}
@@ -482,6 +542,15 @@ async function boot(){
   try{
     const s=await api('status');
     CSRF=s.csrf;
+    KEY_RECOVERY=!!s.keyRecovery;
+    const m=location.hash.match(/^#reset=([a-f0-9]{64})$/);
+    if(m&&!s.needsSetup){
+      RESET_TOKEN=m[1];
+      history.replaceState(null,'',location.pathname+location.search); // no dejar el token en la barra
+      try{const r=await api('reset_check',{method:'POST',data:{token:RESET_TOKEN}});$('#resetSub').textContent='Cree una contraseña nueva para el usuario '+r.username+'.';showView('vReset');}
+      catch(x){showView('vForgot');showErr($('#forgotErr'),x.message);}
+      return;
+    }
     if(s.needsSetup){
       $('#setupDisabled').hidden=s.setupEnabled;
       $('#fSetup').querySelectorAll('input,button').forEach(i=>i.disabled=!s.setupEnabled);
@@ -497,7 +566,7 @@ $('#fSetup').addEventListener('submit',async e=>{
   e.preventDefault();const err=$('#setupErr');showErr(err,'');
   if($('#sPass').value!==$('#sPass2').value)return showErr(err,'Las contraseñas no coinciden.');
   try{
-    const r=await busy(e.submitter||$('#fSetup button'),()=>api('setup',{method:'POST',data:{key:$('#sKey').value,name:$('#sName').value,username:$('#sUser').value,password:$('#sPass').value}}));
+    const r=await busy(e.submitter||$('#fSetup button'),()=>api('setup',{method:'POST',data:{key:$('#sKey').value,name:$('#sName').value,username:$('#sUser').value,email:$('#sEmail').value,password:$('#sPass').value}}));
     enterApp(r.user);toast('¡Listo! Su cuenta fue creada.');
   }catch(x){showErr(err,x.message);}
 });
@@ -510,7 +579,38 @@ $('#fLogin').addEventListener('submit',async e=>{
   }catch(x){showErr(err,x.message);}
 });
 
-$('#btnLogout').addEventListener('click',async()=>{try{await api('logout',{method:'POST'});}catch(e){}ME=null;showView('vLogin');});
+/* ───── Recuperar contraseña ───── */
+$('#lnkForgot').onclick=e=>{e.preventDefault();$('#fForgot').reset();showErr($('#forgotErr'),'');$('#forgotOk').hidden=true;$('#fId').value=$('#lUser').value;$('#keyRecoveryLink').hidden=!KEY_RECOVERY;showView('vForgot');$('#fId').focus();};
+$('#lnkKeyReset').onclick=e=>{e.preventDefault();$('#fKeyReset').reset();showErr($('#keyResetErr'),'');$('#kUser').value=$('#fId').value.includes('@')?'':$('#fId').value;showView('vKeyReset');$('#kKey').focus();};
+$$('[data-back-login]').forEach(a=>a.onclick=e=>{e.preventDefault();showErr($('#loginErr'),'');showView('vLogin');});
+$('#fForgot').addEventListener('submit',async e=>{
+  e.preventDefault();const err=$('#forgotErr');showErr(err,'');$('#forgotOk').hidden=true;
+  try{
+    const r=await busy($('#fForgot button'),()=>api('forgot',{method:'POST',data:{id:$('#fId').value}}));
+    $('#forgotOk').textContent=r.message;$('#forgotOk').hidden=false;
+  }catch(x){showErr(err,x.message);}
+});
+$('#fReset').addEventListener('submit',async e=>{
+  e.preventDefault();const err=$('#resetErr');showErr(err,'');
+  if($('#rPass').value!==$('#rPass2').value)return showErr(err,'Las contraseñas no coinciden.');
+  try{
+    const r=await busy($('#fReset button'),()=>api('reset',{method:'POST',data:{token:RESET_TOKEN,password:$('#rPass').value}}));
+    const pw=$('#rPass').value;RESET_TOKEN='';$('#fReset').reset();
+    const l=await api('login',{method:'POST',data:{username:r.username,password:pw}});
+    enterApp(l.user);toast('Contraseña actualizada');
+  }catch(x){showErr(err,x.message);}
+});
+$('#fKeyReset').addEventListener('submit',async e=>{
+  e.preventDefault();const err=$('#keyResetErr');showErr(err,'');
+  if($('#kPass').value!==$('#kPass2').value)return showErr(err,'Las contraseñas no coinciden.');
+  try{
+    await busy($('#fKeyReset button'),()=>api('key_reset',{method:'POST',data:{key:$('#kKey').value,username:$('#kUser').value,password:$('#kPass').value}}));
+    const u=$('#kUser').value;$('#fKeyReset').reset();
+    $('#lUser').value=u;$('#lPass').value='';showView('vLogin');toast('Contraseña cambiada. Ya puede entrar.');$('#lPass').focus();
+  }catch(x){showErr(err,x.message);}
+});
+
+$('#btnLogout').addEventListener('click',async()=>{try{const r=await api('logout',{method:'POST'});if(r.csrf)CSRF=r.csrf;}catch(e){}ME=null;showView('vLogin');});
 
 function enterApp(user){
   ME=user;
@@ -783,7 +883,8 @@ $('#btnDraft').onclick=()=>save('draft',$('#btnDraft'));
 
 /* ───── Cuenta y usuarios ───── */
 $('#btnAccount').onclick=()=>{
-  $('#fPass').reset();$('#usersBlock').hidden=ME.role!=='admin';
+  $('#fPass').reset();$('#fEmail').reset();$('#usersBlock').hidden=ME.role!=='admin';
+  api('me').then(r=>{$('#eEmail').value=r.email||'';}).catch(()=>{});
   if(ME.role==='admin')loadUsers();
   openOverlay($('#account'));
 };
@@ -793,10 +894,15 @@ $('#fPass').addEventListener('submit',async e=>{
   try{await busy($('#fPass button'),()=>api('password',{method:'POST',data:{current:$('#pCur').value,new:$('#pNew').value}}));$('#fPass').reset();toast('Contraseña actualizada');}
   catch(x){toast(x.message,true);}
 });
+$('#fEmail').addEventListener('submit',async e=>{
+  e.preventDefault();
+  try{await busy($('#fEmail button'),()=>api('email',{method:'POST',data:{email:$('#eEmail').value,current:$('#eCur').value}}));$('#eCur').value='';toast($('#eEmail').value?'Correo de recuperación guardado':'Correo de recuperación eliminado');}
+  catch(x){toast(x.message,true);}
+});
 async function loadUsers(){
   try{
     const{users}=await api('users');
-    $('#usersBody').innerHTML=users.map(u=>`<tr><td><b>${esc(u.name)}</b><br><span style="color:var(--muted);font-size:13px">${esc(u.username)}</span></td><td><span class="role">${u.role==='admin'?'Administrador':'Editor'}</span></td><td>
+    $('#usersBody').innerHTML=users.map(u=>`<tr><td><b>${esc(u.name)}</b><br><span style="color:var(--muted);font-size:13px">${esc(u.username)}${u.email?' · '+esc(u.email):' · sin correo de recuperación'}</span></td><td><span class="role">${u.role==='admin'?'Administrador':'Editor'}</span></td><td>
       <button class="btn btn-ghost btn-sm" data-reset="${esc(u.username)}">Nueva clave</button>
       ${u.username===ME.username?'':`<button class="btn btn-danger btn-sm" data-deluser="${esc(u.username)}">Eliminar</button>`}</td></tr>`).join('');
     $$('[data-reset]').forEach(b=>b.onclick=async()=>{
@@ -812,13 +918,15 @@ async function loadUsers(){
 $('#fUser').addEventListener('submit',async e=>{
   e.preventDefault();
   try{
-    await busy($('#fUser button'),()=>api('user_add',{method:'POST',data:{name:$('#uName').value,username:$('#uUser').value,password:$('#uPass').value,role:$('#uRole').value}}));
+    await busy($('#fUser button'),()=>api('user_add',{method:'POST',data:{name:$('#uName').value,username:$('#uUser').value,email:$('#uEmail').value,password:$('#uPass').value,role:$('#uRole').value}}));
     toast('Usuario creado. Comparta el usuario y la contraseña por un medio seguro.');$('#fUser').reset();loadUsers();
   }catch(x){toast(x.message,true);}
 });
 
 buildPanes();
 boot();
+// si el enlace del correo se abre en una pestaña donde el panel ya estaba abierto
+window.addEventListener('hashchange',()=>{if(/^#reset=/.test(location.hash))boot();});
 })();
 </script>
 </body>

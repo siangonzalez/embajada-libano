@@ -36,6 +36,7 @@ case 'status:GET':
         'ok' => true,
         'needsSetup' => $needsSetup,
         'setupEnabled' => $needsSetup && emb_setup_key() !== '',
+        'keyRecovery' => !$needsSetup && emb_setup_key() !== '',
         'user' => emb_current_user(),
         'csrf' => $_SESSION['csrf'],
     ));
@@ -50,11 +51,13 @@ case 'setup:POST':
     $name = emb_clean_text(arg('name'), 80);
     $user = strtolower(trim((string)arg('username')));
     $pass = (string)arg('password');
+    $email = strtolower(trim((string)arg('email')));
     if ($name === '') emb_fail('Escriba su nombre.');
+    if (!emb_valid_email($email)) emb_fail('Escriba un correo válido o déjelo vacío.');
     if (!emb_valid_username($user)) emb_fail('El usuario debe tener entre 3 y 32 caracteres: letras minúsculas, números, punto, guion o guion bajo.');
     if ($e = emb_password_problem($pass)) emb_fail($e);
     emb_write_json('users', array($user => array(
-        'name' => $name, 'role' => 'admin',
+        'name' => $name, 'role' => 'admin', 'email' => $email,
         'hash' => password_hash($pass, PASSWORD_DEFAULT), 'created' => date('c'),
     )));
     emb_login_attempt(true);
@@ -87,6 +90,57 @@ case 'login:POST':
 case 'logout:POST':
     $_SESSION = array();
     session_regenerate_id(true);
+    $_SESSION['csrf'] = bin2hex(random_bytes(32));
+    emb_json(array('ok' => true, 'csrf' => $_SESSION['csrf']));
+
+/* ───────── Recuperar contraseña ───────── */
+case 'forgot:POST':
+    // Respuesta siempre igual, exista o no el usuario, para no revelar quién tiene cuenta.
+    $generic = array('ok' => true, 'message' => 'Si el usuario o correo existe y tiene un correo de recuperación registrado, le llegará un enlace en unos minutos. Revise también la carpeta de correo no deseado.');
+    if ($wait = emb_login_locked()) emb_fail('Demasiados intentos. Espere ' . ceil($wait / 60) . ' minutos.', 429);
+    emb_login_attempt(false); // cuenta como intento, para limitar envíos masivos
+    $u = emb_find_user(arg('id'));
+    if ($u === null) emb_json($generic);
+    $users = emb_users();
+    if (empty($users[$u]['email'])) emb_json($generic);
+    $token = emb_create_reset($u);
+    emb_send_reset_mail($users[$u]['email'], $users[$u]['name'], emb_site_url() . '/admin/#reset=' . $token);
+    emb_json($generic);
+
+case 'reset_check:POST':
+    $u = emb_reset_owner((string)arg('token'));
+    if ($u === null) emb_fail('El enlace no es válido o ya venció. Pida uno nuevo.', 410);
+    emb_json(array('ok' => true, 'username' => $u));
+
+case 'reset:POST':
+    if ($wait = emb_login_locked()) emb_fail('Demasiados intentos. Espere ' . ceil($wait / 60) . ' minutos.', 429);
+    $u = emb_reset_owner((string)arg('token'));
+    if ($u === null) { emb_login_attempt(false); emb_fail('El enlace no es válido o ya venció. Pida uno nuevo.', 410); }
+    $pass = (string)arg('password');
+    if ($e = emb_password_problem($pass)) emb_fail($e);
+    $users = emb_users();
+    if (!isset($users[$u])) emb_fail('Ese usuario ya no existe.', 410);
+    $users[$u]['hash'] = password_hash($pass, PASSWORD_DEFAULT);
+    emb_write_json('users', $users);
+    emb_clear_reset($u);
+    emb_login_attempt(true);
+    emb_json(array('ok' => true, 'username' => $u));
+
+/* Restablecer con la clave de configuración (para el administrador técnico, sin correo). */
+case 'key_reset:POST':
+    $key = emb_setup_key();
+    if ($key === '') emb_fail('Esta opción no está habilitada.', 403);
+    if ($wait = emb_login_locked()) emb_fail('Demasiados intentos. Espere ' . ceil($wait / 60) . ' minutos.', 429);
+    if (!hash_equals($key, (string)arg('key'))) { emb_login_attempt(false); emb_fail('La clave de configuración no es correcta.', 403); }
+    $users = emb_users();
+    $u = strtolower(trim((string)arg('username')));
+    if (!isset($users[$u])) { emb_login_attempt(false); emb_fail('Ese usuario no existe.'); }
+    $pass = (string)arg('password');
+    if ($e = emb_password_problem($pass)) emb_fail($e);
+    $users[$u]['hash'] = password_hash($pass, PASSWORD_DEFAULT);
+    emb_write_json('users', $users);
+    emb_clear_reset($u);
+    emb_login_attempt(true);
     emb_json(array('ok' => true));
 
 /* ───────── Publicaciones ───────── */
@@ -278,10 +332,26 @@ case 'password:POST':
     session_regenerate_id(true);
     emb_json(array('ok' => true));
 
+case 'me:GET':
+    $me = emb_require_user();
+    $users = emb_users();
+    emb_json(array('ok' => true, 'email' => isset($users[$me['username']]['email']) ? $users[$me['username']]['email'] : ''));
+
+case 'email:POST':
+    $me = emb_require_user();
+    $users = emb_users();
+    if (!password_verify((string)arg('current'), $users[$me['username']]['hash'])) emb_fail('La contraseña actual no es correcta.');
+    $email = strtolower(trim((string)arg('email')));
+    if (!emb_valid_email($email)) emb_fail('Escriba un correo válido.');
+    if ($email !== '' && ($o = emb_find_user($email)) !== null && $o !== $me['username']) emb_fail('Ese correo ya lo usa otro usuario.');
+    $users[$me['username']]['email'] = $email;
+    emb_write_json('users', $users);
+    emb_json(array('ok' => true));
+
 case 'users:GET':
     emb_require_admin();
     $list = array();
-    foreach (emb_users() as $u => $info) $list[] = array('username' => $u, 'name' => $info['name'], 'role' => $info['role']);
+    foreach (emb_users() as $u => $info) $list[] = array('username' => $u, 'name' => $info['name'], 'role' => $info['role'], 'email' => isset($info['email']) ? $info['email'] : '');
     emb_json(array('ok' => true, 'users' => $list));
 
 case 'user_add:POST':
@@ -291,11 +361,14 @@ case 'user_add:POST':
     $user = strtolower(trim((string)arg('username')));
     $pass = (string)arg('password');
     $role = arg('role') === 'admin' ? 'admin' : 'editor';
+    $email = strtolower(trim((string)arg('email')));
     if ($name === '') emb_fail('Escriba el nombre de la persona.');
+    if (!emb_valid_email($email)) emb_fail('Escriba un correo válido o déjelo vacío.');
+    if ($email !== '' && emb_find_user($email) !== null) emb_fail('Ese correo ya lo usa otro usuario.');
     if (!emb_valid_username($user)) emb_fail('El usuario debe tener entre 3 y 32 caracteres: letras minúsculas, números, punto, guion o guion bajo.');
     if (isset($users[$user])) emb_fail('Ese usuario ya existe.');
     if ($e = emb_password_problem($pass)) emb_fail($e);
-    $users[$user] = array('name' => $name, 'role' => $role, 'hash' => password_hash($pass, PASSWORD_DEFAULT), 'created' => date('c'));
+    $users[$user] = array('name' => $name, 'role' => $role, 'email' => $email, 'hash' => password_hash($pass, PASSWORD_DEFAULT), 'created' => date('c'));
     emb_write_json('users', $users);
     emb_json(array('ok' => true));
 

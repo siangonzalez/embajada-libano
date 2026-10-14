@@ -489,3 +489,73 @@ function emb_clean_link($in) {
         'site' => emb_clean_text(isset($in['site']) ? $in['site'] : '', 80),
     );
 }
+
+/* ───────────── Recuperación de contraseña ───────────── */
+
+const EMB_RESET_TTL = 3600;          // el enlace de recuperación vale 1 hora
+const EMB_SITE_URL = 'https://embajadalibanocolombia.co';
+
+function emb_valid_email($e) {
+    return $e === '' || (strlen($e) <= 120 && filter_var($e, FILTER_VALIDATE_EMAIL));
+}
+
+/** Busca un usuario por nombre de usuario o por correo. Devuelve el nombre de usuario o null. */
+function emb_find_user($id) {
+    $id = strtolower(trim((string)$id));
+    if ($id === '') return null;
+    $users = emb_users();
+    if (isset($users[$id])) return $id;
+    foreach ($users as $u => $info) {
+        if (!empty($info['email']) && strtolower($info['email']) === $id) return $u;
+    }
+    return null;
+}
+
+/** Dirección base del sitio para los enlaces del correo (nunca se toma a ciegas del encabezado Host). */
+function emb_site_url() {
+    $host = isset($_SERVER['HTTP_HOST']) ? strtolower($_SERVER['HTTP_HOST']) : '';
+    if (preg_match('/^(localhost|127\.0\.0\.1)(:\d+)?$/', $host)) return 'http://' . $host;
+    return EMB_SITE_URL;
+}
+
+/** Crea un enlace de recuperación de un solo uso. Guarda solo el hash del token. */
+function emb_create_reset($user) {
+    $resets = emb_read_json('resets', array());
+    foreach ($resets as $k => $r) { if ($r['exp'] < time()) unset($resets[$k]); }
+    $token = bin2hex(random_bytes(32));
+    $resets[$user] = array('hash' => hash('sha256', $token), 'exp' => time() + EMB_RESET_TTL);
+    emb_write_json('resets', $resets);
+    return $token;
+}
+
+/** Devuelve el usuario dueño de un token vigente, o null. */
+function emb_reset_owner($token) {
+    if (!is_string($token) || !preg_match('/^[a-f0-9]{64}$/', $token)) return null;
+    $h = hash('sha256', $token);
+    foreach (emb_read_json('resets', array()) as $u => $r) {
+        if ($r['exp'] >= time() && hash_equals($r['hash'], $h)) return $u;
+    }
+    return null;
+}
+
+function emb_clear_reset($user) {
+    $resets = emb_read_json('resets', array());
+    if (isset($resets[$user])) { unset($resets[$user]); emb_write_json('resets', $resets); }
+}
+
+/** Envía el correo con el enlace de recuperación. */
+function emb_send_reset_mail($to, $name, $link) {
+    $subject = '=?UTF-8?B?' . base64_encode('Recuperar contraseña — Panel de la Embajada del Líbano') . '?=';
+    $body = "Hola " . $name . ",\r\n\r\n"
+        . "Recibimos una solicitud para cambiar la contraseña del Panel de Publicaciones de la Embajada del Líbano en Colombia.\r\n\r\n"
+        . "Para crear una contraseña nueva, abra este enlace (vale por 1 hora y se puede usar una sola vez):\r\n\r\n"
+        . $link . "\r\n\r\n"
+        . "Si usted no pidió este cambio, ignore este mensaje: su contraseña actual sigue funcionando.\r\n";
+    $from = 'no-reply@embajadalibanocolombia.co';
+    $headers = "From: =?UTF-8?B?" . base64_encode('Embajada del Líbano — Panel') . "?= <" . $from . ">\r\n"
+        . "MIME-Version: 1.0\r\n"
+        . "Content-Type: text/plain; charset=UTF-8\r\n"
+        . "Content-Transfer-Encoding: 8bit\r\n";
+    if (!function_exists('mail')) return false;
+    return @mail($to, $subject, $body, $headers, '-f' . $from);
+}
