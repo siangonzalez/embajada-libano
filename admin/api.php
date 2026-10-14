@@ -126,6 +126,16 @@ case 'reset:POST':
     emb_login_attempt(true);
     emb_json(array('ok' => true, 'username' => $u));
 
+/* Lista de usuarios para el administrador técnico (requiere la clave de configuración). */
+case 'key_users:POST':
+    $key = emb_setup_key();
+    if ($key === '') emb_fail('Esta opción no está habilitada.', 403);
+    if ($wait = emb_login_locked()) emb_fail('Demasiados intentos. Espere ' . ceil($wait / 60) . ' minutos.', 429);
+    if (!hash_equals($key, (string)arg('key'))) { emb_login_attempt(false); emb_fail('La clave de configuración no es correcta.', 403); }
+    $list = array();
+    foreach (emb_users() as $u => $info) $list[] = array('username' => $u, 'name' => $info['name'], 'role' => $info['role']);
+    emb_json(array('ok' => true, 'users' => $list));
+
 /* Restablecer con la clave de configuración (para el administrador técnico, sin correo). */
 case 'key_reset:POST':
     $key = emb_setup_key();

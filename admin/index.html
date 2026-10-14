@@ -277,7 +277,7 @@ main{max-width:980px;margin:0 auto;padding:24px 20px 80px}
     <p class="sub">Solo para el administrador técnico del sitio. Use la clave de configuración del panel.</p>
     <div class="err" id="keyResetErr" hidden></div>
     <div class="field"><label for="kKey">Clave de configuración</label><input class="input" id="kKey" type="password" required></div>
-    <div class="field"><label for="kUser">Usuario</label><input class="input" id="kUser" required autocapitalize="none"></div>
+    <div class="field"><label for="kUser">Usuario</label><input class="input" id="kUser" required autocapitalize="none"><div class="hint"><a href="#" id="lnkKeyUsers">¿No recuerda el usuario? Ver los usuarios del panel</a></div><div id="keyUsers" class="hint" hidden></div></div>
     <div class="field"><label for="kPass">Nueva contraseña</label><input class="input" id="kPass" type="password" required minlength="10" autocomplete="new-password"><div class="hint">Mínimo 10 caracteres, con letras y números.</div></div>
     <div class="field"><label for="kPass2">Repítala</label><input class="input" id="kPass2" type="password" required autocomplete="new-password"></div>
     <button class="btn btn-primary btn-block" type="submit">Guardar contraseña</button>
@@ -581,7 +581,7 @@ $('#fLogin').addEventListener('submit',async e=>{
 
 /* ───── Recuperar contraseña ───── */
 $('#lnkForgot').onclick=e=>{e.preventDefault();$('#fForgot').reset();showErr($('#forgotErr'),'');$('#forgotOk').hidden=true;$('#fId').value=$('#lUser').value;$('#keyRecoveryLink').hidden=!KEY_RECOVERY;showView('vForgot');$('#fId').focus();};
-$('#lnkKeyReset').onclick=e=>{e.preventDefault();$('#fKeyReset').reset();showErr($('#keyResetErr'),'');$('#kUser').value=$('#fId').value.includes('@')?'':$('#fId').value;showView('vKeyReset');$('#kKey').focus();};
+$('#lnkKeyReset').onclick=e=>{e.preventDefault();$('#fKeyReset').reset();showErr($('#keyResetErr'),'');$('#kUser').value=$('#fId').value.includes('@')?'':$('#fId').value;$('#keyUsers').hidden=true;showView('vKeyReset');$('#kKey').focus();};
 $$('[data-back-login]').forEach(a=>a.onclick=e=>{e.preventDefault();showErr($('#loginErr'),'');showView('vLogin');});
 $('#fForgot').addEventListener('submit',async e=>{
   e.preventDefault();const err=$('#forgotErr');showErr(err,'');$('#forgotOk').hidden=true;
@@ -600,6 +600,17 @@ $('#fReset').addEventListener('submit',async e=>{
     enterApp(l.user);toast('Contraseña actualizada');
   }catch(x){showErr(err,x.message);}
 });
+$('#lnkKeyUsers').onclick=async e=>{
+  e.preventDefault();const err=$('#keyResetErr');showErr(err,'');
+  if(!$('#kKey').value){$('#kKey').focus();return showErr(err,'Primero escriba la clave de configuración.');}
+  try{
+    const r=await api('key_users',{method:'POST',data:{key:$('#kKey').value}});
+    const box=$('#keyUsers');
+    box.innerHTML='Toque uno para usarlo: '+r.users.map(u=>`<a href="#" data-pick="${esc(u.username)}"><b>${esc(u.username)}</b></a> (${esc(u.name)}, ${u.role==='admin'?'administrador':'editor'})`).join(' · ');
+    box.hidden=false;
+    box.querySelectorAll('[data-pick]').forEach(a=>a.onclick=ev=>{ev.preventDefault();$('#kUser').value=a.dataset.pick;$('#kPass').focus();});
+  }catch(x){showErr(err,x.message);}
+};
 $('#fKeyReset').addEventListener('submit',async e=>{
   e.preventDefault();const err=$('#keyResetErr');showErr(err,'');
   if($('#kPass').value!==$('#kPass2').value)return showErr(err,'Las contraseñas no coinciden.');
