@@ -243,12 +243,12 @@ html[lang="ar"] .news-title{font-family:var(--font-arabic)}
 .fact-label{font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
 html[lang="ar"] .fact-label{letter-spacing:0;text-transform:none}
 .fact-value{font-size:17px;font-weight:500;color:var(--text-dark)}
-.holidays-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.holiday-item{background:var(--white);border:1px solid var(--warm-gray);border-radius:8px;padding:16px 20px;display:flex;gap:16px;align-items:center}
-.holiday-date{font-family:var(--font-serif);font-size:20px;font-weight:500;color:var(--cedar);min-width:48px;text-align:center;line-height:1}
-.holiday-month{font-size:11px;color:var(--text-muted);text-align:center;margin-top:2px}
-.holiday-name{font-size:16px;font-weight:400;color:var(--text-dark)}
-.holiday-type{font-size:13px;color:var(--text-muted);margin-top:2px}
+.holidays-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.holiday-item{background:var(--white);border:1px solid var(--warm-gray);border-radius:6px;padding:10px 14px;display:flex;gap:12px;align-items:center}
+.holiday-date{font-family:var(--font-serif);font-size:18px;font-weight:500;color:var(--cedar);min-width:36px;text-align:center;line-height:1}
+.holiday-month{font-size:10px;color:var(--text-muted);text-align:center;margin-top:2px}
+.holiday-name{font-size:14px;font-weight:400;color:var(--text-dark)}
+.holiday-type{font-size:11px;color:var(--text-muted);margin-top:2px}
 
 /* CONTACT */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
@@ -772,11 +772,12 @@ html[lang="ar"] .float-item .float-label {
         <div class="fact-card"><div class="fact-label" data-i18n="fact_capital">Capital</div><div class="fact-value">Beirut</div></div>
         <div class="fact-card"><div class="fact-label" data-i18n="fact_area">Superficie</div><div class="fact-value">10.452 km²</div></div>
         <div class="fact-card"><div class="fact-label" data-i18n="fact_pop">Población</div><div class="fact-value">~4,5 millones</div></div>
-        <div class="fact-card"><div class="fact-label" data-i18n="fact_lang">Idioma oficial</div><div class="fact-value" data-i18n="fact_lang_val">Árabe (también francés e inglés)</div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_lang">Idioma oficial</div><div class="fact-value" data-i18n="fact_lang_val">Árabe</div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_spoken_lang">Idioma hablado</div><div class="fact-value" data-i18n="fact_spoken_lang_val">Libanés</div></div>
         <div class="fact-card"><div class="fact-label" data-i18n="fact_currency">Moneda</div><div class="fact-value" data-i18n="fact_currency_val">Libra libanesa (LBP)</div></div>
         <div class="fact-card"><div class="fact-label" data-i18n="fact_independence">Independencia</div><div class="fact-value">22 de noviembre de 1943</div></div>
-        <div class="fact-card"><div class="fact-label" data-i18n="fact_religion">Religiones</div><div class="fact-value" data-i18n="fact_religion_val">Cristianismo, Islam y Judaísmo</div></div>
-        <div class="fact-card"><div class="fact-label" data-i18n="fact_diaspora">Diáspora</div><div class="fact-value" data-i18n="fact_diaspora_val">+14 millones en el mundo</div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_religion">Religiones</div><div class="fact-value" data-i18n="fact_religion_val">Cristianismo, Islam y Judaísmo<span style="display:block;font-size:13px;color:var(--text-muted);margin-top:3px" data-i18n="fact_religion_note">(18 comunidades religiosas)</span></div></div>
+        <div class="fact-card"><div class="fact-label" data-i18n="fact_diaspora">Diáspora</div><div class="fact-value" data-i18n="fact_diaspora_val">20 millones (aprox.)<span style="display:block;font-size:13px;color:var(--text-muted);margin-top:3px" data-i18n="fact_diaspora_note">(sin censo oficial)</span></div></div>
       </div>
     </div>
     <div class="tab-content" id="tab-bilateral">
@@ -890,9 +891,9 @@ html[lang="ar"] .float-item .float-label {
       <div class="news-card">
         <div class="news-body">
           <span class="news-tag tag-gold" data-i18n="news_tag_culture">Cultura</span>
-          <div class="news-date">Noviembre 2025</div>
+          <div class="news-date">22 de noviembre</div>
           <h3 class="news-title" data-i18n="news2_title">Día de la Independencia del Líbano</h3>
-          <p class="news-excerpt" data-i18n="news2_text">Cada 22 de noviembre el Líbano celebra su independencia de Francia proclamada en 1943. La Embajada conmemora esta fecha con actividades culturales en Bogotá.</p>
+          <p class="news-excerpt" data-i18n="news2_text">Cada 22 de noviembre el Líbano celebra su independencia del mandato francés proclamada en 1943. La Embajada conmemora esta fecha con actividades culturales en Bogotá.</p>
           <a href="https://nna-leb.gov.lb" target="_blank" class="news-link" data-i18n="news_nna_link">Agencia Nacional de Noticias del Líbano →</a>
         </div>
       </div>
@@ -941,12 +942,15 @@ html[lang="ar"] .float-item .float-label {
             <div class="cr-label" data-i18n="label_hours">Horario</div>
             <div class="cr-value">
               <table class="hours-table">
-                <tr><td data-i18n="days_monfri">Lunes – Jueves</td><td>8:30 am – 2:30 pm</td></tr>
-                <tr><td colspan="2" style="font-size:13px;font-weight:600;color:var(--cedar);padding-top:10px;letter-spacing:0.04em" data-i18n="days_consular_label">SECCIÓN CONSULAR</td></tr>
+                <tr><td colspan="2" style="font-size:12px;font-weight:600;color:var(--cedar);padding-bottom:4px;letter-spacing:0.04em;border-bottom:none" data-i18n="days_embassy_label">EMBAJADA</td></tr>
+                <tr><td data-i18n="days_monfri">Lunes – Viernes</td><td>8:30 am – 3:00 pm</td></tr>
+                <tr><td data-i18n="days_fri">Viernes</td><td data-i18n="days_fri_val">Solo virtual</td></tr>
+                <tr><td data-i18n="days_weekend">Sáb., Dom. y Festivos</td><td data-i18n="closed">Cerrado</td></tr>
+              </table>
+              <table class="hours-table" style="margin-top:16px;padding-top:12px;border-top:2px solid var(--warm-gray)">
+                <tr><td colspan="2" style="font-size:12px;font-weight:600;color:var(--cedar);padding-bottom:4px;letter-spacing:0.04em;border-bottom:none" data-i18n="days_consular_label">SECCIÓN CONSULAR</td></tr>
                 <tr><td data-i18n="days_consular">Recepción de documentos</td><td>9:30 – 11:30 am</td></tr>
                 <tr><td data-i18n="days_delivery">Entrega de trámites</td><td>12:30 – 1:30 pm</td></tr>
-                <tr><td data-i18n="days_fri">Viernes</td><td data-i18n="days_fri_val">Solo por correo electrónico</td></tr>
-                <tr><td data-i18n="days_weekend">Sáb., Dom. y Festivos</td><td data-i18n="closed">Cerrado</td></tr>
               </table>
             </div>
           </div>
@@ -1058,9 +1062,9 @@ const t = {
     card_contact_title:"Información de Contacto",
     label_address:"Dirección",label_phone:"Teléfono",label_email:"Correo",
     label_consular_email:"Trámites Consulares",
-    days_fri:"Viernes",days_fri_val:"Solo por correo electrónico",
+    days_fri:"Viernes",days_fri_val:"Solo virtual",
     label_hours:"Horario",label_web:"Sitio Web",
-    hours_value:"Lunes – Jueves: 8:30 am – 2:30 pm<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Atención Sección Consular:</small><br>· Recepción docs: 9:30–11:30 am<br>· Entrega trámites: 12:30–1:30 pm<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Viernes: únicamente por correo electrónico</small><br>Sáb./Dom./Festivos: cerrado",
+    hours_value:"Lunes – Viernes: 8:30 am – 3:00 pm<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Viernes: solo virtual</small><br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Sección Consular:</small><br>· Recepción docs: 9:30–11:30 am<br>· Entrega trámites: 12:30–1:30 pm<br>Sáb./Dom./Festivos: cerrado",
     notice_text:"<strong>⚠ Aviso:</strong> Para servicios consulares se requiere cita previa. Comuníquese al <a href='tel:+576013228991' style='color:#7a5c00;font-weight:500'>(601) 3228991</a> / <a href='tel:+576017169179' style='color:#7a5c00;font-weight:500'>(601) 7169179</a> o a <a href='mailto:consular@embajadalibanocolombia.co' style='color:#7a5c00;font-weight:500'>consular@embajadalibanocolombia.co</a>",
     about_label:"Nuestra Misión",about_title:"Embajada del Líbano en Bogotá",
     about_quote:'"Fortaleciendo los lazos entre el Líbano y Colombia a través de la diplomacia, la cultura y el servicio."',
@@ -1113,9 +1117,10 @@ const t = {
     img_placeholder_tourism:"[ Imagen: Turismo en el Líbano — Por confirmar ]",
     img_placeholder_economy:"[ Imagen: Economía del Líbano — Por confirmar ]",
     fact_capital:"Capital",fact_area:"Superficie",fact_pop:"Población",fact_lang:"Idioma oficial",
-    fact_lang_val:"Árabe (también francés e inglés)",fact_currency:"Moneda",fact_currency_val:"Libra libanesa (LBP)",
-    fact_independence:"Independencia",fact_religion:"Religiones",fact_religion_val:"Cristianismo, Islam y Judaísmo",
-    fact_diaspora:"Diáspora",fact_diaspora_val:"+14 millones en el mundo",
+    fact_lang_val:"Árabe",fact_spoken_lang:"Idioma hablado",fact_spoken_lang_val:"Libanés",
+    fact_currency:"Moneda",fact_currency_val:"Libra libanesa (LBP)",
+    fact_independence:"Independencia",fact_religion:"Religiones",fact_religion_val:"Cristianismo, Islam y Judaísmo",fact_religion_note:"(18 comunidades religiosas)",
+    fact_diaspora:"Diáspora",fact_diaspora_val:"20 millones (aprox.)",fact_diaspora_note:"(sin censo oficial)",
     hol_label:"Calendario Oficial",hol_title:"Días Festivos 2026 – 2027",
     hol_desc:"La Embajada permanecerá cerrada en los siguientes días festivos colombianos.",
     hol_newyear:"Año Nuevo",hol_labor:"Día del Trabajo",
@@ -1130,13 +1135,13 @@ const t = {
     news1_title:"Actualización de Tarifas Consulares 2026",
     news1_text:"Se informa sobre la actualización de tarifas para servicios consulares vigentes a partir del primer semestre de 2026. Para consultas comuníquese directamente con la Embajada.",
     news2_title:"Día de la Independencia del Líbano",
-    news2_text:"Cada 22 de noviembre el Líbano celebra su independencia de Francia proclamada en 1943. La Embajada conmemora esta fecha con actividades culturales en Bogotá.",
+    news2_text:"Cada 22 de noviembre el Líbano celebra su independencia del mandato francés proclamada en 1943. La Embajada conmemora esta fecha con actividades culturales en Bogotá.",
     news3_title:"Noticias Internacionales del Líbano",
     news3_text:"Manténgase informado sobre la actualidad libanesa a través de fuentes oficiales y medios reconocidos.",
     news_contact_link:"Consultar a la Embajada →",news_nna_link:"Agencia Nacional de Noticias del Líbano →",
     contact_label:"Estamos para Ayudarle",contact_title:"Contacte la Embajada",
     contact_desc:"Para consultas, citas y servicios consulares, comuníquese con nosotros por cualquiera de los siguientes medios.",
-    days_monfri:"Lunes – Jueves",days_consular_label:"SECCIÓN CONSULAR",days_consular:"Recepción de documentos",days_delivery:"Entrega de trámites",days_weekend:"Sáb., Dom. y Festivos",
+    days_embassy_label:"EMBAJADA",days_monfri:"Lunes – Viernes",days_consular_label:"SECCIÓN CONSULAR",days_consular:"Recepción de documentos",days_delivery:"Entrega de trámites",days_weekend:"Sáb., Dom. y Festivos",
     by_appointment:"Con cita previa",closed:"Cerrado",
     map_title:"Embajada del Líbano en Colombia",map_neighborhood:"Chapinero, Bogotá D.C.",
     map_open:"Abrir en Google Maps →",
@@ -1164,9 +1169,9 @@ const t = {
     card_contact_title:"Contact Information",
     label_address:"Address",label_phone:"Phone",label_email:"General Email",
     label_consular_email:"Consular Procedures",
-    days_fri:"Fridays",days_fri_val:"By email only",
+    days_fri:"Fridays",days_fri_val:"Virtual only",
     label_hours:"Office Hours",label_web:"Website",
-    hours_value:"Monday – Thursday: 8:30 am – 2:30 pm<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Consular Section hours:</small><br>· Document reception: 9:30–11:30 am<br>· Document delivery: 12:30–1:30 pm<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Fridays: by email only</small><br>Sat./Sun./Holidays: closed",
+    hours_value:"Monday – Friday: 8:30 am – 3:00 pm<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Fridays: virtual only</small><br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Consular Section:</small><br>· Document reception: 9:30–11:30 am<br>· Document delivery: 12:30–1:30 pm<br>Sat./Sun./Holidays: closed",
     notice_text:"<strong>⚠ Notice:</strong> Consular services require a prior appointment. Contact us at <a href='tel:+576013228991' style='color:#7a5c00;font-weight:500'>(601) 3228991</a> / <a href='tel:+576017169179' style='color:#7a5c00;font-weight:500'>(601) 7169179</a> or <a href='mailto:consular@embajadalibanocolombia.co' style='color:#7a5c00;font-weight:500'>consular@embajadalibanocolombia.co</a>",
     about_label:"Our Mission",about_title:"Embassy of Lebanon in Bogotá",
     about_quote:'"Strengthening the bonds between Lebanon and Colombia through diplomacy, culture, and service."',
@@ -1222,9 +1227,10 @@ const t = {
     img_placeholder_tourism:"[ Image: Lebanon Tourism — To be confirmed ]",
     img_placeholder_economy:"[ Image: Lebanon Economy — To be confirmed ]",
     fact_capital:"Capital",fact_area:"Area",fact_pop:"Population",fact_lang:"Official language",
-    fact_lang_val:"Arabic (also French and English)",fact_currency:"Currency",fact_currency_val:"Lebanese Pound (LBP)",
-    fact_independence:"Independence",fact_religion:"Religions",fact_religion_val:"Christianity, Islam and Judaism",
-    fact_diaspora:"Diaspora",fact_diaspora_val:"+14 million worldwide",
+    fact_lang_val:"Arabic",fact_spoken_lang:"Spoken language",fact_spoken_lang_val:"Lebanese",
+    fact_currency:"Currency",fact_currency_val:"Lebanese Pound (LBP)",
+    fact_independence:"Independence",fact_religion:"Religions",fact_religion_val:"Christianity, Islam and Judaism",fact_religion_note:"(18 religious communities)",
+    fact_diaspora:"Diaspora",fact_diaspora_val:"20 million (approx.)",fact_diaspora_note:"(no official census)",
     hol_label:"Official Calendar",hol_title:"Public Holidays 2026",
     hol_desc:"The Embassy will be closed on the following Colombian public holidays.",
     hol_newyear:"New Year's Day",hol_labor:"Labor Day",
@@ -1239,13 +1245,13 @@ const t = {
     news1_title:"Consular Fee Update 2026",
     news1_text:"Information on the updated consular service fees effective from the first half of 2026. For inquiries, contact the Embassy directly.",
     news2_title:"Lebanese Independence Day",
-    news2_text:"Every November 22nd, Lebanon celebrates its independence from France proclaimed in 1943. The Embassy commemorates this date with cultural events in Bogotá.",
+    news2_text:"Every November 22nd, Lebanon celebrates its independence from the French Mandate proclaimed in 1943. The Embassy commemorates this date with cultural events in Bogotá.",
     news3_title:"International News from Lebanon",
     news3_text:"Stay informed about Lebanese current affairs through official sources and recognized media outlets.",
     news_contact_link:"Contact the Embassy →",news_nna_link:"National News Agency of Lebanon →",
     contact_label:"We Are Here to Help",contact_title:"Contact the Embassy",
     contact_desc:"For inquiries, appointments, and consular services, contact us through any of the following channels.",
-    days_monfri:"Monday – Thursday",days_consular_label:"CONSULAR SECTION",days_consular:"Document reception",days_delivery:"Document delivery",days_weekend:"Sat., Sun. & Holidays",
+    days_embassy_label:"EMBASSY",days_monfri:"Monday – Friday",days_consular_label:"CONSULAR SECTION",days_consular:"Document reception",days_delivery:"Document delivery",days_weekend:"Sat., Sun. & Holidays",
     by_appointment:"By appointment",closed:"Closed",
     map_title:"Embassy of Lebanon in Colombia",map_neighborhood:"Chapinero, Bogotá D.C.",
     map_open:"Open in Google Maps →",
@@ -1273,9 +1279,9 @@ const t = {
     card_contact_title:"معلومات التواصل",
     label_address:"العنوان",label_phone:"الهاتف",label_email:"البريد العام",
     label_consular_email:"المعاملات القنصلية",
-    days_fri:"الجمعة",days_fri_val:"عبر البريد الإلكتروني فقط",
+    days_fri:"الجمعة",days_fri_val:"افتراضي فقط",
     label_hours:"ساعات العمل",label_web:"الموقع الإلكتروني",
-    hours_value:"الاثنين – الخميس: 8:30 ص – 2:30 م<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">ساعات القسم القنصلي:</small><br>· استلام المستندات: 9:30 – 11:30 ص<br>· تسليم المعاملات: 12:30 – 1:30 م<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">الجمعة: عبر البريد الإلكتروني فقط</small><br>السبت/الأحد/الأعياد: مغلق",
+    hours_value:"الاثنين – الجمعة: 8:30 ص – 3:00 م<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">الجمعة: افتراضي فقط</small><br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">القسم القنصلي:</small><br>· استلام المستندات: 9:30 – 11:30 ص<br>· تسليم المعاملات: 12:30 – 1:30 م<br>السبت/الأحد/الأعياد: مغلق",
     notice_text:"<strong>⚠ إشعار:</strong> تستلزم الخدمات القنصلية تحديد موعد مسبق. تواصلوا معنا على <a href='tel:+576013228991' style='color:#7a5c00;font-weight:500'>(601) 3228991</a> / <a href='tel:+576017169179' style='color:#7a5c00;font-weight:500'>(601) 7169179</a> أو <a href='mailto:consular@embajadalibanocolombia.co' style='color:#7a5c00;font-weight:500'>consular@embajadalibanocolombia.co</a>",
     about_label:"مهمتنا",about_title:"سفارة لبنان في بوغوتا",
     about_quote:'"تعزيز الروابط بين لبنان وكولومبيا من خلال الدبلوماسية والثقافة والخدمة."',
@@ -1331,9 +1337,10 @@ const t = {
     img_placeholder_tourism:"[ صورة: السياحة في لبنان — يُحدَّد لاحقاً ]",
     img_placeholder_economy:"[ صورة: اقتصاد لبنان — يُحدَّد لاحقاً ]",
     fact_capital:"العاصمة",fact_area:"المساحة",fact_pop:"عدد السكان",fact_lang:"اللغة الرسمية",
-    fact_lang_val:"العربية (والفرنسية والإنجليزية)",fact_currency:"العملة",fact_currency_val:"الليرة اللبنانية (LBP)",
-    fact_independence:"الاستقلال",fact_religion:"الأديان",fact_religion_val:"المسيحية، الإسلام واليهودية",
-    fact_diaspora:"الاغتراب",fact_diaspora_val:"+14 مليون حول العالم",
+    fact_lang_val:"العربية",fact_spoken_lang:"اللغة المتداولة",fact_spoken_lang_val:"اللبنانية",
+    fact_currency:"العملة",fact_currency_val:"الليرة اللبنانية (LBP)",
+    fact_independence:"الاستقلال",fact_religion:"الأديان",fact_religion_val:"المسيحية، الإسلام واليهودية",fact_religion_note:"(18 طائفة دينية)",
+    fact_diaspora:"الاغتراب",fact_diaspora_val:"20 مليون (تقريباً)",fact_diaspora_note:"(بدون تعداد رسمي)",
     hol_label:"التقويم الرسمي",hol_title:"العطل الرسمية 2026",
     hol_desc:"ستكون السفارة مغلقة في أيام الأعياد الرسمية الكولومبية التالية.",
     hol_newyear:"رأس السنة الميلادية",hol_labor:"عيد العمال",hol_assumption:"عيد انتقال السيدة العذراء",hol_independence:"عيد الاستقلال اللبناني",hol_christmas:"عيد الميلاد المجيد",
@@ -1346,13 +1353,13 @@ const t = {
     news1_title:"تحديث الرسوم القنصلية 2026",
     news1_text:"إعلام بتحديث رسوم الخدمات القنصلية المعمول بها اعتباراً من النصف الأول من عام 2026. للاستفسار، تواصلوا مباشرة مع السفارة.",
     news2_title:"يوم الاستقلال اللبناني",
-    news2_text:"في كل عام في الثاني والعشرين من نوفمبر يحتفل لبنان باستقلاله عن فرنسا المُعلن عام 1943. تحيي السفارة هذه المناسبة بفعاليات ثقافية في بوغوتا.",
+    news2_text:"في كل عام في الثاني والعشرين من نوفمبر يحتفل لبنان باستقلاله عن الانتداب الفرنسي المُعلن عام 1943. تحيي السفارة هذه المناسبة بفعاليات ثقافية في بوغوتا.",
     news3_title:"أخبار لبنان الدولية",
     news3_text:"ابق على اطلاع بآخر المستجدات اللبنانية عبر المصادر الرسمية ووسائل الإعلام المعتمدة.",
     news_contact_link:"تواصل مع السفارة ←",news_nna_link:"وكالة الأنباء الوطنية اللبنانية ←",
     contact_label:"نحن هنا لمساعدتك",contact_title:"تواصل مع السفارة",
     contact_desc:"للاستفسارات والمواعيد والخدمات القنصلية، تواصل معنا عبر أي من القنوات التالية.",
-    days_monfri:"الاثنين – الخميس",days_consular_label:"القسم القنصلي",days_consular:"استلام المستندات",days_delivery:"تسليم المعاملات",days_weekend:"السبت والأحد والأعياد",
+    days_embassy_label:"السفارة",days_monfri:"الاثنين – الجمعة",days_consular_label:"القسم القنصلي",days_consular:"استلام المستندات",days_delivery:"تسليم المعاملات",days_weekend:"السبت والأحد والأعياد",
     by_appointment:"بموعد مسبق",closed:"مغلق",
     map_title:"سفارة لبنان في كولومبيا",map_neighborhood:"شابينيرو، بوغوتا",
     map_open:"فتح في خرائط غوغل ←",
