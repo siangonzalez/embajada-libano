@@ -267,6 +267,8 @@ html[lang="ar"] .cr-label{letter-spacing:0;text-transform:none}
 .hours-table td{padding:7px 0;font-size:15px;font-weight:300;color:var(--text-muted);border-bottom:1px solid var(--warm-gray)}
 .hours-table td:first-child{font-weight:400;color:var(--text-dark);width:50%}
 .hours-table tr:last-child td{border-bottom:none}
+.hours-table td:last-child{white-space:nowrap;padding-inline-start:12px}
+.contact-row>.cr-body{flex:1;min-width:0}
 .map-placeholder{background:var(--warm-gray);border-radius:10px;height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--text-muted);border:1px solid var(--border)}
 .map-placeholder svg{width:32px;height:32px;stroke:var(--cedar);fill:none;stroke-width:1.5}
 .map-address-overlay{background:var(--white);border-radius:6px;padding:12px 16px;margin-top:8px;width:80%;text-align:center}
@@ -1041,23 +1043,27 @@ html[lang="ar"] .nov-files h4{letter-spacing:0;text-transform:none}
         </div>
         <div class="contact-row">
           <div class="cr-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
-          <div><div class="cr-label" data-i18n="label_email">Correo</div><div class="cr-value"><a href="mailto:info@embajadalibanocolombia.co">info@embajadalibanocolombia.co</a><br><small style="color:var(--text-muted)">Trámites consulares: <a href="mailto:consular@embajadalibanocolombia.co" style="color:var(--cedar)">consular@embajadalibanocolombia.co</a></small></div></div>
-        </div>
-        <div class="contact-row">
-          <div class="cr-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-          <div>
-            <div class="cr-label" data-i18n="label_hours">Horario</div>
+          <div class="cr-body">
+            <div class="cr-label" data-i18n="label_general">Atención General</div>
             <div class="cr-value">
-              <table class="hours-table">
-                <tr><td colspan="2" style="font-size:12px;font-weight:600;color:var(--cedar);padding-bottom:4px;letter-spacing:0.04em;border-bottom:none" data-i18n="days_embassy_label">EMBAJADA</td></tr>
+              <a href="mailto:info@embajadalibanocolombia.co">info@embajadalibanocolombia.co</a>
+              <table class="hours-table" style="margin-top:8px">
                 <tr><td data-i18n="days_monfri">Lunes – Viernes</td><td>8:30 am – 3:00 pm</td></tr>
                 <tr><td data-i18n="days_fri">Viernes</td><td data-i18n="days_fri_val">Solo virtual</td></tr>
-                <tr><td data-i18n="days_weekend">Sáb., Dom. y Festivos</td><td data-i18n="closed">Cerrado</td></tr>
               </table>
-              <table class="hours-table" style="margin-top:16px;padding-top:12px;border-top:2px solid var(--warm-gray)">
-                <tr><td colspan="2" style="font-size:12px;font-weight:600;color:var(--cedar);padding-bottom:4px;letter-spacing:0.04em;border-bottom:none" data-i18n="days_consular_label">SECCIÓN CONSULAR</td></tr>
+            </div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="cr-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+          <div class="cr-body">
+            <div class="cr-label" data-i18n="label_consular_email">Trámites Consulares</div>
+            <div class="cr-value">
+              <a href="mailto:consular@embajadalibanocolombia.co">consular@embajadalibanocolombia.co</a>
+              <table class="hours-table" style="margin-top:8px">
                 <tr><td data-i18n="days_consular">Recepción de documentos</td><td>9:30 – 11:30 am</td></tr>
                 <tr><td data-i18n="days_delivery">Entrega de trámites</td><td>12:30 – 1:30 pm</td></tr>
+                <tr><td data-i18n="days_weekend">Sáb., Dom. y Festivos</td><td data-i18n="closed">Cerrado</td></tr>
               </table>
             </div>
           </div>
