@@ -16,7 +16,7 @@ jobs:
           server: 132.148.216.241
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          server-dir: /public_html/
+          server-dir: /public_html/public_html/
           exclude: |
             **/.git*
             **/.git*/**
