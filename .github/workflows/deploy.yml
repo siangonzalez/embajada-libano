@@ -23,3 +23,5 @@ jobs:
             .github/**
             README.md
             CNAME
+          log-level: verbose
+          state-name: .ftp-deploy-sync-state-reset.json
