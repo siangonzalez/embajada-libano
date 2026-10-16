@@ -1,39 +1,25 @@
-name: Desplegar a GoDaddy
+name: Deploy to GoDaddy
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Descargar archivos del repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # Clave para crear la primera cuenta del panel /admin.
-      # Se toma del secret ADMIN_SETUP_KEY; nunca queda escrita en el repositorio.
-      - name: Preparar clave de configuración del panel
-        env:
-          KEY: ${{ secrets.ADMIN_SETUP_KEY }}
-        run: |
-          if [ -n "$KEY" ]; then
-            php -r 'file_put_contents("admin/setup-key.php", "<?php return " . var_export(getenv("KEY"), true) . ";\n");'
-          fi
-
-      - name: Subir a GoDaddy por FTP
+      - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          server-dir: ./
+          server: 132.148.216.241
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          server-dir: /public_html/
           exclude: |
             **/.git*
             **/.git*/**
+            .github/**
             README.md
-            uploads/**
-            _datos_novedades/**
+            CNAME
