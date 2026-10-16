@@ -407,6 +407,93 @@ html[lang="ar"] .float-item .float-label {
 #muteBtn{position:absolute;bottom:24px;right:24px;z-index:10;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.3);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,transform .2s;backdrop-filter:blur(4px)}
 #muteBtn:hover{background:rgba(0,0,0,0.7);transform:scale(1.08)}
 #muteBtn svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* ─── NOVEDADES (contenido gestionado desde /admin) ─── */
+.nov-section{background:var(--cream);border-bottom:1px solid var(--warm-gray)}
+.nov-head{margin-bottom:28px}
+.nov-row{display:grid;gap:22px}
+.nov-row+.nov-panel{margin-bottom:22px}
+.nov-panel:last-child{margin-bottom:0}
+.nov-card{background:var(--white);border:1px solid var(--warm-gray);border-radius:10px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;text-align:start;font:inherit;color:inherit;padding:0;width:100%;transition:box-shadow .2s,border-color .2s,transform .2s;position:relative}
+.nov-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.09);transform:translateY(-2px)}
+.nov-card:focus-visible{outline:3px solid rgba(0,100,0,.35);outline-offset:2px}
+.nov-card.open{border-color:var(--cedar);box-shadow:0 0 0 1px var(--cedar),0 8px 28px rgba(0,100,0,0.12);transform:none}
+.nov-cover.nov-cover-ph{background:var(--cedar-light) url('Logo_2025.png') center/auto 58% no-repeat;background-blend-mode:multiply}
+.nov-cover{aspect-ratio:16/9;background:var(--cedar-light) center/cover no-repeat;flex-shrink:0}
+.nov-body{padding:22px 24px;display:flex;flex-direction:column;flex:1;gap:8px}
+.nov-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--text-muted);font-weight:300}
+.nov-pin{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:#7a5c00;background:var(--gold-light);padding:3px 10px;border-radius:20px}
+html[lang="ar"] .nov-pin{letter-spacing:0;text-transform:none}
+.nov-title{font-family:var(--font-serif);font-size:21px;font-weight:500;line-height:1.3;color:var(--text-dark)}
+.nov-card [lang="ar"] .nov-title,html[lang="ar"] .nov-title{font-family:var(--font-arabic)}
+.nov-summary{font-size:16px;color:var(--text-muted);font-weight:300;line-height:1.7;flex:1}
+.nov-toggle{font-size:15px;color:var(--cedar);font-weight:500;margin-top:6px;display:inline-flex;align-items:center;gap:6px}
+.nov-toggle i{font-style:normal;display:inline-block;transition:transform .25s}
+.nov-card.open .nov-toggle i{transform:rotate(180deg)}
+.nov-row.single .nov-card{flex-direction:row}
+.nov-row.single .nov-cover{width:44%;aspect-ratio:auto;min-height:260px}
+.nov-row.single .nov-body{padding:32px 36px;justify-content:center}
+.nov-row.single .nov-title{font-size:clamp(22px,2.4vw,28px)}
+.nov-panel{height:0;overflow:hidden;transition:height .4s cubic-bezier(.4,0,.2,1);scroll-margin-top:110px}
+.nov-panel-inner{background:var(--white);border:1px solid var(--warm-gray);border-top:3px solid var(--cedar);border-radius:10px;padding:32px 36px;margin-top:22px}
+.nov-panel-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--warm-gray)}
+.nov-panel-head h3{font-family:var(--font-serif);font-size:clamp(24px,2.6vw,30px);font-weight:500;line-height:1.25}
+html[lang="ar"] .nov-panel-head h3,.nov-panel-inner[lang="ar"] h3{font-family:var(--font-arabic)}
+.nov-close{background:none;border:1px solid var(--warm-gray);border-radius:50%;width:38px;height:38px;flex-shrink:0;cursor:pointer;font-size:20px;color:var(--text-muted);line-height:1;transition:background .15s}
+.nov-close:hover{background:var(--cedar-light);color:var(--cedar)}
+.nov-content{font-size:17px;color:var(--text-mid);line-height:1.8;overflow-wrap:anywhere}
+.nov-content>*+*{margin-top:14px}
+.nov-content h2{font-family:var(--font-serif);font-size:24px;font-weight:500;color:var(--text-dark);margin-top:26px}
+.nov-content h3{font-family:var(--font-serif);font-size:20px;font-weight:500;color:var(--text-dark);margin-top:22px}
+html[lang="ar"] .nov-content h2,html[lang="ar"] .nov-content h3{font-family:var(--font-arabic)}
+.nov-content ul,.nov-content ol{padding-inline-start:26px}
+.nov-content li+li{margin-top:4px}
+.nov-content a{color:var(--cedar);font-weight:500}
+.nov-content blockquote{border-inline-start:3px solid var(--gold);padding:4px 0 4px 18px;color:var(--text-muted);font-style:italic}
+html[lang="ar"] .nov-content blockquote{padding:4px 18px 4px 0}
+.nov-content img{max-width:100%;height:auto;border-radius:8px;display:block}
+.nov-content iframe{width:100%;max-width:720px;aspect-ratio:16/9;height:auto;border:0;border-radius:8px;display:block}
+.nov-content .ql-align-center{text-align:center}.nov-content .ql-align-right{text-align:right}.nov-content .ql-align-justify{text-align:justify}
+.nov-content .ql-align-center img{margin:0 auto}.nov-content .ql-align-right img{margin-left:auto;margin-right:0}
+@media(max-width:600px){.nov-content img[width="25%"],.nov-content img[width="33%"]{width:50%}}
+.nov-content .ql-indent-1{padding-inline-start:2em}.nov-content .ql-indent-2{padding-inline-start:4em}.nov-content .ql-indent-3{padding-inline-start:6em}.nov-content .ql-indent-4{padding-inline-start:8em}.nov-content .ql-indent-5{padding-inline-start:10em}.nov-content .ql-indent-6{padding-inline-start:12em}.nov-content .ql-indent-7{padding-inline-start:14em}.nov-content .ql-indent-8{padding-inline-start:16em}
+.nov-content .ql-size-small{font-size:.82em}.nov-content .ql-size-large{font-size:1.35em}.nov-content .ql-size-huge{font-size:1.9em;line-height:1.3}
+.nov-content .ql-direction-rtl{direction:rtl;text-align:right}
+.nov-content h4{font-size:17px;font-weight:600;color:var(--text-dark);margin-top:18px}
+.nov-content hr{border:none;border-top:1px solid var(--warm-gray);margin:24px 0}
+.nov-content sub,.nov-content sup{font-size:.72em}
+.nov-link{display:grid;grid-template-columns:260px 1fr;margin-top:24px;border:1px solid var(--warm-gray);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;max-width:760px;transition:border-color .15s,box-shadow .15s}
+.nov-link.noimg{grid-template-columns:1fr}
+.nov-link:hover{border-color:var(--cedar);box-shadow:0 4px 18px rgba(0,0,0,.07)}
+.nov-link-img{background:var(--cedar-light) center/cover no-repeat;min-height:140px}
+.nov-link-txt{padding:16px 18px;background:var(--cream);display:flex;flex-direction:column;gap:4px;min-width:0}
+.nov-link-site{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)}
+html[lang="ar"] .nov-link-site{letter-spacing:0}
+.nov-link-title{font-size:17px;font-weight:600;color:var(--text-dark);line-height:1.35;overflow-wrap:anywhere}
+.nov-link-desc{font-size:15px;color:var(--text-muted);font-weight:300;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:600px){.nov-link{grid-template-columns:1fr}.nov-link-img{aspect-ratio:1.91/1;min-height:0}}
+.nov-files{margin-top:26px;padding-top:20px;border-top:1px solid var(--warm-gray)}
+.nov-files h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--cedar);font-weight:500;margin-bottom:12px}
+html[lang="ar"] .nov-files h4{letter-spacing:0;text-transform:none}
+.nov-files ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.nov-files a{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--warm-gray);border-radius:8px;text-decoration:none;color:var(--text-dark);font-size:15px;transition:background .15s,border-color .15s}
+.nov-files a:hover{background:var(--cedar-light);border-color:var(--cedar)}
+.nov-file-ext{width:38px;height:38px;border-radius:6px;background:var(--cedar-light);color:var(--cedar);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nov-file-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nov-file-size{font-size:13px;color:var(--text-muted);font-weight:300}
+.nov-more-wrap{text-align:center;margin-top:28px}
+.nov-more{background:transparent;border:1px solid var(--cedar);color:var(--cedar);padding:11px 26px;border-radius:4px;font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;letter-spacing:.03em;transition:background .15s,color .15s}
+.nov-more:hover{background:var(--cedar);color:var(--white)}
+@media(max-width:860px){
+  .nov-row{grid-template-columns:1fr!important}
+  .nov-row.single .nov-card{flex-direction:column}
+  .nov-row.single .nov-cover{width:100%;aspect-ratio:16/9;min-height:0}
+  .nov-row.single .nov-body{padding:22px 24px}
+  .nov-panel-inner{padding:24px 20px}
+}
+[data-nov-nav][hidden],.nov-section[hidden],.nov-more-wrap[hidden],.not-board[hidden]{display:none!important}
+.not-board{margin-bottom:24px}
+.not-board .nov-more-wrap{margin-top:22px}
+
 </style>
 </head>
 <body>
@@ -441,6 +528,7 @@ html[lang="ar"] .float-item .float-label {
     </a>
     <nav>
       <button class="nav-link active" onclick="goTo('inicio')" data-i18n="nav_home">Inicio</button>
+      <button class="nav-link" onclick="goTo('novedades')" data-nov-nav hidden>Novedades</button>
       <div class="dropdown">
         <button class="nav-link" data-i18n="nav_embassy">Embajada ▾</button>
         <div class="dropdown-menu">
@@ -494,6 +582,7 @@ html[lang="ar"] .float-item .float-label {
     <button class="lang-btn" onclick="setLang('en');toggleMobileMenu()">English</button>
     <button class="lang-btn" onclick="setLang('ar');toggleMobileMenu()">العربية</button>
   </div>
+  <a onclick="goTo('novedades');toggleMobileMenu()" data-nov-nav hidden>Novedades</a>
   <span class="mobile-nav-section-title" data-i18n="nav_embassy">Embajada</span>
   <a onclick="goTo('embajada');toggleMobileMenu()" data-i18n="nav_about">Sobre la Embajada</a>
   <a onclick="goTo('embajador');toggleMobileMenu()" data-i18n="nav_ambassador">Embajador</a>
@@ -585,6 +674,18 @@ html[lang="ar"] .float-item .float-label {
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- NOVEDADES — se administran desde /admin. La sección solo aparece si hay publicaciones activas. -->
+<section class="nov-section" id="novedades" hidden>
+  <div class="section-inner">
+    <div class="nov-head">
+      <div class="section-label" id="novLabel">Lo más reciente</div>
+      <h2 class="section-title" id="novTitle" style="margin-bottom:0">Novedades</h2>
+    </div>
+    <div id="novRows"></div>
+    <div class="nov-more-wrap" id="novMoreWrap" hidden><button class="nov-more" id="novMore" type="button"></button></div>
   </div>
 </section>
 
@@ -881,6 +982,11 @@ html[lang="ar"] .float-item .float-label {
       <div class="section-label" data-i18n="news_label">Actualidad</div>
       <h2 class="section-title" data-i18n="news_title">Noticias y Comunicados</h2>
       <p class="section-desc" data-i18n="news_desc">Información oficial de la Embajada y noticias relevantes del Líbano.</p>
+    </div>
+    <!-- Noticias publicadas desde el panel /admin (solo aparece si hay alguna) -->
+    <div class="not-board" id="notBoard" hidden>
+      <div id="notRows"></div>
+      <div class="nov-more-wrap" id="notMoreWrap" hidden><button class="nov-more" id="notMore" type="button"></button></div>
     </div>
     <div class="news-grid fade-in">
       <div class="news-card">
@@ -2085,6 +2191,180 @@ function toggleAccordion(btn){
       btn.setAttribute('aria-label','Activar sonido');
     }
   });
+})();
+</script>
+<script>
+/* ─── NOVEDADES y NOTICIAS: publicaciones gestionadas desde el panel /admin ─── */
+(function(){
+  var TXT={
+    es:{label:'Lo más reciente',title:'Novedades',read:'Leer más',hide:'Ocultar',close:'Cerrar',files:'Documentos adjuntos',pin:'Destacado',more:function(n){return 'Ver más ('+n+')';},less:'Ver menos',nav:'Novedades'},
+    en:{label:'Latest',title:'News & Updates',read:'Read more',hide:'Hide',close:'Close',files:'Attachments',pin:'Featured',more:function(n){return 'Show more ('+n+')';},less:'Show less',nav:'Updates'},
+    ar:{label:'الأحدث',title:'المستجدات',read:'اقرأ المزيد',hide:'إخفاء',close:'إغلاق',files:'المرفقات',pin:'مميّز',more:function(n){return 'عرض المزيد ('+n+')';},less:'عرض أقل',nav:'المستجدات'}
+  };
+  var LOCALE={es:'es-CO',en:'en-US',ar:'ar-LB'};
+  function lang(){var l=document.documentElement.lang;return TXT[l]?l:'es';}
+  function T(){return TXT[lang()];}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function version(p){
+    var l=lang(),es=p.i18n.es||{},loc=p.i18n[l];
+    if(l!=='es'&&loc&&loc.title) return {title:loc.title,summary:loc.summary||es.summary,content:loc.content||es.content,lang:l};
+    return {title:es.title,summary:es.summary,content:es.content,lang:'es'};
+  }
+  function langAttr(v){return v.lang===lang()?'':' lang="'+v.lang+'" dir="'+(v.lang==='ar'?'rtl':'ltr')+'"';}
+  function fmtDate(iso){try{return new Date(iso).toLocaleDateString(LOCALE[lang()],{day:'numeric',month:'long',year:'numeric'});}catch(e){return '';}}
+  function fmtSize(b){if(!b)return '';if(b<1048576)return Math.max(1,Math.round(b/1024))+' KB';return (b/1048576).toFixed(1)+' MB';}
+  function ext(n){var m=/\.([a-z0-9]+)$/i.exec(n||'');return m?m[1].toUpperCase().slice(0,4):'DOC';}
+  function img(p){return p.cover||(p.link&&p.link.image)||'';}
+  // En celular cada tarjeta va en su propia fila, para que el acordeón abra justo debajo de ella
+  function perRow(){return window.matchMedia('(max-width:860px)').matches?1:3;}
+
+  function linkCard(l){
+    if(!l||!l.url) return '';
+    var host=l.site||l.url.replace(/^https?:\/\/(www\.)?/,'').split('/')[0];
+    return '<a class="nov-link'+(l.image?'':' noimg')+'" href="'+esc(l.url)+'" target="_blank" rel="noopener noreferrer">'+
+      (l.image?'<span class="nov-link-img" style="background-image:url(\''+esc(l.image)+'\')"></span>':'')+
+      '<span class="nov-link-txt"><span class="nov-link-site">'+esc(host)+'</span>'+
+      '<span class="nov-link-title">'+esc(l.title||l.url)+'</span>'+
+      (l.description?'<span class="nov-link-desc">'+esc(l.description)+'</span>':'')+'</span></a>';
+  }
+  function card(p,placeholder,open){
+    var v=version(p);
+    return '<button type="button" class="nov-card'+(open?' open':'')+'" data-nov="'+esc(p.id)+'" aria-expanded="'+open+'"'+langAttr(v)+'>'+
+      (img(p)?'<div class="nov-cover" style="background-image:url(\''+esc(img(p))+'\')"></div>':(placeholder?'<div class="nov-cover nov-cover-ph"></div>':''))+
+      '<div class="nov-body">'+
+        '<div class="nov-meta">'+(p.pinned?'<span class="nov-pin">'+T().pin+'</span>':'')+'<span>'+esc(fmtDate(p.date))+'</span></div>'+
+        '<h3 class="nov-title">'+esc(v.title)+'</h3>'+
+        (v.summary?'<p class="nov-summary">'+esc(v.summary)+'</p>':'')+
+        '<span class="nov-toggle">'+(open?T().hide:T().read)+' <i>▾</i></span>'+
+      '</div></button>';
+  }
+  function panelHTML(p){
+    var v=version(p);
+    var files=(p.attachments||[]).map(function(a){
+      return '<li><a href="'+esc(a.url)+'" target="_blank" rel="noopener" download="'+esc(a.name)+'">'+
+        '<span class="nov-file-ext">'+esc(ext(a.name))+'</span><span class="nov-file-name">'+esc(a.name)+'</span><span class="nov-file-size">'+fmtSize(a.size)+'</span></a></li>';
+    }).join('');
+    return '<div class="nov-panel-inner"'+langAttr(v)+'>'+
+      '<div class="nov-panel-head"><div><div class="nov-meta" style="margin-bottom:6px">'+esc(fmtDate(p.date))+'</div><h3>'+esc(v.title)+'</h3></div>'+
+      '<button type="button" class="nov-close" data-nov-close aria-label="'+T().close+'">✕</button></div>'+
+      '<div class="nov-content">'+(v.content||('<p>'+esc(v.summary)+'</p>'))+'</div>'+
+      linkCard(p.link)+
+      (files?'<div class="nov-files"><h4>'+T().files+'</h4><ul>'+files+'</ul></div>':'')+
+    '</div>';
+  }
+  function animate(panel,toOpen,done){
+    var start=panel.offsetHeight;
+    panel.style.height=start+'px';
+    panel.offsetHeight; // reflow
+    var end=toOpen?panel.scrollHeight:0;
+    panel.style.height=end+'px';
+    var fin=function(e){if(e&&e.target!==panel)return;panel.removeEventListener('transitionend',fin);if(toOpen)panel.style.height='auto';if(done)done();};
+    panel.addEventListener('transitionend',fin);
+    if(start===end) fin();
+  }
+
+  /** Un tablero de tarjetas con acordeón (se usa en Novedades y en Noticias). */
+  function Board(cfg){
+    var self=this,posts=[],showAll=false,openId=null;
+    var rowsEl=cfg.rows,moreWrap=cfg.moreWrap,moreBtn=cfg.more;
+    function find(id){for(var i=0;i<posts.length;i++)if(posts[i].id===id)return posts[i];return null;}
+    function render(){
+      cfg.onCount(posts.length);
+      if(!posts.length){rowsEl.innerHTML='';moreWrap.hidden=true;return;}
+      var list=showAll?posts:posts.slice(0,3),html='',size=perRow();
+      for(var i=0;i<list.length;i+=size){
+        var row=list.slice(i,i+size),ph=row.some(function(x){return img(x);});
+        html+='<div class="nov-row'+(row.length===1?' single':'')+'" style="grid-template-columns:repeat('+row.length+',1fr)">'+
+              row.map(function(p){return card(p,ph,p.id===openId);}).join('')+'</div>'+
+              '<div class="nov-panel" data-panel="'+(i/size)+'"></div>';
+      }
+      rowsEl.innerHTML=html;
+      moreWrap.hidden=posts.length<=3;
+      moreBtn.textContent=showAll?T().less:T().more(posts.length-3);
+      if(openId){ // conservar abierta la publicación al redibujar
+        var idx=list.indexOf(find(openId));
+        if(idx<0){openId=null;return;}
+        var panel=rowsEl.querySelector('[data-panel="'+Math.floor(idx/size)+'"]');
+        panel.innerHTML=panelHTML(find(openId));panel.style.height='auto';
+      }
+    }
+    function setCard(el,isOpen){
+      el.classList.toggle('open',isOpen);el.setAttribute('aria-expanded',isOpen);
+      el.querySelector('.nov-toggle').innerHTML=(isOpen?T().hide:T().read)+' <i>▾</i>';
+    }
+    function toggle(id,cardEl){
+      var target=cardEl.closest('.nov-row').nextElementSibling;
+      var current=openId?rowsEl.querySelector('.nov-card.open'):null;
+      var currentPanel=current?current.closest('.nov-row').nextElementSibling:null;
+      if(openId===id){openId=null;setCard(cardEl,false);animate(target,false,function(){target.innerHTML='';});return;}
+      if(current) setCard(current,false);
+      openId=id;setCard(cardEl,true);
+      if(currentPanel&&currentPanel!==target) animate(currentPanel,false,function(){currentPanel.innerHTML='';});
+      target.style.height=target.offsetHeight+'px';
+      target.innerHTML=panelHTML(find(id));
+      animate(target,true,function(){
+        var r=target.getBoundingClientRect();
+        if(r.top<100||r.top>window.innerHeight*0.6) target.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    }
+    rowsEl.addEventListener('click',function(e){
+      if(e.target.closest('[data-nov-close]')){
+        var c=rowsEl.querySelector('.nov-card.open');
+        if(c){toggle(openId,c);c.scrollIntoView({behavior:'smooth',block:'nearest'});}
+        return;
+      }
+      var c2=e.target.closest('[data-nov]');
+      if(c2) toggle(c2.getAttribute('data-nov'),c2);
+    });
+    moreBtn.addEventListener('click',function(){
+      showAll=!showAll;
+      if(!showAll&&openId&&posts.indexOf(find(openId))>2) openId=null;
+      render();
+      if(!showAll) cfg.scrollTarget.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+    self.set=function(list){posts=list;render();};
+    self.render=render;
+  }
+
+  var novSec=document.getElementById('novedades');
+  var boards=[];
+  if(novSec){
+    boards.push({section:'novedades',board:new Board({
+      rows:document.getElementById('novRows'),moreWrap:document.getElementById('novMoreWrap'),more:document.getElementById('novMore'),scrollTarget:novSec,
+      onCount:function(n){
+        novSec.hidden=!n;
+        document.querySelectorAll('[data-nov-nav]').forEach(function(a){a.hidden=!n;a.textContent=T().nav;});
+        document.getElementById('novLabel').textContent=T().label;
+        document.getElementById('novTitle').textContent=T().title;
+      }
+    })});
+  }
+  var notWrap=document.getElementById('notBoard');
+  if(notWrap){
+    boards.push({section:'noticias',board:new Board({
+      rows:document.getElementById('notRows'),moreWrap:document.getElementById('notMoreWrap'),more:document.getElementById('notMore'),scrollTarget:document.getElementById('noticias'),
+      onCount:function(n){notWrap.hidden=!n;}
+    })});
+  }
+
+  var lastPerRow=perRow();
+  window.addEventListener('resize',function(){var n=perRow();if(n!==lastPerRow){lastPerRow=n;boards.forEach(function(b){b.board.render();});}});
+
+  // Re-dibujar al cambiar de idioma
+  var origSetLang=window.setLang;
+  if(typeof origSetLang==='function'){
+    window.setLang=function(){origSetLang.apply(this,arguments);boards.forEach(function(b){b.board.render();});};
+  }
+
+  fetch('api/novedades.php',{cache:'no-store'})
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(j){
+      if(!j||!j.ok||!j.posts) return;
+      boards.forEach(function(b){
+        b.board.set(j.posts.filter(function(p){return (p.section||'novedades')===b.section;}));
+      });
+    })
+    .catch(function(){/* sin servidor PHP: las secciones siguen ocultas */});
 })();
 </script>
 </body>
