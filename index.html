@@ -129,6 +129,8 @@ html[lang="ar"] .hero h1{font-family:var(--font-arabic);font-size:clamp(28px,3.5
 .hero-contact-value{font-size:15px;color:rgba(255,255,255,0.9);line-height:1.5}
 .hero-contact-value a{color:rgba(255,255,255,0.85);text-decoration:none}
 .hero-contact-value a:hover{color:#fff;text-decoration:underline}
+.hero-contact-hours{margin-top:8px;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.6}
+.hero-contact-hours small{display:block;font-size:12px;color:rgba(255,255,255,0.55)}
 .hero-card h3{font-family:var(--font-serif);font-size:24px;font-weight:500;margin-bottom:20px;color:rgba(255,255,255,0.95)}
 html[lang="ar"] .hero-card h3{font-family:var(--font-arabic)}
 .contact-item{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
@@ -657,6 +659,7 @@ html[lang="ar"] .nov-files h4{letter-spacing:0;text-transform:none}
         <div>
           <div class="hero-contact-label" data-i18n="label_email">Correo General</div>
           <div class="hero-contact-value"><a href="mailto:info@embajadalibanocolombia.co">info@embajadalibanocolombia.co</a></div>
+          <div class="hero-contact-hours" data-i18n="hours_embassy">Lunes – Viernes: 8:30 am – 3:00 pm<small>Viernes: solo virtual</small></div>
         </div>
       </div>
       <div class="hero-contact-row">
@@ -664,13 +667,7 @@ html[lang="ar"] .nov-files h4{letter-spacing:0;text-transform:none}
         <div>
           <div class="hero-contact-label" data-i18n="label_consular_email">Trámites Consulares</div>
           <div class="hero-contact-value"><a href="mailto:consular@embajadalibanocolombia.co">consular@embajadalibanocolombia.co</a></div>
-        </div>
-      </div>
-      <div class="hero-contact-row">
-        <span class="hero-contact-icon">🕐</span>
-        <div>
-          <div class="hero-contact-label" data-i18n="label_hours">Horario presencial</div>
-          <div class="hero-contact-value" data-i18n="hours_value"><small style="color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:0.06em">EMBAJADA</small><br>Lunes – Viernes: 8:30 am – 3:00 pm<br><small style="color:rgba(255,255,255,0.6);font-size:12px">Viernes: solo virtual</small><br><span style="display:block;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.2)"><small style="color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:0.06em">SECCIÓN CONSULAR</small></span>· Recepción docs: 9:30–11:30 am<br>· Entrega trámites: 12:30–1:30 pm<br><small style="color:rgba(255,255,255,0.6);font-size:12px">Sáb./Dom./Festivos: cerrado</small></div>
+          <div class="hero-contact-hours" data-i18n="hours_consular">Recepción docs: 9:30 – 11:30 am<br>Entrega trámites: 12:30 – 1:30 pm<small>Sáb./Dom./Festivos: cerrado</small></div>
         </div>
       </div>
     </div>
@@ -1174,7 +1171,8 @@ const t = {
     label_consular_email:"Trámites Consulares",
     days_fri:"Viernes",days_fri_val:"Solo virtual",
     label_hours:"Horario",label_web:"Sitio Web",
-    hours_value:"<small style=\"color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:0.06em\">EMBAJADA</small><br>Lunes – Viernes: 8:30 am – 3:00 pm<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Viernes: solo virtual</small><br><span style=\"display:block;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.2)\"><small style=\"color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:0.06em\">SECCIÓN CONSULAR</small></span>· Recepción docs: 9:30–11:30 am<br>· Entrega trámites: 12:30–1:30 pm<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Sáb./Dom./Festivos: cerrado</small>",
+    hours_embassy:"Lunes – Viernes: 8:30 am – 3:00 pm<small>Viernes: solo virtual</small>",
+    hours_consular:"Recepción docs: 9:30 – 11:30 am<br>Entrega trámites: 12:30 – 1:30 pm<small>Sáb./Dom./Festivos: cerrado</small>",
     notice_text:"<strong>⚠ Aviso:</strong> Para servicios consulares se requiere cita previa. Comuníquese al <a href='tel:+576013228991' style='color:#7a5c00;font-weight:500'>(601) 3228991</a> / <a href='tel:+576017169179' style='color:#7a5c00;font-weight:500'>(601) 7169179</a> o a <a href='mailto:consular@embajadalibanocolombia.co' style='color:#7a5c00;font-weight:500'>consular@embajadalibanocolombia.co</a>",
     about_label:"Nuestra Misión",about_title:"Embajada del Líbano en Bogotá",
     about_quote:'"Fortaleciendo los lazos entre el Líbano y Colombia a través de la diplomacia, la cultura y el servicio."',
@@ -1281,7 +1279,8 @@ const t = {
     label_consular_email:"Consular Procedures",
     days_fri:"Fridays",days_fri_val:"Virtual only",
     label_hours:"Office Hours",label_web:"Website",
-    hours_value:"<small style=\"color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:0.06em\">EMBASSY</small><br>Monday – Friday: 8:30 am – 3:00 pm<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Fridays: virtual only</small><br><span style=\"display:block;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.2)\"><small style=\"color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:0.06em\">CONSULAR SECTION</small></span>· Document reception: 9:30–11:30 am<br>· Document delivery: 12:30–1:30 pm<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">Sat./Sun./Holidays: closed</small>",
+    hours_embassy:"Monday – Friday: 8:30 am – 3:00 pm<small>Fridays: virtual only</small>",
+    hours_consular:"Document reception: 9:30 – 11:30 am<br>Document delivery: 12:30 – 1:30 pm<small>Sat./Sun./Holidays: closed</small>",
     notice_text:"<strong>⚠ Notice:</strong> Consular services require a prior appointment. Contact us at <a href='tel:+576013228991' style='color:#7a5c00;font-weight:500'>(601) 3228991</a> / <a href='tel:+576017169179' style='color:#7a5c00;font-weight:500'>(601) 7169179</a> or <a href='mailto:consular@embajadalibanocolombia.co' style='color:#7a5c00;font-weight:500'>consular@embajadalibanocolombia.co</a>",
     about_label:"Our Mission",about_title:"Embassy of Lebanon in Bogotá",
     about_quote:'"Strengthening the bonds between Lebanon and Colombia through diplomacy, culture, and service."',
@@ -1391,7 +1390,8 @@ const t = {
     label_consular_email:"المعاملات القنصلية",
     days_fri:"الجمعة",days_fri_val:"افتراضي فقط",
     label_hours:"ساعات العمل",label_web:"الموقع الإلكتروني",
-    hours_value:"<small style=\"color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:0.06em\">السفارة</small><br>الاثنين – الجمعة: 8:30 ص – 3:00 م<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">الجمعة: افتراضي فقط</small><br><span style=\"display:block;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.2)\"><small style=\"color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:0.06em\">القسم القنصلي</small></span>· استلام المستندات: 9:30 – 11:30 ص<br>· تسليم المعاملات: 12:30 – 1:30 م<br><small style=\"color:rgba(255,255,255,0.6);font-size:12px\">السبت/الأحد/الأعياد: مغلق</small>",
+    hours_embassy:"الاثنين – الجمعة: 8:30 ص – 3:00 م<small>الجمعة: افتراضي فقط</small>",
+    hours_consular:"استلام المستندات: 9:30 – 11:30 ص<br>تسليم المعاملات: 12:30 – 1:30 م<small>السبت/الأحد/الأعياد: مغلق</small>",
     notice_text:"<strong>⚠ إشعار:</strong> تستلزم الخدمات القنصلية تحديد موعد مسبق. تواصلوا معنا على <a href='tel:+576013228991' style='color:#7a5c00;font-weight:500'>(601) 3228991</a> / <a href='tel:+576017169179' style='color:#7a5c00;font-weight:500'>(601) 7169179</a> أو <a href='mailto:consular@embajadalibanocolombia.co' style='color:#7a5c00;font-weight:500'>consular@embajadalibanocolombia.co</a>",
     about_label:"مهمتنا",about_title:"سفارة لبنان في بوغوتا",
     about_quote:'"تعزيز الروابط بين لبنان وكولومبيا من خلال الدبلوماسية والثقافة والخدمة."',
